@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K12 Plus · Product &amp; Hiring Timeline</title>
+<style>
+:root{
+  --navy:#0B1929;--navy2:#112236;--navy3:#162d47;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.15);
+  --text:#e8edf2;--muted:#7a9bb5;
+  --accent:#00C2A8;--accent2:#1a7fd4;
+  --ok:#16a34a;--warn:#d97706;--danger:#dc2626;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:13px;min-height:100vh}
+
+/* ── TOPBAR ── */
+.topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 20px;background:var(--navy2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+.logo{font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.3px}
+.logo span{color:var(--accent)}
+.topbar-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.global-badge{font-size:10px;color:var(--muted);background:var(--navy3);border:1px solid var(--border2);border-radius:4px;padding:2px 8px;white-space:nowrap}
+.topbar-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cl{font-size:10px;color:var(--muted);white-space:nowrap}
+.cg{display:flex;align-items:center;gap:4px}
+select,input[type=month],input[type=number],input[type=text]{background:var(--navy3);border:1px solid var(--border2);color:var(--text);border-radius:5px;padding:3px 6px;font-size:11px;height:26px}
+select:focus,input:focus{outline:1px solid var(--accent);border-color:var(--accent)}
+
+/* ── TABS ── */
+.tab-row{display:flex;gap:2px;padding:10px 20px 0;border-bottom:1px solid var(--border);background:var(--navy2)}
+.tab-btn{padding:6px 16px;font-size:11px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;border-radius:4px 4px 0 0;transition:color .15s;white-space:nowrap}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn.t-align.active{color:#a78bfa;border-bottom-color:#a78bfa}
+.tab-btn.t-quota.active{color:#fbbf24;border-bottom-color:#fbbf24}
+.tab-btn.t-monthly.active{color:#34d399;border-bottom-color:#34d399}
+.tab-btn.t-phases.active{color:#c4b0f5;border-bottom-color:#c4b0f5}
+.tab-btn.t-reps.active{color:#8abde8;border-bottom-color:#8abde8}
+.tab-btn.t-howto.active{color:#f0f0f0;border-bottom-color:#f0f0f0}
+.tab-btn.t-scenarios.active{color:#fb923c;border-bottom-color:#fb923c}
+
+/* ── STATS BAR ── */
+.stats-bar{display:flex;gap:0;border-bottom:1px solid var(--border2);background:var(--navy3);overflow-x:auto}
+.stat-card{flex:1;min-width:140px;padding:10px 16px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
+.stat-card:last-child{border-right:none}
+.stat-label{font-size:10px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.stat-value{font-size:18px;font-weight:700;line-height:1}
+.stat-sub{font-size:10px;color:var(--muted)}
+.stat-ok{color:#4ade80}.stat-warn{color:#fbbf24}.stat-gap{color:#f87171}
+
+/* ── SWIMLANE ── */
+.chart-area{overflow-x:auto}
+table.swim{border-collapse:collapse;width:100%}
+.swim th,.swim td{border:0;border-right:1px solid var(--border);padding:0;vertical-align:middle}
+.lane-label{width:168px;min-width:168px;max-width:168px;padding:5px 12px;font-size:11px;font-weight:600;background:var(--navy2);position:sticky;left:0;z-index:10;border-right:2px solid var(--border2);border-bottom:1px solid var(--border);line-height:1.3;vertical-align:middle}
+.lane-label.lp{color:#c4b0f5}
+.lane-label.lr{color:#8abde8}
+.lane-label .sub{font-size:9px;color:var(--muted);font-weight:400;display:block;margin-top:2px}
+.lane-label .today-pill{display:inline-block;font-size:8px;font-weight:700;background:rgba(0,194,168,.2);color:var(--accent);border:1px solid rgba(0,194,168,.4);border-radius:3px;padding:0 4px;margin-left:4px;letter-spacing:.04em;vertical-align:middle}
+.month-hdr{text-align:center;padding:5px 2px 4px;font-size:10px;color:var(--muted);background:var(--navy2);font-weight:600;border-bottom:3px solid var(--border2);white-space:nowrap;border-right:1px solid var(--border)}
+.month-hdr.qs{border-left:2px solid var(--accent2)}
+.month-hdr.nc{color:var(--accent);background:rgba(0,194,168,.09);font-weight:700}
+.month-hdr .ql{font-size:9px;color:var(--accent2);display:block;font-weight:700;letter-spacing:.04em}
+.month-hdr.nc .ql{color:var(--accent)}
+.mod-row td{padding:6px 12px 5px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid var(--border);position:sticky;left:0;background:var(--navy3)}
+.mod-row-cell{border-bottom:1px solid var(--border)!important}
+.sec-banner td{padding:9px 12px 7px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-top:3px solid;border-bottom:2px solid var(--border2);position:sticky;left:0}
+.sec-banner.prod td{color:var(--accent);border-top-color:rgba(0,194,168,.3);background:rgba(0,194,168,.05)}
+.sec-banner.rep td{color:#8abde8;border-top-color:rgba(91,155,213,.3);background:rgba(91,155,213,.05)}
+.cell{height:42px;position:relative;padding:0;border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
+.cell.nc{background:rgba(0,194,168,.04)}
+.cell.alt{background:rgba(255,255,255,.013)}
+.cell.alt.nc{background:rgba(0,194,168,.055)}
+.bar{position:absolute;top:7px;bottom:7px;border-radius:4px;display:flex;align-items:center;font-size:10px;font-weight:600;padding:0 7px;white-space:nowrap;overflow:hidden;cursor:default;transition:filter .15s,box-shadow .15s}
+.bar:hover{filter:brightness(1.3);box-shadow:0 0 0 1px rgba(255,255,255,.15)}
+.bar-l{border-radius:4px 0 0 4px}.bar-m{border-radius:0}.bar-r{border-radius:0 4px 4px 0}.bar-s{border-radius:4px}
+.rb-train{position:absolute;top:7px;bottom:7px;border-radius:4px;display:flex;align-items:center;font-size:10px;font-weight:600;padding:0 6px;white-space:nowrap;overflow:hidden;background:rgba(155,127,232,.2);border:1px solid rgba(155,127,232,.55);color:#c4b0f5}
+.rb-ramp{position:absolute;top:7px;bottom:7px;border-radius:4px;display:flex;align-items:center;font-size:10px;font-weight:600;padding:0 6px;white-space:nowrap;overflow:hidden;background:rgba(91,155,213,.2);border:1px solid rgba(91,155,213,.55);color:#8abde8}
+.rb-full{position:absolute;top:7px;bottom:7px;border-radius:4px;display:flex;align-items:center;font-size:10px;font-weight:600;padding:0 6px;white-space:nowrap;overflow:hidden;background:rgba(22,163,74,.2);border:1px solid rgba(22,163,74,.55);color:#86efac}
+.hire-dot{position:absolute;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--navy);z-index:5;box-shadow:0 0 0 2px rgba(0,194,168,.35)}
+.nl::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(0,194,168,.3);z-index:4;pointer-events:none}
+.ga-line{position:absolute;top:0;bottom:0;left:50%;width:0;border-left:2px dashed rgba(0,194,168,.55);z-index:3;pointer-events:none}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;padding:11px 20px;border-top:2px solid var(--border2);background:var(--navy2)}
+.leg{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.lsw{width:20px;height:10px;border-radius:3px;flex-shrink:0}
+.leg-divider{width:1px;height:16px;background:var(--border2);flex-shrink:0}
+
+/* ── QUOTA TAB ── */
+.quota-area{padding:20px}
+.quota-header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.quota-header h2{font-size:14px;font-weight:700;color:#fbbf24}
+.quota-header .fy-note{font-size:11px;color:var(--muted)}
+.quota-totals{display:flex;gap:0;margin-bottom:16px;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--navy3)}
+.qt{flex:1;padding:12px 16px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px}
+.qt:last-child{border-right:none}
+.qt-label{font-size:10px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.qt-value{font-size:22px;font-weight:700;color:#fbbf24;line-height:1}
+.qt-sub{font-size:10px;color:var(--muted)}
+.qt-delta{font-size:11px;font-weight:600}
+.qt-delta.neg{color:#f87171}
+.qt-delta.pos{color:#4ade80}
+
+.quota-table-wrap{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.quota-table{width:100%;border-collapse:collapse;font-size:12px}
+.quota-table th{background:var(--navy3);padding:9px 12px;text-align:left;font-weight:600;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border2);white-space:nowrap}
+.quota-table th.r{text-align:right}
+.quota-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.quota-table tr:last-child td{border-bottom:none}
+.quota-table tr:hover td{background:rgba(255,255,255,.025)}
+.quota-table .total-row td{background:var(--navy3);font-weight:700;border-top:2px solid var(--border2)}
+.qval{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.qval.ok{color:#4ade80}
+.qval.warn{color:#fbbf24}
+.qval.gap{color:#f87171}
+.hire-input{width:120px;font-size:11px}
+.ramp-bar-wrap{display:flex;gap:2px;align-items:center;height:18px;min-width:120px}
+.ramp-seg{height:100%;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex:1}
+.delta-badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;white-space:nowrap}
+.db-neg{background:rgba(220,38,38,.2);color:#f87171;border:1px solid rgba(220,38,38,.4)}
+.db-pos{background:rgba(22,163,74,.2);color:#4ade80;border:1px solid rgba(22,163,74,.4)}
+.db-flat{background:rgba(100,100,100,.2);color:var(--muted);border:1px solid var(--border2)}
+.ramp-note{margin-top:16px;padding:10px 14px;background:var(--navy3);border:1px solid var(--border);border-radius:6px;font-size:11px;color:var(--muted);line-height:1.6}
+.ramp-note strong{color:var(--text)}
+
+/* ── MONTHLY CHART ── */
+.monthly-area{padding:20px}
+.monthly-header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.monthly-header h2{font-size:14px;font-weight:700;color:#34d399}
+.monthly-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.monthly-controls label{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;cursor:pointer}
+.monthly-controls input[type=checkbox]{accent-color:#34d399;width:14px;height:14px}
+.chart-canvas-wrap{position:relative;width:100%;height:420px;margin-bottom:16px}
+.monthly-table-wrap{border:1px solid var(--border);border-radius:8px;overflow-x:auto;margin-top:4px}
+.monthly-table{width:100%;border-collapse:collapse;font-size:11px;min-width:900px}
+.monthly-table th{background:var(--navy3);padding:7px 10px;text-align:right;font-weight:600;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border2);white-space:nowrap}
+.monthly-table th:first-child{text-align:left;position:sticky;left:0;background:var(--navy3);z-index:2}
+.monthly-table td{padding:7px 10px;border-bottom:1px solid var(--border);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.monthly-table td:first-child{text-align:left;font-weight:600;position:sticky;left:0;background:var(--navy2);z-index:1}
+.monthly-table tr:hover td{background:rgba(255,255,255,.025)}
+.monthly-table tr:hover td:first-child{background:rgba(255,255,255,.025)}
+.monthly-table .total-row td{background:var(--navy3);font-weight:700;border-top:2px solid var(--border2);color:#fbbf24}
+.monthly-table .total-row td:first-child{background:var(--navy3)}
+.monthly-table .cumul-row td{background:rgba(52,211,153,.04);color:#34d399;border-top:1px solid rgba(52,211,153,.2)}
+.monthly-table .cumul-row td:first-child{background:rgba(52,211,153,.04)}
+.mcell-zero{color:rgba(255,255,255,.15)}
+.mcell-ramp{color:#fbbf24}
+.mcell-full{color:#e8edf2}
+.align-area{padding:20px}
+.sec-head{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.align-chart-wrap{overflow-x:auto;margin-bottom:16px}
+.align-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:10px;color:var(--muted);align-items:center;margin-bottom:4px}
+.aleg{display:flex;align-items:center;gap:5px}
+.alsw{width:14px;height:14px;border-radius:3px;flex-shrink:0}
+.gap-table{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:16px}
+.gap-table table{width:100%;border-collapse:collapse;font-size:12px}
+.gap-table th{background:var(--navy3);padding:8px 12px;text-align:left;font-weight:600;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border2)}
+.gap-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text)}
+.gap-table tr:last-child td{border-bottom:none}
+.gap-table tr:hover td{background:var(--navy3)}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.badge-ok{background:rgba(22,163,74,.2);color:#4ade80;border:1px solid rgba(22,163,74,.4)}
+.badge-warn{background:rgba(217,119,6,.2);color:#fbbf24;border:1px solid rgba(217,119,6,.4)}
+.badge-gap{background:rgba(220,38,38,.2);color:#f87171;border:1px solid rgba(220,38,38,.4)}
+
+/* ── EDITORS ── */
+.editor-area{padding:16px 20px}
+.ecard{background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:14px}
+.ecard-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.erow{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;padding:8px 10px;background:var(--navy3);border-radius:5px;border:1px solid var(--border);margin-bottom:6px}
+.ecg{display:flex;flex-direction:column;gap:3px}
+.ecg label{font-size:10px;color:var(--muted)}
+.ecg input[type=text]{width:148px}
+.ecg input[type=month]{width:128px}
+.ecg input[type=number]{width:68px}
+.add-btn,.del-btn,.move-btn{padding:3px 10px;font-size:10px;border-radius:4px;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--muted);height:26px}
+.add-btn{color:var(--accent);border-color:rgba(0,194,168,.4)}
+.add-btn:hover{background:rgba(0,194,168,.1)}
+.del-btn:hover{color:#f87171;border-color:rgba(248,113,113,.4);background:rgba(248,113,113,.08)}
+.erow-actions{display:flex;gap:4px;align-items:center;margin-left:auto}
+.status-pill{font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;white-space:nowrap}
+.sp-active{background:rgba(22,163,74,.2);color:#4ade80;border:1px solid rgba(22,163,74,.4)}
+.sp-training{background:rgba(155,127,232,.2);color:#c4b0f5;border:1px solid rgba(155,127,232,.4)}
+.sp-planned{background:rgba(91,155,213,.15);color:#8abde8;border:1px solid rgba(91,155,213,.35)}
+
+.tt{position:fixed;background:#1a2d42;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:8px 12px;font-size:11px;color:#e8edf2;z-index:999;pointer-events:none;max-width:280px;display:none;line-height:1.6}
+
+/* ── HOW TO TAB ── */
+.howto-area{padding:20px;max-width:900px}
+.howto-area h2{font-size:16px;font-weight:700;color:#fff;margin-bottom:4px}
+.howto-area .howto-sub{font-size:12px;color:var(--muted);margin-bottom:20px}
+.howto-section{margin-bottom:22px}
+.howto-section h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.howto-section h3 .dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.howto-body{font-size:12px;color:var(--text);line-height:1.7;background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:12px 16px}
+.howto-body p{margin-bottom:8px}
+.howto-body p:last-child{margin-bottom:0}
+.howto-body strong{color:#fff}
+.howto-body code{background:var(--navy3);padding:1px 5px;border-radius:3px;font-size:11px;color:#a78bfa;font-family:monospace}
+.howto-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:8px}
+.howto-card{background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:10px 14px}
+.howto-card .hc-title{font-size:11px;font-weight:700;margin-bottom:4px}
+.howto-card .hc-body{font-size:11px;color:var(--muted);line-height:1.6}
+.howto-toc{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+.howto-toc a{font-size:11px;color:var(--muted);background:var(--navy2);border:1px solid var(--border);border-radius:5px;padding:4px 10px;text-decoration:none;cursor:pointer;transition:color .15s,border-color .15s}
+.howto-toc a:hover{color:var(--text);border-color:var(--border2)}
+
+/* ── SCENARIOS TAB ── */
+.scenarios-area{padding:20px}
+.scenario-save-row{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-bottom:18px;padding:12px 14px;background:var(--navy2);border:1px solid var(--border);border-radius:8px}
+.scenario-save-row input[type=text]{width:220px}
+.scenario-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.scenario-card{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--navy2);border:1px solid var(--border);border-radius:8px;flex-wrap:wrap}
+.scenario-card.is-current{border-color:rgba(0,194,168,.4);background:rgba(0,194,168,.05)}
+.scenario-card .sc-name{font-weight:700;font-size:13px;flex:1;min-width:120px}
+.scenario-card .sc-meta{font-size:10px;color:var(--muted)}
+.scenario-card .sc-check{flex-shrink:0}
+.scenario-empty{font-size:12px;color:var(--muted);padding:16px;text-align:center;border:1px dashed var(--border2);border-radius:8px}
+.compare-table-wrap{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:8px}
+.compare-table{width:100%;border-collapse:collapse;font-size:12px}
+.compare-table th{background:var(--navy3);padding:9px 12px;text-align:left;font-weight:600;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border2);white-space:nowrap}
+.compare-table th.metric-col{text-align:left;min-width:200px}
+.compare-table td{padding:9px 12px;border-bottom:1px solid var(--border);text-align:right;font-variant-numeric:tabular-nums}
+.compare-table td.metric-col{text-align:left;font-weight:600;color:var(--muted);font-variant-numeric:normal}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table tr:hover td{background:rgba(255,255,255,.02)}
+.compare-best{color:#4ade80;font-weight:700}
+.compare-worst{color:#f87171}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div style="display:flex;align-items:baseline;gap:8px">
+    <div class="logo">K12<span>Plus</span></div>
+    <span style="font-size:11px;color:var(--muted)">Product &amp; Hiring Timeline</span>
+  </div>
+  <div class="topbar-right">
+    <span class="global-badge">&#9881; Controls apply to all tabs</span>
+    <div class="topbar-controls">
+      <div class="cg"><span class="cl">Start</span><input type="month" id="startMonth" value="2026-06" onchange="renderAll()"></div>
+      <div class="cg"><span class="cl">Months</span><input type="number" id="numMonths" value="24" min="6" max="36" style="width:52px" onchange="renderAll()"></div>
+      <div class="cg"><span class="cl">Training days</span><input type="number" id="trainDays" value="30" min="0" max="180" style="width:52px" onchange="renderAll()"></div>
+      <div class="cg"><span class="cl">Ramp days</span><input type="number" id="rampDays" value="90" min="0" max="365" style="width:52px" onchange="renderAll()"></div>
+      <div class="cg"><span class="cl">FY end</span><input type="month" id="fyEnd" value="2027-12" onchange="renderAll()"></div>
+      <div class="cg" style="border-left:1px solid var(--border2);padding-left:8px;margin-left:2px">
+        <label style="display:flex;align-items:center;gap:5px;cursor:pointer">
+          <input type="checkbox" id="seasonToggle" checked onchange="renderAll()" style="width:14px;height:14px;cursor:pointer;accent-color:#a78bfa">
+          <span class="cl" style="color:#a78bfa">Apply buying-season multiplier</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-row">
+  <button class="tab-btn active" onclick="showTab('swimlane')">Swimlane</button>
+  <button class="tab-btn t-quota" onclick="showTab('quota')">Quota &amp; ARR Impact</button>
+  <button class="tab-btn t-monthly" onclick="showTab('monthly')">Monthly ARR Build</button>
+  <button class="tab-btn t-align" onclick="showTab('align')">Readiness Alignment</button>
+  <button class="tab-btn t-phases" onclick="showTab('phases')">Edit Phases</button>
+  <button class="tab-btn t-reps" onclick="showTab('reps')">Edit Reps</button>
+  <button class="tab-btn t-scenarios" onclick="showTab('scenarios')">Scenarios</button>
+  <button class="tab-btn t-howto" onclick="showTab('howto')" style="margin-left:auto">How To Use This</button>
+</div>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<div id="tab-swimlane">
+  <div class="chart-area"><div id="chartWrap"></div></div>
+  <div class="legend" id="legend"></div>
+</div>
+
+<div id="tab-quota" style="display:none">
+  <div class="quota-area">
+    <div class="quota-header">
+      <h2>2027 Rep Quota Plan — Ramp-Adjusted</h2>
+      <span class="fy-note">Contribution calculated from hire date + ramp curve &nbsp;·&nbsp; Source: Reforecast Model &nbsp;·&nbsp; Edit hire dates below or in Edit Reps tab</span>
+    </div>
+    <div class="quota-totals" id="quotaTotals"></div>
+    <div class="quota-table-wrap"><table class="quota-table" id="quotaTable"></table></div>
+    <div class="ramp-note" id="rampNote"></div>
+  </div>
+</div>
+
+<div id="tab-monthly" style="display:none">
+  <div style="padding:20px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+      <div>
+        <div style="font-size:14px;font-weight:700;color:#fbbf24;margin-bottom:2px">Monthly ARR Build — FY2027</div>
+        <div style="font-size:11px;color:var(--muted)">Ramp % and quota per rep per month · ramp curve scales with training + ramp day settings · target = $7.1M / $591K per month · buying-season multiplier toggle in top controls</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <label style="font-size:10px;color:var(--muted)">Chart view</label>
+        <select id="monthlyView" onchange="renderMonthly()" style="height:26px;font-size:11px">
+          <option value="monthly">Monthly ARR contribution</option>
+          <option value="cumulative">Cumulative ARR build</option>
+        </select>
+        <button onclick="toggleSeasonEditor()" style="height:26px;font-size:11px;padding:3px 10px;border-radius:5px;cursor:pointer;border:1px solid rgba(167,139,250,.4);background:transparent;color:#a78bfa">Edit season multipliers</button>
+      </div>
+    </div>
+    <div id="seasonEditor" style="display:none;margin-bottom:16px"></div>
+    <div style="position:relative;width:100%;overflow-x:auto;margin-bottom:8px">
+      <canvas id="monthlyCanvas" style="display:block;width:100%;max-width:100%"></canvas>
+    </div>
+    <div id="monthlyLegend" style="display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:20px;font-size:11px;color:var(--muted)"></div>
+    <div id="monthlyGridWrap"></div>
+  </div>
+</div>
+
+<div id="tab-align" style="display:none">
+  <div class="align-area">
+    <div class="sec-head">GA milestones vs ramped rep coverage</div>
+    <div class="align-chart-wrap"><svg id="alignSvg" width="100%" style="display:block"></svg></div>
+    <div class="align-legend">
+      <div class="aleg"><div class="alsw" style="background:rgba(22,163,74,.2);border:1px solid rgba(22,163,74,.5)"></div>2+ ramped</div>
+      <div class="aleg"><div class="alsw" style="background:rgba(217,119,6,.2);border:1px solid rgba(217,119,6,.5)"></div>1 ramped</div>
+      <div class="aleg"><div class="alsw" style="background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.5)"></div>0 ramped</div>
+      <div class="aleg"><svg width="34" height="14" style="flex-shrink:0"><line x1="2" y1="7" x2="32" y2="7" stroke="#a78bfa" stroke-width="2" stroke-dasharray="4 2"/></svg>GA release</div>
+      <div class="aleg"><svg width="16" height="14" style="flex-shrink:0"><circle cx="8" cy="7" r="5" fill="#4ade80"/></svg>Fully ramped</div>
+      <div class="aleg"><svg width="16" height="14" style="flex-shrink:0"><circle cx="8" cy="7" r="5" fill="#fbbf24"/></svg>Ramping</div>
+      <div class="aleg"><svg width="16" height="14" style="flex-shrink:0"><circle cx="8" cy="7" r="4.5" fill="none" stroke="#7a9bb5" stroke-width="1.5"/></svg>Hired / training</div>
+      <div style="width:1px;height:14px;background:var(--border2)"></div>
+      <div class="aleg"><div class="alsw" style="background:#4ade8022;border:1px solid #4ade8055"></div>Strong buying window</div>
+      <div class="aleg"><div class="alsw" style="background:#fbbf2422;border:1px solid #fbbf2455"></div>Slower / lower access</div>
+      <div class="aleg"><div class="alsw" style="background:#f8717122;border:1px solid #f8717155"></div>STAAR testing</div>
+      <div class="aleg"><div class="alsw" style="background:#8abde822;border:1px solid #8abde855"></div>Budget cycle</div>
+    </div>
+    <div class="gap-table" id="gapTable"></div>
+  </div>
+</div>
+
+<div id="tab-phases" style="display:none"><div class="editor-area" id="phaseEditor"></div></div>
+<div id="tab-reps" style="display:none"><div class="editor-area" id="repEditor"></div></div>
+
+<div id="tab-scenarios" style="display:none">
+  <div class="scenarios-area">
+    <div style="margin-bottom:4px;font-size:14px;font-weight:700;color:#fb923c">Scenario Save &amp; Compare</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:18px">Capture the current hire dates, phase timing, ramp settings, and season multipliers as a named scenario. Save a few variations, then compare them side by side.</div>
+
+    <div class="scenario-save-row">
+      <div class="ecg"><label>Scenario name</label><input type="text" id="scenarioName" placeholder="e.g. Dallas Metro slips to Jan"></div>
+      <button class="add-btn" onclick="saveScenario()">+ Save current as scenario</button>
+      <button class="move-btn" onclick="exportScenarios()">Export all (.json)</button>
+      <button class="move-btn" onclick="document.getElementById('scenarioImportFile').click()">Import (.json)</button>
+      <input type="file" id="scenarioImportFile" accept="application/json" style="display:none" onchange="importScenarios(event)">
+    </div>
+
+    <div id="scenarioList" class="scenario-list"></div>
+
+    <div id="scenarioCompareWrap"></div>
+  </div>
+</div>
+
+<div id="tab-howto" style="display:none">
+  <div class="howto-area">
+    <h2>How To Use This Tool</h2>
+    <div class="howto-sub">K12 Plus product development timeline, rep hiring/ramp plan, and live ARR scenario model — six connected views, one shared dataset.</div>
+
+    <div class="howto-toc">
+      <a onclick="howtoScroll('hc-global')">Global controls</a>
+      <a onclick="howtoScroll('hc-swimlane')">Swimlane</a>
+      <a onclick="howtoScroll('hc-quota')">Quota &amp; ARR Impact</a>
+      <a onclick="howtoScroll('hc-monthly')">Monthly ARR Build</a>
+      <a onclick="howtoScroll('hc-align')">Readiness Alignment</a>
+      <a onclick="howtoScroll('hc-edit')">Edit Phases / Edit Reps</a>
+      <a onclick="howtoScroll('hc-season')">Buying-season multipliers</a>
+      <a onclick="howtoScroll('hc-ga')">GA milestone linkage</a>
+      <a onclick="howtoScroll('hc-scenarios')">Scenario save &amp; compare</a>
+    </div>
+
+    <div class="howto-section" id="hc-global">
+      <h3 style="color:#00C2A8"><span class="dot" style="background:#00C2A8"></span>Global Controls (top bar)</h3>
+      <div class="howto-body">
+        <p>The five controls in the top-right corner apply across <strong>every tab</strong> — they're the shared inputs that drive all the calculations.</p>
+        <p><strong>Start / Months</strong> — sets the date range shown on the Swimlane tab only.</p>
+        <p><strong>Training days / Ramp days</strong> — how long a newly hired rep takes to become fully productive. Training is the onboarding period; Ramp is the period after training where productivity scales up gradually (see the ramp curve in Monthly ARR Build). These two numbers add together — e.g. 30 + 90 = 120 days to full productivity.</p>
+        <p><strong>FY end</strong> — the fiscal year-end month used for the Quota and Monthly ARR Build calculations. Defaults to December 2027.</p>
+        <p><strong>Apply buying-season multiplier</strong> — toggles whether the Texas district buying calendar (see below) adjusts the monthly ARR figures. On by default.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-swimlane">
+      <h3 style="color:#00C2A8"><span class="dot" style="background:#00C2A8"></span>Swimlane</h3>
+      <div class="howto-body">
+        <p>The master timeline. Top section shows <strong>Product Development</strong> — grouped by module (Foundation, IEP, Integrations, LPAC) with each phase as a colored bar. Bottom section shows <strong>Sales Reps</strong> — each rep's Training → Ramping → Full Productivity progression based on their hire date and the global training/ramp settings.</p>
+        <p>The <strong>District Buying Season</strong> row near the top shows which months are strong for selling (BUY), slow (SLOW), consumed by STAAR testing (STAAR), or budget-cycle months (BUDGET) — see the dedicated section below.</p>
+        <p>Dashed teal lines mark <strong>GA milestones</strong>, derived live from the corresponding phase end-dates in Edit Phases. Hover any bar or band for details.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-quota">
+      <h3 style="color:#fbbf24"><span class="dot" style="background:#fbbf24"></span>Quota &amp; ARR Impact</h3>
+      <div class="howto-body">
+        <p>Shows each rep's Avg ACV, Deals/mo, and Steady-State Quota (their full annual quota once fully ramped), alongside <strong>Base FY27</strong> (the original mid-year model figure) and <strong>Current FY27</strong> (live-calculated from the rep's current hire date, the ramp curve, and — if enabled — the buying-season multiplier).</p>
+        <p>You can edit a rep's <strong>hire date directly in this table</strong> — the totals at the top, the delta vs. base model, and every other tab update immediately. This is the fastest way to test "what if this hire slips a month?"</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-monthly">
+      <h3 style="color:#34d399"><span class="dot" style="background:#34d399"></span>Monthly ARR Build</h3>
+      <div class="howto-body">
+        <p>The most detailed view. The chart shows monthly (or cumulative) ARR contribution stacked by rep, against the $7.1M annual / $591K monthly target line. Click any bar to highlight it.</p>
+        <p>Below the chart, three tables: the <strong>ramp curve</strong> (productivity % by month-since-hire, which stretches or compresses based on your Training/Ramp day settings), <strong>ramp % per rep per month</strong>, and <strong>monthly quota ($) per rep</strong> with a team total row colored against the target.</p>
+        <p>Use <strong>Edit season multipliers</strong> to open an inline editor for the 12 monthly buying-season multipliers — change any value and everything recalculates.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-align">
+      <h3 style="color:#a78bfa"><span class="dot" style="background:#a78bfa"></span>Readiness Alignment</h3>
+      <div class="howto-body">
+        <p>Answers: <strong>"Will we have enough ramped reps when a product hits GA?"</strong> Each GA milestone is a vertical line, colored green (2+ reps ramped), amber (1 rep), or red (0 reps) based on coverage at that date. Rep rows below show their hire → train → ramp → full progression on the same timeline.</p>
+        <p>The background shading and bottom strip show the buying-season overlay — useful for spotting cases where a rep's ramp period lands during STAAR testing season, when pipeline generation is structurally harder.</p>
+        <p>The gap table below the chart spells out exact coverage and "days until next ramped rep" for each GA date.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-edit">
+      <h3 style="color:#c4b0f5"><span class="dot" style="background:#c4b0f5"></span>Edit Phases / Edit Reps</h3>
+      <div class="howto-body">
+        <p><strong>Edit Phases</strong> is grouped by module. Change any Start/End month, name, or color — the Swimlane bar updates immediately. Phases with a teal <strong>⚑ GA milestone</strong> badge are the ones that drive GA dates everywhere else (see GA milestone linkage below). Use ↑/↓ to reorder within a module, or "+ Add to [Module]" to insert a new phase.</p>
+        <p><strong>Edit Reps</strong> lets you change name, territory, hire month, Avg ACV, Deals/mo, SS Quota, and status (Active / In training / Planned). Avg ACV and SS Quota display as formatted dollars — click into the field to edit as a plain number, then click away or hit Enter to reformat.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-season">
+      <h3 style="color:#a78bfa"><span class="dot" style="background:#a78bfa"></span>District Buying-Season Multipliers</h3>
+      <div class="howto-body">
+        <p>Texas K-12 districts have a predictable annual rhythm that affects how easy it is to sell, independent of a rep's individual ramp progress:</p>
+        <div class="howto-grid">
+          <div class="howto-card"><div class="hc-title" style="color:#4ade80">BUY — Sep, Oct, Jan</div><div class="hc-body">Strong buying windows. Fall semester is underway and budgets/grant funds are available; January opens next-year budget planning. Multipliers &gt;1.0.</div></div>
+          <div class="howto-card"><div class="hc-title" style="color:#fbbf24">SLOW — May, Aug, Nov, Dec</div><div class="hc-body">Year-end ARDs and graduation (May), back-to-school chaos (Aug), and holiday breaks (Nov-Dec) all reduce admin availability. Multipliers &lt;1.0.</div></div>
+          <div class="howto-card"><div class="hc-title" style="color:#f87171">STAAR — Feb, Mar, Apr</div><div class="hc-body">State testing prep and administration consumes special ed and assessment staff — your key buyers. Lowest multipliers of the year.</div></div>
+          <div class="howto-card"><div class="hc-title" style="color:#8abde8">BUDGET — Jun, Jul</div><div class="hc-body">Districts finalize budgets for the new fiscal year (Sept 1 start). Mixed access — some bandwidth, some still locked into prior commitments.</div></div>
+        </div>
+        <p style="margin-top:10px">These multipliers are <strong>editable</strong> in the Monthly ARR Build tab ("Edit season multipliers") and apply to every rep's monthly ARR figure when the global toggle is on — including fully-ramped reps. Reset to defaults or zero them out entirely from that same panel.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-ga">
+      <h3 style="color:#00C2A8"><span class="dot" style="background:#00C2A8"></span>GA Milestone Linkage</h3>
+      <div class="howto-body">
+        <p>Four phases in Edit Phases are tagged as GA milestones: <strong>504/RTI GA</strong>, <strong>IEP Module GA</strong>, <strong>Ed-Fi GA</strong>, and <strong>LPAC Module GA</strong> (marked with a ⚑ badge). Their <strong>End month</strong> is the single source of truth for that GA date everywhere in this tool.</p>
+        <p>If the dev team slips a GA date, change that phase's End month in Edit Phases — the swimlane marker, the Readiness Alignment vertical line and coverage colors, the stats bar rep-count card, and the gap table all move together automatically. No other tab needs manual updates.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-scenarios">
+      <h3 style="color:#fb923c"><span class="dot" style="background:#fb923c"></span>Scenario Save &amp; Compare</h3>
+      <div class="howto-body">
+        <p>The Scenarios tab lets you capture a full snapshot of the current state — every phase date, every rep's hire date and quota, the global controls, and the season multipliers — under a name you choose.</p>
+        <p><strong>Save current as scenario</strong> — captures everything as it stands right now. Make changes anywhere in the tool (e.g. slip the Dallas Metro hire to January), save again under a different name, and you now have two scenarios.</p>
+        <p><strong>Load</strong> — restores the tool to exactly that scenario's state, across all tabs. <strong>Update</strong> — overwrites a saved scenario with whatever the working state currently is. <strong>Delete</strong> — removes it.</p>
+        <p>Check <strong>2 or more scenarios</strong> to see a side-by-side comparison table: FY27 ARR total, delta vs. the base model, training/ramp settings, GA coverage (reps ramped at each milestone), and each rep's hire date and FY27 contribution. The best/worst FY27 totals are highlighted in green/red.</p>
+        <p><strong>Export / Import</strong> — saves all scenarios to a <code>.json</code> file you can keep or share, and load them back in later (e.g. in a future session, since scenarios aren't saved automatically when you close the file).</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="tt" id="tt"></div>
+
+<script>
+// ── COLORS ────────────────────────────────────────────────────────────────────
+const COLORS=[
+  {key:'iep',   label:'IEP Module',          bg:'rgba(26,111,168,.22)', bdr:'rgba(26,111,168,.6)',  txt:'#7bbfe8'},
+  {key:'ard',   label:'ARD Meetings',         bg:'rgba(46,139,110,.22)', bdr:'rgba(46,139,110,.6)',  txt:'#7dd4b4'},
+  {key:'assess',label:'Assessments',          bg:'rgba(123,87,196,.22)', bdr:'rgba(123,87,196,.6)', txt:'#c4b0f5'},
+  {key:'lpac',  label:'LPAC Module',          bg:'rgba(196,123,26,.22)', bdr:'rgba(196,123,26,.6)', txt:'#f0b56a'},
+  {key:'edfi',  label:'Ed-Fi / Integrations', bg:'rgba(26,158,196,.22)', bdr:'rgba(26,158,196,.6)', txt:'#7dd4f5'},
+  {key:'504',   label:'504 / RTI',            bg:'rgba(76,175,138,.22)', bdr:'rgba(76,175,138,.6)', txt:'#7dd4b4'},
+  {key:'beta',  label:'Beta',                 bg:'rgba(232,130,106,.22)',bdr:'rgba(232,130,106,.6)',txt:'#f5b09a'},
+  {key:'ga',    label:'GA Release',           bg:'rgba(0,194,168,.18)',  bdr:'rgba(0,194,168,.55)', txt:'#00C2A8'},
+];
+const CL={};COLORS.forEach(c=>CL[c.key]=c);
+
+const PHASE_GROUPS=[
+  {id:'foundation', label:'Foundation',  color:'#4ade80', phases:[1]},
+  {id:'iep',        label:'IEP Module',  color:'#7bbfe8', phases:[2,3,4,7,8]},
+  {id:'integrations',label:'Integrations',color:'#7dd4f5',phases:[5,6,9]},
+  {id:'lpac',       label:'LPAC Module', color:'#f0b56a', phases:[10,11,12,13,14,15,16]},
+];
+
+let phases=[
+  {id:1, name:'504 / RTI — GA',                 start:'2026-06',end:'2026-08',color:'504',   tip:'504 & RTI General Availability — Aug 3, 2026'},
+  {id:2, name:'IEP Goals + Behavior / FBA',      start:'2026-06',end:'2026-07',color:'assess',tip:'IEP Goal Features, Behavior Incidents & FBA\nMar 16 – Jul 10, 2026 · Sprints 2–3'},
+  {id:3, name:'ARD Meetings (all 4 types)',       start:'2026-06',end:'2026-09',color:'ard',   tip:'Initial ARD · Annual ARD · 3-Yr Re-Eval · Review/MDR/Transition\nJun 1 – Sep 11, 2026 · Sprints 1–7'},
+  {id:4, name:'FIE / Special Request Assessment', start:'2026-09',end:'2026-10',color:'assess',tip:'FIE + Special Request Assessment\nSep 14 – Oct 23, 2026 · Sprints 8–10'},
+  {id:5, name:'Ed-Fi Integration',                start:'2026-06',end:'2026-10',color:'edfi',  tip:'Elastic Beanstalk → LEA sync → onboarding → Ed-Fi certification\nJun 1 – Oct 23, 2026'},
+  {id:6, name:'CSV Integrations (parallel)',       start:'2026-06',end:'2027-02',color:'edfi',  tip:'Student · Parent · Staff CSV imports + Plans in Flight\nJun 3, 2026 – Feb 26, 2027'},
+  {id:7, name:'IEP Module — Beta (30 days)',       start:'2026-10',end:'2026-11',color:'beta',  tip:'IEP Module beta testing\nOct 23 – Nov 22, 2026'},
+  {id:8, name:'IEP Module — GA',                   start:'2026-11',end:'2026-12',color:'ga',    tip:'IEP Module GA — Nov 22, 2026'},
+  {id:9, name:'Ed-Fi — GA',                        start:'2026-11',end:'2026-12',color:'ga',    tip:'Ed-Fi Integration GA — Nov 22, 2026'},
+  {id:10,name:'LPAC BOY Meeting',                  start:'2026-10',end:'2026-11',color:'lpac',  tip:'LPAC Beginning-of-Year Meeting\nOct 26 – Nov 13, 2026 · Sprints 11–12'},
+  {id:11,name:'LPAC MOY Meeting',                  start:'2026-11',end:'2026-12',color:'lpac',  tip:'LPAC Mid-of-Year Meeting · Sprint 13'},
+  {id:12,name:'LPAC EOY Meeting',                  start:'2026-12',end:'2026-12',color:'lpac',  tip:'LPAC End-of-Year Meeting · Sprints 14–15'},
+  {id:13,name:'LPAC Huddle',                       start:'2026-12',end:'2027-01',color:'lpac',  tip:'LPAC Huddle · Sprint 16'},
+  {id:14,name:'LPAC Monitoring Meeting',           start:'2027-01',end:'2027-02',color:'lpac',  tip:'LPAC Monitoring — final LPAC milestone · Sprints 17–18'},
+  {id:15,name:'LPAC Module — Beta (30 days)',      start:'2027-02',end:'2027-03',color:'beta',  tip:'LPAC Module beta testing\nFeb 5 – Mar 7, 2027'},
+  {id:16,name:'LPAC Module — GA',                  start:'2027-03',end:'2027-04',color:'ga',    tip:'LPAC Module GA — Mar 7, 2027'},
+];
+
+// Rep data now includes quota fields from mid-year deck
+let reps=[
+  {id:1,name:'San Angelo Rep',   territory:'Central/West TX',   hire:'2026-01',status:'active',  type:'Mid/Ent',  avgACV:32000, dealsMo:1.8, ssQuota:787000,  baseFY27:787000},
+  {id:2,name:'Needville Rep',    territory:'Gulf Coast',         hire:'2026-06',status:'training',type:'Mid/Ent',  avgACV:42000, dealsMo:1.8, ssQuota:957000,  baseFY27:957000},
+  {id:3,name:'Amarillo Rep',     territory:'Panhandle/West',     hire:'2026-08',status:'planned', type:'Mid/Ent',  avgACV:22000, dealsMo:1.6, ssQuota:462000,  baseFY27:462000},
+  {id:4,name:'Dallas Metro Rep', territory:'Dallas Metro',       hire:'2026-10',status:'planned', type:'Mid/Ent',  avgACV:88000, dealsMo:2.0, ssQuota:2180000, baseFY27:2080000},
+  {id:5,name:'Central Rep',      territory:'Austin/San Antonio', hire:'2027-01',status:'planned', type:'Mid/Ent',  avgACV:52000, dealsMo:1.8, ssQuota:1180000, baseFY27:879000},
+  {id:6,name:'Fort Worth Rep',   territory:'FW + East Texas',    hire:'2027-01',status:'planned', type:'Mid/Ent',  avgACV:45000, dealsMo:1.8, ssQuota:1020000, baseFY27:762000},
+  {id:7,name:'Velocity Rep #1',  territory:'Statewide',          hire:'2027-02',status:'planned', type:'Velocity', avgACV:11500, dealsMo:4.5, ssQuota:689000,  baseFY27:514000},
+  {id:8,name:'Velocity Rep #2',  territory:'Statewide',          hire:'2027-04',status:'planned', type:'Velocity', avgACV:11500, dealsMo:4.5, ssQuota:689000,  baseFY27:399000},
+];
+
+// Education hire ramp curve — dynamic based on ramp days setting
+// Base curve from deck slide 25: Mo1=35%, Mo2=65%, Mo3=92%, Mo4+=100% (4-month / ~120 day path)
+// When ramp days change, we interpolate the same curve shape across the new duration
+function getRampCurve() {
+  const RAMP = Math.max(1, +document.getElementById('rampDays').value);
+  const TRAIN = Math.max(0, +document.getElementById('trainDays').value);
+  const totalDays = TRAIN + RAMP;
+  // Convert total days to months (rounded up)
+  const totalMonths = Math.max(1, Math.ceil(totalDays / 30));
+  // Base anchor points (fraction of total months at which each % is reached)
+  // From deck: 35% at Mo1, 65% at Mo2, 92% at Mo3, 100% at Mo4+
+  const anchors = [
+    {frac: 1/4, pct: 0.35},
+    {frac: 2/4, pct: 0.65},
+    {frac: 3/4, pct: 0.92},
+    {frac: 4/4, pct: 1.00},
+  ];
+  const curve = [];
+  for (let mo = 0; mo < totalMonths + 4; mo++) {
+    if (mo >= totalMonths) { curve.push(1.0); continue; }
+    const frac = (mo + 1) / totalMonths;
+    // Find surrounding anchors and interpolate
+    let pct = 1.0;
+    for (let a = 0; a < anchors.length; a++) {
+      if (frac <= anchors[a].frac) {
+        if (a === 0) { pct = anchors[0].pct * (frac / anchors[0].frac); }
+        else {
+          const t = (frac - anchors[a-1].frac) / (anchors[a].frac - anchors[a-1].frac);
+          pct = anchors[a-1].pct + t * (anchors[a].pct - anchors[a-1].pct);
+        }
+        break;
+      }
+    }
+    curve.push(Math.min(1.0, Math.max(0, pct)));
+  }
+  return curve;
+}
+
+// Get ramp % for a specific month index since hire
+function getRampPct(moIdx) {
+  if (moIdx < 0) return 0;
+  const curve = getRampCurve();
+  return moIdx < curve.length ? curve[moIdx] : 1.0;
+}
+
+// GA events are derived live from the corresponding phase end-dates below,
+// so editing a phase's End month in Edit Phases automatically moves its GA marker
+// everywhere (swimlane, alignment chart, stats bar, gap table).
+// Mapping: phase id -> GA label
+const GA_PHASE_MAP=[
+  {phaseId:1,  label:'504 / RTI GA'},
+  {phaseId:8,  label:'IEP Module GA'},
+  {phaseId:9,  label:'Ed-Fi GA'},
+  {phaseId:16, label:'LPAC Module GA'},
+];
+function getGAEvents(){
+  return GA_PHASE_MAP.map(g=>{
+    const ph=phases.find(p=>p.id===g.phaseId);
+    if(!ph) return null;
+    // Use the first day of the phase's end month as the GA date
+    return {label:g.label, date: ph.end+'-01'};
+  }).filter(Boolean);
+}
+
+// District buying-season overlay — keyed by calendar month (1-12)
+// Reflects Texas K-12 budget cycle, STAAR testing windows, and admin availability
+// mult = seasonality multiplier applied to ramp-adjusted ARR for that calendar month
+let SEASONALITY={
+  1:{label:'FY28 budget planning begins',  cat:'buy',  color:'#4ade80', mult:1.10},
+  2:{label:'STAAR prep ramps up',          cat:'block',color:'#f87171', mult:0.85},
+  3:{label:'STAAR prep / testing',         cat:'block',color:'#f87171', mult:0.70},
+  4:{label:'STAAR testing window',         cat:'block',color:'#f87171', mult:0.70},
+  5:{label:'Year-end ARDs / graduation',   cat:'slow', color:'#fbbf24', mult:0.85},
+  6:{label:'Reset window',                 cat:'mixed',color:'#8abde8', mult:0.90},
+  7:{label:'Budget finalization',          cat:'mixed',color:'#8abde8', mult:0.90},
+  8:{label:'Back-to-school — low access',  cat:'slow', color:'#fbbf24', mult:0.75},
+  9:{label:'Strong buying window opens',   cat:'buy',  color:'#4ade80', mult:1.15},
+  10:{label:'Strong buying window',        cat:'buy',  color:'#4ade80', mult:1.15},
+  11:{label:'Holiday slowdown begins',     cat:'slow', color:'#fbbf24', mult:0.85},
+  12:{label:'Holiday slowdown',            cat:'slow', color:'#fbbf24', mult:0.70},
+};
+const SEASON_CAT_LABELS={
+  buy:  'Strong buying window',
+  slow: 'Slower / lower access',
+  block:'STAAR testing — limited access',
+  mixed:'Budget cycle — mixed',
+};
+function getSeasonMultiplier(monthMk){
+  const {m}=ym(monthMk);
+  return SEASONALITY[m] ? SEASONALITY[m].mult : 1.0;
+}
+
+const REP_COLORS=['#818cf8','#38bdf8','#34d399','#fb923c','#f472b6','#a78bfa','#2dd4bf','#facc15'];
+const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function ym(s){const[y,m]=s.split('-').map(Number);return{y,m}}
+function addM(y,m,n){m+=n;while(m>12){m-=12;y++}while(m<1){m+=12;y--}return{y,m}}
+function mk(y,m){return`${y}-${String(m).padStart(2,'0')}`}
+function dim(y,m){return new Date(y,m,0).getDate()}
+function toD(s){return new Date(s+'T00:00:00')}
+function addDays(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r}
+function fmtD(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+function fmtK(n){return n>=1000000?'$'+(n/1000000).toFixed(2)+'M':n>=1000?'$'+(n/1000).toFixed(0)+'K':'$'+n}
+function fmtMoney(n){return '$'+Math.round(n||0).toLocaleString('en-US')}
+function parseMoney(s){const n=parseFloat(String(s).replace(/[^0-9.\-]/g,''));return isNaN(n)?0:Math.round(n)}
+
+function getParams(){
+  return{
+    sv:document.getElementById('startMonth').value,
+    N:Math.max(6,Math.min(36,+document.getElementById('numMonths').value)),
+    TRAIN:Math.max(0,+document.getElementById('trainDays').value),
+    RAMP:Math.max(0,+document.getElementById('rampDays').value),
+    fyEnd:document.getElementById('fyEnd').value,
+  };
+}
+
+function computeRepDates(TRAIN,RAMP){
+  return reps.map((r,i)=>{
+    const{y:hy,m:hm}=ym(r.hire);
+    const hDate=new Date(hy,hm-1,1);
+    const fullyRampedAt=r.status==='active'?new Date('2026-01-01'):addDays(hDate,TRAIN+RAMP);
+    return{...r,hDate,tEnd:addDays(hDate,TRAIN),rEnd:fullyRampedAt,fullyRampedAt,color:REP_COLORS[i]};
+  });
+}
+
+// Compute ramp-adjusted FY contribution for a rep given hire month and FY end month
+// Uses the edu ramp curve from the deck: Mo1=35%, Mo2=65%, Mo3=92%, Mo4+=100%
+function computeFY27Contribution(rep, fyEndMk){
+  const seasonMult = seasonalityEnabled();
+  if(rep.status==='active'){
+    if(!seasonMult) return rep.ssQuota;
+    // sum monthly with seasonality across FY
+    let total=0,cy=2027,cm=1;
+    while(mk(cy,cm)<=fyEndMk){
+      total += (rep.ssQuota/12) * getSeasonMultiplier(mk(cy,cm));
+      const n=addM(cy,cm,1);cy=n.y;cm=n.m;
+    }
+    return Math.round(total);
+  }
+  const{y:hy,m:hm}=ym(rep.hire);
+  const monthlyARR = rep.ssQuota / 12;
+  let total = 0;
+  let cy=hy, cm=hm, moIdx=0;
+  while(mk(cy,cm) <= fyEndMk){
+    if(mk(cy,cm) >= '2027-01'){
+      const sm = seasonMult ? getSeasonMultiplier(mk(cy,cm)) : 1.0;
+      total += monthlyARR * getRampPct(moIdx) * sm;
+    }
+    moIdx++;
+    const next=addM(cy,cm,1);cy=next.y;cm=next.m;
+    if(mk(cy,cm) > fyEndMk) break;
+  }
+  return Math.round(total);
+}
+
+// ── SCENARIOS ────────────────────────────────────────────────────────────────
+let scenarios = [];
+let activeScenarioId = null; // null = "current/unsaved" working state
+
+function getControlState(){
+  return {
+    startMonth: document.getElementById('startMonth').value,
+    numMonths: +document.getElementById('numMonths').value,
+    trainDays: +document.getElementById('trainDays').value,
+    rampDays: +document.getElementById('rampDays').value,
+    fyEnd: document.getElementById('fyEnd').value,
+    seasonOn: document.getElementById('seasonToggle').checked,
+  };
+}
+
+function applyControlState(cs){
+  document.getElementById('startMonth').value = cs.startMonth;
+  document.getElementById('numMonths').value = cs.numMonths;
+  document.getElementById('trainDays').value = cs.trainDays;
+  document.getElementById('rampDays').value = cs.rampDays;
+  document.getElementById('fyEnd').value = cs.fyEnd;
+  document.getElementById('seasonToggle').checked = cs.seasonOn;
+}
+
+function captureSnapshot(){
+  return {
+    phases: JSON.parse(JSON.stringify(phases)),
+    reps: JSON.parse(JSON.stringify(reps)),
+    seasonality: JSON.parse(JSON.stringify(SEASONALITY)),
+    controls: getControlState(),
+  };
+}
+
+function applySnapshot(snap){
+  phases = JSON.parse(JSON.stringify(snap.phases));
+  reps = JSON.parse(JSON.stringify(snap.reps));
+  SEASONALITY = JSON.parse(JSON.stringify(snap.seasonality));
+  applyControlState(snap.controls);
+}
+
+function saveScenario(){
+  const nameInput = document.getElementById('scenarioName');
+  let name = nameInput.value.trim();
+  if(!name) name = 'Scenario ' + (scenarios.length+1);
+  const snap = captureSnapshot();
+  const sc = {id: Date.now(), name, savedAt: new Date().toISOString(), snapshot: snap};
+  scenarios.push(sc);
+  activeScenarioId = sc.id;
+  nameInput.value = '';
+  renderScenarios();
+}
+
+function loadScenario(id){
+  const sc = scenarios.find(s=>s.id===id);
+  if(!sc) return;
+  applySnapshot(sc.snapshot);
+  activeScenarioId = id;
+  renderAll();
+  renderScenarios();
+}
+
+function updateScenario(id){
+  const sc = scenarios.find(s=>s.id===id);
+  if(!sc) return;
+  sc.snapshot = captureSnapshot();
+  sc.savedAt = new Date().toISOString();
+  activeScenarioId = id;
+  renderScenarios();
+}
+
+function deleteScenario(id){
+  scenarios = scenarios.filter(s=>s.id!==id);
+  if(activeScenarioId===id) activeScenarioId = null;
+  renderScenarios();
+}
+
+function renameScenario(id, newName){
+  const sc = scenarios.find(s=>s.id===id);
+  if(sc && newName.trim()) sc.name = newName.trim();
+  renderScenarios();
+}
+
+function exportScenarios(){
+  const data = JSON.stringify(scenarios, null, 2);
+  const blob = new Blob([data], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'k12plus_scenarios.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importScenarios(evt){
+  const file = evt.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const imported = JSON.parse(e.target.result);
+      if(Array.isArray(imported)){
+        imported.forEach(sc=>{ sc.id = Date.now() + Math.floor(Math.random()*10000); scenarios.push(sc); });
+        renderScenarios();
+      }
+    } catch(err){ alert('Could not read that file as a scenario export.'); }
+  };
+  reader.readAsText(file);
+  evt.target.value = '';
+}
+
+// Compute a compact set of comparison metrics for a snapshot
+function computeScenarioMetrics(snap){
+  // Temporarily swap in this snapshot's data to reuse existing calc functions
+  const savedPhases=phases, savedReps=reps, savedSeasonality=SEASONALITY;
+  const savedControls=getControlState();
+
+  phases = snap.phases; reps = snap.reps; SEASONALITY = snap.seasonality;
+  applyControlState(snap.controls);
+
+  const fyEnd = snap.controls.fyEnd;
+  const repData = computeRepDates(snap.controls.trainDays, snap.controls.rampDays);
+  const totalFY27 = reps.reduce((s,r)=>s+computeFY27Contribution(r, fyEnd), 0);
+  const totalBase = reps.reduce((s,r)=>s+r.baseFY27, 0);
+
+  const gaEvents = getGAEvents();
+  const gaCoverage = gaEvents.map(ev=>{
+    const gd = toD(ev.date);
+    const ramped = repData.filter(r=>r.fullyRampedAt<=gd).length;
+    return {label: ev.label, date: ev.date, ramped};
+  });
+
+  const repSummary = reps.map((r,i)=>({
+    name: r.name,
+    hire: r.hire,
+    status: r.status,
+    fy27: computeFY27Contribution(r, fyEnd),
+  }));
+
+  // Restore working state
+  phases=savedPhases; reps=savedReps; SEASONALITY=savedSeasonality;
+  applyControlState(savedControls);
+
+  return {totalFY27, totalBase, delta: totalFY27-totalBase, gaCoverage, repSummary, controls: snap.controls};
+}
+
+function renderScenarios(){
+  const listEl = document.getElementById('scenarioList');
+  if(!scenarios.length){
+    listEl.innerHTML = `<div class="scenario-empty">No scenarios saved yet. Adjust hire dates, phase timing, ramp settings, or season multipliers, then save the current state above to start comparing.</div>`;
+    document.getElementById('scenarioCompareWrap').innerHTML = '';
+    return;
+  }
+
+  let h = '';
+  scenarios.forEach(sc=>{
+    const isCurrent = sc.id===activeScenarioId;
+    const d = new Date(sc.savedAt);
+    h += `<div class="scenario-card${isCurrent?' is-current':''}">
+      <input type="checkbox" class="sc-check" data-scenario-id="${sc.id}" ${isCurrent?'':''} onchange="renderComparison()">
+      <input type="text" class="sc-name" value="${sc.name}" onchange="renameScenario(${sc.id}, this.value)" style="background:transparent;border:none;color:inherit;font-weight:700;font-size:13px;width:auto;flex:1;min-width:140px">
+      <span class="sc-meta">Saved ${d.toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}${isCurrent?' · <span style="color:#00C2A8">current working state</span>':''}</span>
+      <button class="move-btn" onclick="loadScenario(${sc.id})">Load</button>
+      <button class="move-btn" onclick="updateScenario(${sc.id})" title="Overwrite this scenario with the current working state">Update</button>
+      <button class="del-btn" onclick="deleteScenario(${sc.id})">Delete</button>
+    </div>`;
+  });
+  listEl.innerHTML = h;
+  renderComparison();
+}
+
+function renderComparison(){
+  const checks = [...document.querySelectorAll('.sc-check:checked')];
+  const wrap = document.getElementById('scenarioCompareWrap');
+  if(checks.length < 2){
+    wrap.innerHTML = `<div style="font-size:11px;color:var(--muted);padding:8px 0">Check 2 or more scenarios above to compare them side by side.</div>`;
+    return;
+  }
+  const selected = checks.map(c=>scenarios.find(s=>s.id===+c.dataset.scenarioId)).filter(Boolean);
+  const metrics = selected.map(sc=>({name:sc.name, m:computeScenarioMetrics(sc.snapshot)}));
+
+  // Determine best/worst for FY27 total
+  const fy27Vals = metrics.map(x=>x.m.totalFY27);
+  const maxFY27 = Math.max(...fy27Vals), minFY27 = Math.min(...fy27Vals);
+
+  let h = `<div style="font-size:11px;font-weight:700;color:#fb923c;text-transform:uppercase;letter-spacing:.08em;margin:18px 0 8px">Comparison</div>`;
+  h += `<div class="compare-table-wrap"><table class="compare-table"><thead><tr><th class="metric-col">Metric</th>`;
+  metrics.forEach(x=>h+=`<th>${x.name}</th>`);
+  h += `</tr></thead><tbody>`;
+
+  // FY27 total
+  h += `<tr><td class="metric-col">FY27 ARR (current plan)</td>`;
+  metrics.forEach(x=>{
+    const cls = x.m.totalFY27===maxFY27&&maxFY27!==minFY27 ? 'compare-best' : x.m.totalFY27===minFY27&&maxFY27!==minFY27 ? 'compare-worst' : '';
+    h += `<td class="${cls}">${fmtK(x.m.totalFY27)}</td>`;
+  });
+  h += `</tr>`;
+
+  // Delta vs base
+  h += `<tr><td class="metric-col">Delta vs base model</td>`;
+  metrics.forEach(x=>{
+    const sign = x.m.delta>=0?'+':'';
+    const col = x.m.delta<-50000?'#f87171':x.m.delta>50000?'#4ade80':'inherit';
+    h += `<td style="color:${col}">${sign}${fmtK(x.m.delta)}</td>`;
+  });
+  h += `</tr>`;
+
+  // Controls summary
+  h += `<tr><td class="metric-col">Training / Ramp days</td>`;
+  metrics.forEach(x=>h+=`<td>${x.m.controls.trainDays}d / ${x.m.controls.rampDays}d</td>`);
+  h += `</tr>`;
+
+  h += `<tr><td class="metric-col">Buying-season multiplier</td>`;
+  metrics.forEach(x=>h+=`<td>${x.m.controls.seasonOn?'<span style="color:#4ade80">ON</span>':'<span style="color:var(--muted)">OFF</span>'}</td>`);
+  h += `</tr>`;
+
+  // GA coverage rows — use first scenario's labels as the row set
+  const gaLabels = metrics[0].m.gaCoverage.map(g=>g.label);
+  gaLabels.forEach((label,gi)=>{
+    h += `<tr><td class="metric-col">${label} — reps ramped</td>`;
+    metrics.forEach(x=>{
+      const g = x.m.gaCoverage[gi];
+      if(!g){ h+=`<td>—</td>`; return; }
+      const col = g.ramped>=2?'#4ade80':g.ramped===1?'#fbbf24':'#f87171';
+      h += `<td style="color:${col};font-weight:700">${g.ramped}</td>`;
+    });
+    h += `</tr>`;
+  });
+
+  // Per-rep hire dates
+  h += `<tr><td class="metric-col" style="padding-top:14px;border-top:2px solid var(--border2)">Rep hire dates &amp; FY27</td>`;
+  metrics.forEach(()=>h+=`<td style="border-top:2px solid var(--border2)"></td>`);
+  h += `</tr>`;
+  const repNames = metrics[0].m.repSummary.map(r=>r.name);
+  repNames.forEach((name,ri)=>{
+    h += `<tr><td class="metric-col" style="font-size:11px;font-weight:400;color:var(--text)">${name}</td>`;
+    metrics.forEach(x=>{
+      const r = x.m.repSummary[ri];
+      if(!r){ h+=`<td>—</td>`; return; }
+      const {y,m} = ym(r.hire);
+      h += `<td style="font-size:11px"><span style="color:var(--muted)">${MN[m-1]} ${y}</span><br>${fmtK(r.fy27)}</td>`;
+    });
+    h += `</tr>`;
+  });
+
+  h += `</tbody></table></div>`;
+  wrap.innerHTML = h;
+}
+
+
+function renderQuota(){
+  const{fyEnd}=getParams();
+
+  // Compute ramp-adjusted contributions with current hire dates
+  const repQuotas=reps.map(r=>({
+    ...r,
+    computed: computeFY27Contribution(r, fyEnd),
+  }));
+
+  const totalBase=reps.reduce((s,r)=>s+r.baseFY27,0);
+  const totalComputed=repQuotas.reduce((s,r)=>s+r.computed,0);
+  const delta=totalComputed-totalBase;
+  const pct=totalBase>0?Math.round(delta/totalBase*100):0;
+
+  // Totals row
+  const deltaClass=delta<0?'neg':delta>0?'pos':'';
+  const deltaSign=delta>=0?'+':'';
+  document.getElementById('quotaTotals').innerHTML=`
+    <div class="qt"><div class="qt-label">Base plan total</div><div class="qt-value">$6.84M</div><div class="qt-sub">From mid-year reforecast model</div></div>
+    <div class="qt"><div class="qt-label">Current plan total</div><div class="qt-value" style="color:${delta<-50000?'#f87171':delta>50000?'#4ade80':'#fbbf24'}">${fmtK(totalComputed)}</div><div class="qt-sub">Based on current hire dates</div></div>
+    <div class="qt"><div class="qt-label">Delta vs base</div><div class="qt-value qt-delta ${deltaClass}">${deltaSign}${fmtK(delta)}</div><div class="qt-sub">${deltaSign}${Math.abs(pct)}% vs model</div></div>
+    <div class="qt"><div class="qt-label">FY end</div><div class="qt-value" style="font-size:15px;color:var(--muted)">${MN[+fyEnd.split('-')[1]-1]} ${fyEnd.split('-')[0]}</div><div class="qt-sub">Change in top controls</div></div>`;
+
+  // Table
+  let th=`<thead><tr>
+    <th>Rep</th><th>Territory</th><th>Type</th>
+    <th>Hire date</th>
+    <th class="r">Avg ACV</th>
+    <th class="r">Deals/mo</th>
+    <th class="r">Steady-state quota</th>
+    <th>Ramp curve</th>
+    <th class="r">Base FY27</th>
+    <th class="r">Current FY27</th>
+    <th class="r">Delta</th>
+  </tr></thead>`;
+
+  let tb=`<tbody>`;
+  repQuotas.forEach((r,i)=>{
+    const d=r.computed-r.baseFY27;
+    const dSign=d>=0?'+':'';
+    const dClass=d<-5000?'db-neg':d>5000?'db-pos':'db-flat';
+    const typeColor=r.type==='Velocity'?'#fbbf24':'#8abde8';
+
+    // Ramp bar — show ramp % for first 4 months of the dynamic curve
+    const{y:hy,m:hm}=ym(r.hire);
+    const curve=getRampCurve();
+    const rampSegs=r.status==='active'
+      ?`<span style="color:#4ade80;font-size:10px;font-weight:600">Fully productive</span>`
+      :curve.slice(0,4).map((p,mi)=>{
+          const mo=addM(hy,hm,mi);
+          const inFY=mk(mo.y,mo.m)>='2027-01'&&mk(mo.y,mo.m)<=fyEnd;
+          const alpha=inFY?1:0.35;
+          return`<div class="ramp-seg" style="background:rgba(251,191,36,${Math.max(0.08,p*0.5)});color:#fbbf24;opacity:${alpha}" title="${MN[mo.m-1]} ${mo.y}: ${Math.round(p*100)}%">${Math.round(p*100)}%</div>`;
+        }).join('')+`<div class="ramp-seg" style="background:rgba(22,163,74,.2);color:#4ade80;font-size:9px" title="Full from Mo4+">100%+</div>`;
+
+    tb+=`<tr>
+      <td style="font-weight:600;color:${REP_COLORS[i]}">${r.name}</td>
+      <td style="color:var(--muted);font-size:11px">${r.territory}</td>
+      <td><span style="font-size:10px;font-weight:600;color:${typeColor}">${r.type}</span></td>
+      <td><input type="month" class="hire-input" value="${r.hire}" onchange="reps[${i}].hire=this.value;reps[${i}].status=reps[${i}].status==='active'?'active':'planned';renderAll()"></td>
+      <td class="qval">${fmtK(r.avgACV)}</td>
+      <td class="qval">${r.dealsMo}</td>
+      <td class="qval">${fmtK(r.ssQuota)}</td>
+      <td><div class="ramp-bar-wrap">${rampSegs}</div></td>
+      <td class="qval">${fmtK(r.baseFY27)}</td>
+      <td class="qval ${r.computed<r.baseFY27*0.9?'gap':r.computed>r.baseFY27*1.05?'ok':'warn'}">${fmtK(r.computed)}</td>
+      <td><span class="delta-badge ${dClass}">${dSign}${fmtK(d)}</span></td>
+    </tr>`;
+  });
+
+  // Totals
+  const totalSS=reps.reduce((s,r)=>s+r.ssQuota,0);
+  const totalDM=reps.reduce((s,r)=>s+r.dealsMo,0);
+  tb+=`<tr class="total-row">
+    <td colspan="4">Total — 8 Reps</td>
+    <td class="qval">—</td>
+    <td class="qval">${totalDM.toFixed(1)}</td>
+    <td class="qval">${fmtK(totalSS)}</td>
+    <td></td>
+    <td class="qval">${fmtK(totalBase)}</td>
+    <td class="qval ${totalComputed<totalBase*0.95?'gap':'ok'}">${fmtK(totalComputed)}</td>
+    <td><span class="delta-badge ${delta<-5000?'db-neg':delta>5000?'db-pos':'db-flat'}">${deltaSign}${fmtK(delta)}</span></td>
+  </tr></tbody>`;
+
+  document.getElementById('quotaTable').innerHTML=th+tb;
+  document.getElementById('rampNote').innerHTML=`
+    <strong>Ramp curve (education hire):</strong> Base shape from deck slide 25 — Month 1 = 35% · Month 2 = 65% · Month 3 = 92% · Month 4+ = 100%. The curve <strong>scales dynamically</strong> with your training + ramp day settings in the top controls — see the full breakdown in the Monthly ARR Build tab.<br>
+    <strong>Buying-season multiplier:</strong> ${seasonalityEnabled()?'<span style="color:#4ade80">ON</span> — monthly figures are also adjusted for Texas district buying patterns (STAAR testing months ×0.70–0.85, strong buying months ×1.10–1.15). Toggle off in the top controls to see ramp-only figures.':'<span style="color:#f87171">OFF</span> — figures reflect ramp curve only, with no seasonal adjustment. Toggle on in the top controls to factor in district buying patterns.'}<br>
+    <strong>How to use:</strong> Change any hire date in the "Hire date" column to see FY2027 contribution update live. A 3-month Dallas Metro slip costs ~$455K per the sensitivity model (before seasonality).`;
+}
+
+// ── STATS BAR ────────────────────────────────────────────────────────────────
+function renderStats(){
+  const{TRAIN,RAMP,fyEnd}=getParams();
+  const repData=computeRepDates(TRAIN,RAMP);
+  const nowRamped=repData.filter(r=>r.fullyRampedAt<=new Date('2026-06-11')).length;
+  const nowTraining=repData.filter(r=>r.status==='training').length;
+  const nowPlanned=repData.filter(r=>r.status==='planned').length;
+  const totalComputed=reps.reduce((s,r)=>s+computeFY27Contribution(r,fyEnd),0);
+  const delta=totalComputed-reps.reduce((s,r)=>s+r.baseFY27,0);
+  const dSign=delta>=0?'+':'';
+  const dColor=delta<-50000?'#f87171':delta>50000?'#4ade80':'#fbbf24';
+
+  const stats=getGAEvents().map(ev=>{
+    const gd=toD(ev.date);
+    const n=repData.filter(r=>r.fullyRampedAt<=gd).length;
+    const cls=n>=2?'stat-ok':n===1?'stat-warn':'stat-gap';
+    return`<div class="stat-card"><div class="stat-label">${ev.label}</div><div class="stat-value ${cls}">${n}</div><div class="stat-sub">rep${n!==1?'s':''} fully ramped</div></div>`;
+  });
+
+  document.getElementById('statsBar').innerHTML=`
+    <div class="stat-card"><div class="stat-label">Today — Jun 2026</div><div class="stat-value">${repData.length}</div><div class="stat-sub">${nowRamped} ramped · ${nowTraining} training · ${nowPlanned} planned</div></div>
+    ${stats.join('')}
+    <div class="stat-card"><div class="stat-label">FY27 ARR — current plan</div><div class="stat-value" style="color:${dColor}">${fmtK(totalComputed)}</div><div class="stat-sub">${dSign}${fmtK(delta)} vs base model</div></div>`;
+}
+
+// ── SWIMLANE ─────────────────────────────────────────────────────────────────
+function renderSwimlane(){
+  const{sv,N,TRAIN,RAMP}=getParams();
+  const{y:sy,m:sm}=ym(sv);
+  const months=[];
+  for(let i=0;i<N;i++){const r=addM(sy,sm,i);months.push(mk(r.y,r.m));}
+  const todayMk=mk(2026,6);
+  const ww=(document.getElementById('chartWrap').offsetWidth)||1000;
+  const LABEL=168,CW=Math.max(36,Math.floor((ww-LABEL)/N));
+  const gaMonths={};
+  getGAEvents().forEach(ev=>{const d=toD(ev.date);const key=mk(d.getFullYear(),d.getMonth()+1);if(!gaMonths[key])gaMonths[key]=[];gaMonths[key].push(ev.label);});
+
+  let h=`<table class="swim" style="min-width:${LABEL+N*CW}px;table-layout:fixed"><colgroup><col style="width:${LABEL}px">`;
+  months.forEach(()=>h+=`<col style="width:${CW}px">`);
+  h+=`</colgroup><thead><tr><th class="lane-label" style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);border-bottom:3px solid var(--border2)">Feature / Rep</th>`;
+  months.forEach((mk_,i)=>{
+    const{y,m}=ym(mk_);const nc=mk_===todayMk;const qs=m===1||m===4||m===7||m===10;const showYear=m===1||i===0;
+    h+=`<th class="month-hdr${qs?' qs':''}${nc?' nc':''}">`;
+    if(qs||showYear)h+=`<span class="ql">Q${Math.ceil(m/3)}${showYear?` ${y}`:''}</span>`;
+    h+=`${MN[m-1]}${nc?'<br><span style="font-size:8px;color:var(--accent);letter-spacing:.04em">TODAY</span>':''}</th>`;
+  });
+  h+=`</tr></thead><tbody>`;
+
+  // ── SEASONALITY OVERLAY ROW ──
+  h+=`<tr class="mod-row" style="background:var(--navy3)"><td style="color:#a78bfa;padding-left:12px;border-left:3px solid #a78bfa40;font-size:9px">District Buying Season</td>`;
+  months.forEach(mk_=>{
+    const{m}=ym(mk_);
+    const nc=mk_===todayMk;
+    const isGa=!!gaMonths[mk_];
+    const sea=SEASONALITY[m];
+    h+=`<td class="mod-row-cell${nc?' nc':''}${isGa?' ga-col':''}" style="position:relative;height:24px;padding:0">
+      <div style="position:absolute;inset:2px;border-radius:2px;background:${sea.color}22;border:1px solid ${sea.color}55;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:${sea.color};overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 2px" data-tip="${sea.label}">${sea.cat==='buy'?'BUY':sea.cat==='block'?'STAAR':sea.cat==='slow'?'SLOW':'BUDGET'}</div>
+    </td>`;
+  });
+  h+=`</tr>`;
+
+  h+=`<tr class="sec-banner prod"><td colspan="${N+1}">&#9642; Product Development</td></tr>`;
+  PHASE_GROUPS.forEach(grp=>{
+    const grpPhases=phases.filter(p=>grp.phases.includes(p.id));
+    if(!grpPhases.length)return;
+    h+=`<tr class="mod-row"><td style="color:${grp.color};padding-left:16px;border-left:3px solid ${grp.color}40">${grp.label}</td>`;
+    months.forEach(mk_=>{const nc=mk_===todayMk;const isGa=!!gaMonths[mk_];h+=`<td class="mod-row-cell${nc?' nc':''}${isGa?' ga-col':''}"></td>`;});
+    h+=`</tr>`;
+    grpPhases.forEach((ph,phIdx)=>{
+      const c=CL[ph.color]||CL['iep'];const isAlt=phIdx%2===1;
+      const{y:sy2,m:sm2}=ym(ph.start),{y:ey,m:em}=ym(ph.end);
+      const dateSub=MN[sm2-1]+' '+sy2+(ph.start!==ph.end?' – '+MN[em-1]+' '+ey:'');
+      h+=`<tr><td class="lane-label lp" style="padding-left:20px;border-left:3px solid ${grp.color}30"><span style="display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${ph.name}">${ph.name}</span><span class="sub">${dateSub}</span></td>`;
+      months.forEach(mk_=>{
+        const nc=mk_===todayMk,in_=mk_>=ph.start&&mk_<=ph.end,isGa=!!gaMonths[mk_];
+        h+=`<td class="cell${nc?' nc nl':''}${isAlt?' alt':''}${isGa&&!in_?' ga-col':''}">`;
+        if(isGa&&!in_)h+=`<div class="ga-line" title="${gaMonths[mk_].join(', ')}"></div>`;
+        if(in_){const fi=mk_===ph.start,la=mk_===ph.end;const cls='bar '+(fi&&la?'bar-s':fi?'bar-l':la?'bar-r':'bar-m');h+=`<div class="${cls}" style="left:${fi?3:0}px;right:${la?3:0}px;background:${c.bg};border:1px solid ${c.bdr};color:${c.txt}" data-tip="${(ph.tip||ph.name).replace(/\n/g,'&#10;')}">${fi||ph.color==='ga'?ph.name:''}</div>`;}
+        h+=`</td>`;
+      });
+      h+=`</tr>`;
+    });
+  });
+
+  h+=`<tr class="sec-banner rep"><td colspan="${N+1}">&#9642; Sales Reps — Hire → Train → Ramp → Full Productivity</td></tr>`;
+  const repData=computeRepDates(TRAIN,RAMP);
+  repData.forEach((rep,ri)=>{
+    const isAlt=ri%2===1;
+    const sc={active:'#4ade80',training:'#c4b0f5',planned:'#8abde8'}[rep.status]||'#8abde8';
+    const contrib=computeFY27Contribution(rep,getParams().fyEnd);
+    h+=`<tr><td class="lane-label lr" style="border-left:3px solid ${sc}40">`;
+    h+=`<span style="display:flex;align-items:center;gap:0"><span style="display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1" title="${rep.name}">${rep.name}</span>`;
+    if(rep.status==='active')h+=`<span class="today-pill">LIVE</span>`;
+    if(rep.status==='training')h+=`<span class="today-pill" style="background:rgba(155,127,232,.2);color:#c4b0f5;border-color:rgba(155,127,232,.4)">TRN</span>`;
+    h+=`</span><span class="sub">${rep.territory} · <span style="color:#fbbf24">${fmtK(contrib)} FY27</span></span></td>`;
+    months.forEach(mk_=>{
+      const nc=mk_===todayMk;const{y:cy,m:cm}=ym(mk_);const cs=new Date(cy,cm-1,1),ce=new Date(cy,cm,0,23,59,59);const isGa=!!gaMonths[mk_];
+      h+=`<td class="cell${nc?' nc nl':''}${isAlt?' alt':''}">`;
+      if(isGa)h+=`<div class="ga-line" title="${gaMonths[mk_].join(', ')}"></div>`;
+      if(mk_===rep.hire&&rep.status!=='active')h+=`<div class="hire-dot" style="left:4px" title="Hire: ${MN[cm-1]} ${cy}"></div>`;
+      function ov(s1,e1,s2,e2){return s1<=e2&&e1>=s2}
+      function lp(d){if(d<=cs)return 0;if(d>=ce)return 100;return Math.round((d.getDate()-1)/dim(cy,cm)*100)}
+      function rp(d){if(d>=ce)return 0;if(d<=cs)return 100;return Math.round((dim(cy,cm)-d.getDate())/dim(cy,cm)*100)}
+      if(rep.status==='active'){h+=`<div class="rb-full" style="left:0;right:0" title="Fully productive">Full productivity</div>`;}
+      else{
+        if(mk_<rep.hire){h+=`</td>`;return;}
+        if(TRAIN>0&&ov(cs,ce,rep.hDate,rep.tEnd)){const L=lp(rep.hDate),R=rp(rep.tEnd);h+=`<div class="rb-train" style="left:${L}%;right:${R}%">Training</div>`;}
+        if(RAMP>0&&ov(cs,ce,rep.tEnd,rep.rEnd)){const L=lp(rep.tEnd),R=rp(rep.rEnd);h+=`<div class="rb-ramp" style="left:${L}%;right:${R}%">Ramping</div>`;}
+        if(ov(cs,ce,rep.rEnd,new Date(2099,0,1))){const L=lp(rep.rEnd);h+=`<div class="rb-full" style="left:${L}%;right:0">Full productivity</div>`;}
+      }
+      h+=`</td>`;
+    });
+    h+=`</tr>`;
+  });
+
+  h+=`</tbody></table>`;
+  document.getElementById('chartWrap').innerHTML=h;
+  document.querySelectorAll('[data-tip]').forEach(el=>{
+    el.onmouseenter=e=>{const t=document.getElementById('tt');t.innerHTML=e.target.dataset.tip.replace(/&#10;/g,'<br>');t.style.display='block'};
+    el.onmousemove=e=>{const t=document.getElementById('tt');t.style.left=(e.clientX+14)+'px';t.style.top=(e.clientY-8)+'px'};
+    el.onmouseleave=()=>{document.getElementById('tt').style.display='none'};
+  });
+
+  const used=[...new Set(phases.map(p=>p.color))];
+  let leg=`<span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Product</span>`;
+  leg+=COLORS.filter(c=>used.includes(c.key)).map(c=>`<div class="leg"><div class="lsw" style="background:${c.bg};border:1px solid ${c.bdr}"></div>${c.label}</div>`).join('');
+  leg+=`<div class="leg-divider"></div><span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Reps</span>`;
+  leg+=`<div class="leg"><div class="lsw" style="background:rgba(155,127,232,.2);border:1px solid rgba(155,127,232,.55)"></div>Training</div>`;
+  leg+=`<div class="leg"><div class="lsw" style="background:rgba(91,155,213,.2);border:1px solid rgba(91,155,213,.55)"></div>Ramping</div>`;
+  leg+=`<div class="leg"><div class="lsw" style="background:rgba(22,163,74,.2);border:1px solid rgba(22,163,74,.55)"></div>Full productivity</div>`;
+  leg+=`<div class="leg-divider"></div><div class="leg"><svg width="16" height="10"><line x1="8" y1="0" x2="8" y2="10" stroke="rgba(0,194,168,.55)" stroke-width="2" stroke-dasharray="3 2"/></svg>GA milestone</div>`;
+  leg+=`<div class="leg-divider"></div><span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">District Season</span>`;
+  leg+=`<div class="leg"><div class="lsw" style="background:#4ade8022;border:1px solid #4ade8055"></div>Strong buying window</div>`;
+  leg+=`<div class="leg"><div class="lsw" style="background:#fbbf2422;border:1px solid #fbbf2455"></div>Slower / lower access</div>`;
+  leg+=`<div class="leg"><div class="lsw" style="background:#f8717122;border:1px solid #f8717155"></div>STAAR testing — limited access</div>`;
+  leg+=`<div class="leg"><div class="lsw" style="background:#8abde822;border:1px solid #8abde855"></div>Budget cycle — mixed</div>`;
+  document.getElementById('legend').innerHTML=leg;
+}
+
+// ── ALIGNMENT ────────────────────────────────────────────────────────────────
+function renderAlignment(){
+  const{TRAIN,RAMP}=getParams();
+  const repData=computeRepDates(TRAIN,RAMP);
+  const today=new Date('2026-06-11T00:00:00');
+  const START=new Date('2026-05-15'),END=new Date('2027-07-15');
+  const totalMs=END-START;
+  const W=Math.min(900,(document.querySelector('.align-chart-wrap')||document.body).offsetWidth||900);
+  const LEFT=142,RIGHT=16,chartW=W-LEFT-RIGHT;
+  function xOf(d){return LEFT+(d-START)/totalMs*chartW}
+  const ROW_H=38,GA_H=80,AXIS_H=26,SEASON_H=18,REP_H=repData.length*ROW_H+12;
+  const TOTAL_H=AXIS_H+GA_H+REP_H+SEASON_H+16;
+  const svg=document.getElementById('alignSvg');
+  svg.setAttribute('viewBox',`0 0 ${W} ${TOTAL_H}`);svg.setAttribute('height',TOTAL_H);
+  const tc='#e8edf2',mc='#7a9bb5',bc='rgba(255,255,255,0.08)';
+  let s='';
+
+  // Seasonality background bands — one per calendar month across the full chart height
+  {
+    let scur=new Date(2026,4,1);
+    while(scur<=END){
+      const x1=xOf(scur);
+      const nextMo=new Date(scur.getFullYear(),scur.getMonth()+1,1);
+      const x2=xOf(nextMo);
+      if(x2>=LEFT&&x1<=LEFT+chartW){
+        const cx1=Math.max(x1,LEFT),cx2=Math.min(x2,LEFT+chartW);
+        const sea=SEASONALITY[scur.getMonth()+1];
+        s+=`<rect x="${cx1}" y="${AXIS_H-4}" width="${cx2-cx1}" height="${TOTAL_H-AXIS_H-SEASON_H+4}" fill="${sea.color}" opacity="0.05"/>`;
+        // bottom label strip
+        if(cx2-cx1>14){
+          s+=`<rect x="${cx1}" y="${TOTAL_H-SEASON_H}" width="${cx2-cx1}" height="${SEASON_H}" fill="${sea.color}" opacity="0.12"/>`;
+          const lbl=sea.cat==='buy'?'BUY':sea.cat==='block'?'STAAR':sea.cat==='slow'?'SLOW':'BUDGET';
+          s+=`<text x="${(cx1+cx2)/2}" y="${TOTAL_H-SEASON_H/2+3}" text-anchor="middle" font-size="7.5" font-weight="700" font-family="'Segoe UI',sans-serif" fill="${sea.color}">${lbl}</text>`;
+        }
+      }
+      scur=nextMo;
+    }
+  }
+
+  let cur=new Date(2026,4,1);
+  while(cur<=END){
+    const x=xOf(cur);
+    if(x>=LEFT&&x<=LEFT+chartW){
+      const isQ=cur.getMonth()%3===0;
+      s+=`<line x1="${x}" y1="${AXIS_H-4}" x2="${x}" y2="${TOTAL_H-SEASON_H-4}" stroke="${bc}" stroke-width="${isQ?1:0.5}"/>`;
+      const lbl=MN[cur.getMonth()]+(cur.getMonth()===0?` '${String(cur.getFullYear()).slice(2)}`:'')+(isQ&&cur.getMonth()!==0?` Q${Math.ceil((cur.getMonth()+1)/3)}`:'');
+      s+=`<text x="${x}" y="${AXIS_H-7}" text-anchor="middle" font-size="9" font-family="'Segoe UI',sans-serif" fill="${isQ?tc:mc}">${lbl}</text>`;
+    }
+    cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);
+  }
+  const todayX=xOf(today);
+  s+=`<line x1="${todayX}" y1="0" x2="${todayX}" y2="${TOTAL_H-SEASON_H}" stroke="#00C2A8" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.5"/>`;
+  s+=`<text x="${todayX+3}" y="11" font-size="9" font-family="'Segoe UI',sans-serif" fill="#00C2A8" opacity="0.7">today</text>`;
+  s+=`<line x1="${LEFT}" y1="${AXIS_H-4}" x2="${LEFT}" y2="${TOTAL_H-SEASON_H-4}" stroke="${bc}" stroke-width="0.5"/>`;
+  const GA_Y=AXIS_H+10;
+  s+=`<text x="4" y="${GA_Y+10}" font-size="9" font-weight="600" font-family="'Segoe UI',sans-serif" fill="${mc}">GA RELEASES</text>`;
+  getGAEvents().forEach((ev,i)=>{
+    const gd=toD(ev.date),gx=xOf(gd);
+    const ramped=repData.filter(r=>r.fullyRampedAt<=gd).length;
+    const zc=ramped>=2?'#16a34a':ramped===1?'#d97706':'#dc2626';
+    s+=`<line x1="${gx}" y1="${GA_Y-6}" x2="${gx}" y2="${TOTAL_H-SEASON_H-4}" stroke="${zc}" stroke-width="2" stroke-dasharray="5 3" opacity="0.9"/>`;
+    const ly=GA_Y+22+(i%2)*20,bw=Math.min(ev.label.length*6.8+20,170);
+    const bx=Math.max(LEFT+2,Math.min(gx-bw/2,LEFT+chartW-bw-2));
+    s+=`<rect x="${bx}" y="${ly-12}" width="${bw}" height="17" rx="4" fill="${zc}" opacity="0.15"/>`;
+    s+=`<rect x="${bx}" y="${ly-12}" width="${bw}" height="17" rx="4" fill="none" stroke="${zc}" stroke-width="0.5" opacity="0.6"/>`;
+    s+=`<text x="${bx+bw/2}" y="${ly+2}" text-anchor="middle" font-size="10" font-weight="600" font-family="'Segoe UI',sans-serif" fill="${zc}">${ev.label}</text>`;
+  });
+  const REP_Y0=AXIS_H+GA_H+10;
+  s+=`<rect x="0" y="${REP_Y0-14}" width="${W}" height="14" fill="rgba(255,255,255,0.03)"/>`;
+  s+=`<text x="4" y="${REP_Y0-2}" font-size="9" font-weight="600" font-family="'Segoe UI',sans-serif" fill="${mc}">REPS — HIRE → TRAIN → RAMP → FULL</text>`;
+  repData.forEach((rep,i)=>{
+    const y=REP_Y0+i*ROW_H+ROW_H/2;
+    if(i%2===1)s+=`<rect x="0" y="${REP_Y0+i*ROW_H}" width="${W}" height="${ROW_H}" fill="rgba(255,255,255,0.015)"/>`;
+    s+=`<text x="${LEFT-6}" y="${y+2}" text-anchor="end" font-size="10.5" font-weight="600" font-family="'Segoe UI',sans-serif" fill="${tc}">${rep.name}</text>`;
+    s+=`<text x="${LEFT-6}" y="${y+14}" text-anchor="end" font-size="8.5" font-family="'Segoe UI',sans-serif" fill="${mc}">${rep.territory}</text>`;
+    const hx=xOf(rep.hDate);
+    if(rep.status==='active'){const ex=LEFT+chartW;s+=`<rect x="${LEFT}" y="${y-9}" width="${ex-LEFT}" height="18" rx="4" fill="rgba(22,163,74,.15)" stroke="rgba(22,163,74,.4)" stroke-width="0.5"/>`;s+=`<text x="${LEFT+8}" y="${y+4}" font-size="8.5" font-family="'Segoe UI',sans-serif" fill="#4ade80">fully productive</text>`;s+=`<circle cx="${LEFT}" cy="${y}" r="5" fill="#4ade80"/>`;}
+    else{
+      const tx=xOf(rep.tEnd),rx2=xOf(rep.rEnd),ex=LEFT+chartW;
+      if(hx<Math.min(tx,ex)){const x1=Math.max(hx,LEFT),x2=Math.min(tx,ex);s+=`<rect x="${x1}" y="${y-8}" width="${x2-x1}" height="16" rx="3" fill="${rep.color}25" stroke="${rep.color}66" stroke-width="0.5"/>`;if(x2-x1>30)s+=`<text x="${(x1+x2)/2}" y="${y+4}" text-anchor="middle" font-size="8.5" font-family="'Segoe UI',sans-serif" fill="${rep.color}">training</text>`;}
+      if(tx<ex&&rx2>LEFT){const x1=Math.max(tx,LEFT),x2=Math.min(rx2,ex);s+=`<rect x="${x1}" y="${y-8}" width="${x2-x1}" height="16" rx="3" fill="rgba(217,119,6,.2)" stroke="rgba(217,119,6,.5)" stroke-width="0.5"/>`;if(x2-x1>28)s+=`<text x="${(x1+x2)/2}" y="${y+4}" text-anchor="middle" font-size="8.5" font-family="'Segoe UI',sans-serif" fill="#fbbf24">ramping</text>`;}
+      if(rx2<ex){const x1=Math.max(rx2,LEFT);s+=`<rect x="${x1}" y="${y-8}" width="${ex-x1}" height="16" rx="3" fill="rgba(22,163,74,.15)" stroke="rgba(22,163,74,.4)" stroke-width="0.5"/>`;if(ex-x1>24)s+=`<text x="${Math.min(x1+8+(ex-x1)/4,ex-20)}" y="${y+4}" font-size="8.5" font-family="'Segoe UI',sans-serif" fill="#4ade80">full</text>`;}
+      if(hx>=LEFT&&hx<=ex)s+=`<circle cx="${hx}" cy="${y}" r="4.5" fill="none" stroke="${rep.color}" stroke-width="1.5"/>`;
+      if(tx>=LEFT&&tx<=ex)s+=`<circle cx="${tx}" cy="${y}" r="4" fill="${rep.color}" opacity="0.5"/>`;
+      if(rx2>=LEFT&&rx2<=ex)s+=`<circle cx="${rx2}" cy="${y}" r="5.5" fill="#4ade80"/>`;
+    }
+  });
+  svg.innerHTML=s;
+
+  const rows=getGAEvents().map(ev=>{
+    const gd=toD(ev.date);
+    const ready=repData.filter(r=>r.fullyRampedAt<=gd);
+    const next=repData.filter(r=>r.fullyRampedAt>gd).sort((a,b)=>a.fullyRampedAt-b.fullyRampedAt)[0];
+    const ddays=next?Math.round((next.fullyRampedAt-gd)/86400000):null;
+    const badge=ready.length>=2?`<span class="badge badge-ok">&#10003; ${ready.length} ramped</span>`:ready.length===1?`<span class="badge badge-warn">&#9651; 1 ramped</span>`:`<span class="badge badge-gap">&#9888; 0 ramped</span>`;
+    const gapNote=ready.length===0&&ddays!==null?`<span style="color:#fbbf24;font-size:11px">+${ddays}d until ${next.name}</span>`:ready.length===0?`<span style="color:#f87171;font-size:11px">No rep in window</span>`:ready.length===1&&ddays!==null?`<span style="color:#7a9bb5;font-size:11px">+${ddays}d until 2nd rep</span>`:`<span style="color:#4ade80;font-size:11px">&#10003; Covered</span>`;
+    const names=ready.map(r=>`<span style="color:${r.color};font-size:11px">${r.name}</span>`).join(', ')||`<span style="color:#7a9bb5">—</span>`;
+    return`<tr><td style="font-weight:600">${ev.label}</td><td>${fmtD(gd)}</td><td>${badge}</td><td>${names}</td><td>${gapNote}</td></tr>`;
+  });
+  document.getElementById('gapTable').innerHTML=`<table><thead><tr><th>GA milestone</th><th>Date</th><th>Coverage</th><th>Ramped reps</th><th>Gap note</th></tr></thead><tbody>${rows.join('')}</tbody></table>`;
+}
+
+// ── EDITORS ──────────────────────────────────────────────────────────────────
+function renderPhaseEditor(){
+  let h='';
+  PHASE_GROUPS.forEach(grp=>{
+    const grpPhases=phases.filter(p=>grp.phases.includes(p.id));if(!grpPhases.length)return;
+    h+=`<div class="ecard"><div class="ecard-title" style="color:${grp.color}"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${grp.color};flex-shrink:0"></span>${grp.label}</div>`;
+    grpPhases.forEach(p=>{
+      const i=phases.indexOf(p);
+      const gaMatch=GA_PHASE_MAP.find(g=>g.phaseId===p.id);
+      const gaBadge=gaMatch?`<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:rgba(0,194,168,.18);color:#00C2A8;border:1px solid rgba(0,194,168,.4);white-space:nowrap" title="The End month for this phase drives the '${gaMatch.label}' marker on the swimlane, alignment chart, and stats bar">⚑ ${gaMatch.label}</span>`:'';
+      h+=`<div class="erow"><div class="ecg"><label>Phase name</label><input type="text" value="${p.name}" onchange="phases[${i}].name=this.value;renderAll()"></div><div class="ecg"><label>Start</label><input type="month" value="${p.start}" onchange="phases[${i}].start=this.value;renderAll()"></div><div class="ecg"><label>End</label><input type="month" value="${p.end}" onchange="phases[${i}].end=this.value;renderAll()"></div><div class="ecg"><label>Color</label><select onchange="phases[${i}].color=this.value;renderAll()">${COLORS.map(c=>`<option value="${c.key}"${c.key===p.color?' selected':''}>${c.label}</option>`).join('')}</select></div>${gaBadge?`<div class="ecg"><label>&nbsp;</label>${gaBadge}</div>`:''}<div class="erow-actions">${i>0?`<button class="move-btn" onclick="swapPhases(${i},${i-1})">↑</button>`:''} ${i<phases.length-1?`<button class="move-btn" onclick="swapPhases(${i},${i+1})">↓</button>`:''}<button class="del-btn" onclick="phases.splice(${i},1);renderPhaseEditor();renderAll()">Remove</button></div></div>`;
+    });
+    h+=`<button class="add-btn" onclick="addPhase(${grpPhases[grpPhases.length-1].id},'${grp.id}')" style="margin-top:8px">+ Add to ${grp.label}</button></div>`;
+  });
+  document.getElementById('phaseEditor').innerHTML=h;
+}
+function swapPhases(a,b){[phases[a],phases[b]]=[phases[b],phases[a]];renderPhaseEditor();renderAll();}
+function addPhase(afterId,grpId){
+  const grp=PHASE_GROUPS.find(g=>g.id===grpId);
+  const idx=phases.findIndex(p=>p.id===afterId);
+  const newId=Date.now();
+  phases.splice(idx+1,0,{id:newId,name:'New Phase',start:'2027-01',end:'2027-03',color:'iep',tip:''});
+  if(grp)grp.phases.push(newId);
+  renderPhaseEditor();renderAll();
+}
+
+function renderRepEditor(){
+  const statusLabels={active:'Active — fully ramped',training:'In training now',planned:'Planned hire'};
+  const statusPill={active:'sp-active',training:'sp-training',planned:'sp-planned'};
+  const statusStripe={active:'#4ade80',training:'#c4b0f5',planned:'#8abde8'};
+  let h=`<div class="ecard"><div class="ecard-title" style="color:#8abde8">Sales Reps <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0">Quota fields also editable in the Quota &amp; ARR Impact tab</span></div>`;
+  reps.forEach((r,i)=>{
+    const sc=statusStripe[r.status]||'#8abde8';
+    h+=`<div class="erow" style="border-left:3px solid ${sc}">
+      <div class="ecg"><label>Rep name</label><input type="text" value="${r.name}" onchange="reps[${i}].name=this.value;renderAll()"></div>
+      <div class="ecg"><label>Territory</label><input type="text" value="${r.territory}" onchange="reps[${i}].territory=this.value;renderAll()"></div>
+      <div class="ecg"><label>Hire month</label><input type="month" value="${r.hire}" onchange="reps[${i}].hire=this.value;renderAll()"></div>
+      <div class="ecg"><label>Avg ACV ($)</label><input type="text" inputmode="numeric" value="${fmtMoney(r.avgACV)}" onfocus="this.value=${r.avgACV}" onblur="reps[${i}].avgACV=parseMoney(this.value);this.value=fmtMoney(reps[${i}].avgACV);renderAll()" onkeydown="if(event.key==='Enter')this.blur()" style="width:90px"></div>
+      <div class="ecg"><label>Deals/mo</label><input type="number" value="${r.dealsMo}" step="0.1" onchange="reps[${i}].dealsMo=+this.value;renderAll()"></div>
+      <div class="ecg"><label>SS Quota ($)</label><input type="text" inputmode="numeric" value="${fmtMoney(r.ssQuota)}" onfocus="this.value=${r.ssQuota}" onblur="reps[${i}].ssQuota=parseMoney(this.value);this.value=fmtMoney(reps[${i}].ssQuota);renderAll()" onkeydown="if(event.key==='Enter')this.blur()" style="width:100px"></div>
+      <div class="ecg"><label>Status</label><select onchange="reps[${i}].status=this.value;renderRepEditor();renderAll()">
+        <option value="active"${r.status==='active'?' selected':''}>Active (fully ramped)</option>
+        <option value="training"${r.status==='training'?' selected':''}>In training now</option>
+        <option value="planned"${r.status==='planned'?' selected':''}>Planned hire</option>
+      </select></div>
+      <div class="erow-actions">
+        <span class="status-pill ${statusPill[r.status]||'sp-planned'}">${statusLabels[r.status]||r.status}</span>
+        ${i>0?`<button class="move-btn" onclick="swapReps(${i},${i-1})">↑</button>`:''}
+        ${i<reps.length-1?`<button class="move-btn" onclick="swapReps(${i},${i+1})">↓</button>`:''}
+        <button class="del-btn" onclick="reps.splice(${i},1);renderRepEditor();renderAll()">Remove</button>
+      </div>
+    </div>`;
+  });
+  h+=`<button class="add-btn" onclick="addRep()" style="margin-top:8px">+ Add rep</button></div>`;
+  document.getElementById('repEditor').innerHTML=h;
+}
+function swapReps(a,b){[reps[a],reps[b]]=[reps[b],reps[a]];renderRepEditor();renderAll();}
+function addRep(){reps.push({id:Date.now(),name:'New Rep',territory:'',hire:'2027-01',status:'planned',type:'Mid/Ent',avgACV:32000,dealsMo:1.8,ssQuota:500000,baseFY27:400000});renderRepEditor();renderAll();}
+
+// ── MONTHLY ARR BUILD ────────────────────────────────────────────────────────
+let selectedMonth = null;
+
+function seasonalityEnabled(){
+  const el=document.getElementById('seasonToggle');
+  return el ? el.checked : true;
+}
+
+function getRepMonthlyARR(rep, monthMk) {
+  const monthlySSARR = rep.ssQuota / 12;
+  const seasonMult = seasonalityEnabled() ? getSeasonMultiplier(monthMk) : 1.0;
+  if (rep.status === 'active') return monthlySSARR * seasonMult;
+  if (monthMk < rep.hire) return 0;
+  const {y:hy, m:hm} = ym(rep.hire);
+  const {y:my, m:mm} = ym(monthMk);
+  const moIdx = (my - hy) * 12 + (mm - hm);
+  return monthlySSARR * getRampPct(moIdx) * seasonMult;
+}
+
+// ── SEASONALITY MULTIPLIER EDITOR ────────────────────────────────────────────
+let seasonEditorOpen = false;
+function toggleSeasonEditor(){
+  seasonEditorOpen = !seasonEditorOpen;
+  document.getElementById('seasonEditor').style.display = seasonEditorOpen ? '' : 'none';
+  if (seasonEditorOpen) renderSeasonEditor();
+}
+
+const CAT_LABEL_SHORT={buy:'BUY',block:'STAAR',slow:'SLOW',mixed:'BUDGET'};
+
+function renderSeasonEditor(){
+  const el = document.getElementById('seasonEditor');
+  let h = `<div class="ecard">
+    <div class="ecard-title" style="color:#a78bfa">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#a78bfa;flex-shrink:0"></span>
+      District Buying-Season Multipliers
+      <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0">1.00 = no adjustment · &lt;1.00 = slower month · &gt;1.00 = stronger month</span>
+    </div>
+    <div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:11px;width:100%;min-width:760px">
+    <thead><tr>`;
+  for (let m=1; m<=12; m++) {
+    const sea = SEASONALITY[m];
+    h += `<th style="padding:6px 8px;text-align:center;background:var(--navy3);color:${sea.color};font-size:10px;border:1px solid var(--border2);font-weight:700">${MN[m-1]}<br><span style="font-size:8px;opacity:.7;letter-spacing:.04em">${CAT_LABEL_SHORT[sea.cat]}</span></th>`;
+  }
+  h += `</tr></thead><tbody><tr>`;
+  for (let m=1; m<=12; m++) {
+    const sea = SEASONALITY[m];
+    h += `<td style="padding:6px 6px;text-align:center;background:${sea.color}12;border:1px solid var(--border)">
+      <input type="number" value="${sea.mult.toFixed(2)}" step="0.05" min="0" max="2"
+        style="width:56px;text-align:center;font-weight:700;color:${sea.color};background:var(--navy3);border:1px solid var(--border2);border-radius:4px;padding:3px 2px;font-size:11px"
+        onchange="SEASONALITY[${m}].mult=Math.max(0,Math.min(2,+this.value||0));renderAll()">
+    </td>`;
+  }
+  h += `</tr><tr>`;
+  for (let m=1; m<=12; m++) {
+    const sea = SEASONALITY[m];
+    h += `<td style="padding:4px 6px;text-align:center;background:rgba(255,255,255,.01);border:1px solid var(--border);font-size:9px;color:var(--muted);line-height:1.3">${sea.label}</td>`;
+  }
+  h += `</tr></tbody></table></div>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+      <button class="add-btn" onclick="resetSeasonDefaults();renderAll()">Reset to defaults</button>
+      <button class="add-btn" onclick="setAllSeasonMultipliers(1.0);renderAll()" style="color:var(--muted);border-color:var(--border2)">Set all to 1.00 (no effect)</button>
+    </div>
+  </div>`;
+  el.innerHTML = h;
+}
+
+const SEASON_DEFAULTS={1:1.10,2:0.85,3:0.70,4:0.70,5:0.85,6:0.90,7:0.90,8:0.75,9:1.15,10:1.15,11:0.85,12:0.70};
+function resetSeasonDefaults(){
+  for (let m=1; m<=12; m++) SEASONALITY[m].mult = SEASON_DEFAULTS[m];
+  renderSeasonEditor();
+}
+function setAllSeasonMultipliers(v){
+  for (let m=1; m<=12; m++) SEASONALITY[m].mult = v;
+  renderSeasonEditor();
+}
+
+function renderMonthly() {
+  const fyEnd = document.getElementById('fyEnd').value;
+  const viewMode = document.getElementById('monthlyView').value;
+
+  // Months Jan 2027 → FY end
+  const months = [];
+  let cy = 2027, cm = 1;
+  while (mk(cy, cm) <= fyEnd) {
+    months.push(mk(cy, cm));
+    const n = addM(cy, cm, 1); cy = n.y; cm = n.m;
+  }
+  if (!months.length) return;
+
+  // Per-rep per-month matrix (ARR values)
+  const matrix = reps.map(r => months.map(mo => Math.round(getRepMonthlyARR(r, mo))));
+  // Per-rep per-month ramp %
+  const rampMatrix = reps.map(r => months.map(mo => {
+    if (r.status === 'active') return 100;
+    if (mo < r.hire) return null;
+    const {y:hy,m:hm} = ym(r.hire);
+    const {y:my,m:mm} = ym(mo);
+    const moIdx = (my-hy)*12+(mm-hm);
+    return Math.round(getRampPct(moIdx) * 100);
+  }));
+
+  const colTotals = months.map((_,mi) => matrix.reduce((s,row) => s+row[mi], 0));
+  let running = 0;
+  const cumTotals = colTotals.map(v => { running += v; return running; });
+  const TARGET_MONTHLY = 591667;
+  const TARGET_ANNUAL  = 7100000;
+
+  // ── Canvas ────────────────────────────────────────────────────────────────
+  const canvas = document.getElementById('monthlyCanvas');
+  const W = (canvas.parentElement.offsetWidth || 800);
+  const H = 280;
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+  const PAD = {top:28, right:90, bottom:40, left:64};
+  const chartW = W - PAD.left - PAD.right;
+  const chartH = H - PAD.top - PAD.bottom;
+  const N = months.length;
+  const barStep = Math.floor(chartW / N);
+  const barW = Math.max(10, barStep - 4);
+  const maxVal = viewMode === 'cumulative'
+    ? Math.max(TARGET_ANNUAL*1.05, ...cumTotals)*1.05
+    : Math.max(TARGET_MONTHLY*1.4, ...colTotals)*1.12;
+
+  function yOf(v) { return PAD.top + chartH - (v/maxVal)*chartH; }
+  function xOf(i) { return PAD.left + i*barStep + (barStep-barW)/2; }
+
+  // Grid
+  ctx.font = '10px Segoe UI,sans-serif';
+  for (let s = 0; s <= 5; s++) {
+    const v = (maxVal/5)*s, y = yOf(v);
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(W-PAD.right, y); ctx.stroke();
+    ctx.fillStyle = '#7a9bb5'; ctx.textAlign = 'right';
+    ctx.fillText(fmtK(Math.round(v)), PAD.left-5, y+3);
+  }
+
+  months.forEach((mo, mi) => {
+    const x = xOf(mi);
+    const isSel = mo === selectedMonth;
+    if (viewMode === 'cumulative') {
+      const val = cumTotals[mi];
+      const bh = (val/maxVal)*chartH;
+      ctx.fillStyle = isSel ? '#34d399' : 'rgba(52,211,153,0.5)';
+      ctx.fillRect(x, yOf(val), barW, bh);
+      if (isSel) { ctx.strokeStyle='#34d399'; ctx.lineWidth=1.5; ctx.strokeRect(x,yOf(val),barW,bh); }
+    } else {
+      let yBase = PAD.top + chartH;
+      reps.forEach((r,ri) => {
+        const val = matrix[ri][mi]; if (val<=0) return;
+        const sh = (val/maxVal)*chartH; yBase -= sh;
+        ctx.fillStyle = REP_COLORS[ri] + (isSel?'ff':'c0');
+        ctx.fillRect(x, yBase, barW, sh);
+      });
+      if (isSel) { ctx.strokeStyle='rgba(255,255,255,0.8)'; ctx.lineWidth=1.5; const th=(colTotals[mi]/maxVal)*chartH; ctx.strokeRect(x,PAD.top+chartH-th,barW,th); }
+    }
+    // Month label
+    const {m:mm2} = ym(mo);
+    ctx.fillStyle = isSel ? '#fff' : '#7a9bb5';
+    ctx.textAlign = 'center';
+    ctx.font = isSel ? 'bold 10px Segoe UI,sans-serif' : '10px Segoe UI,sans-serif';
+    ctx.fillText(MN[mm2-1], x+barW/2, H-PAD.bottom+13);
+    // Value on top
+    const tv = viewMode==='cumulative' ? cumTotals[mi] : colTotals[mi];
+    if (tv>0 && barW>20) {
+      ctx.fillStyle = isSel?'#fff':'rgba(255,255,255,0.55)';
+      ctx.font = '9px Segoe UI,sans-serif';
+      ctx.fillText(fmtK(Math.round(tv)), x+barW/2, yOf(tv)-4);
+    }
+  });
+
+  // Target line
+  const tval = viewMode==='cumulative' ? TARGET_ANNUAL : TARGET_MONTHLY;
+  const ty = yOf(tval);
+  ctx.strokeStyle='#fbbf24'; ctx.lineWidth=1.5; ctx.setLineDash([6,4]);
+  ctx.beginPath(); ctx.moveTo(PAD.left,ty); ctx.lineTo(W-PAD.right,ty); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='#fbbf24'; ctx.font='bold 10px Segoe UI,sans-serif'; ctx.textAlign='left';
+  ctx.fillText(viewMode==='cumulative'?'$7.1M target':'$591K/mo', W-PAD.right+4, ty+4);
+
+  // Click
+  canvas.onclick = e => {
+    const rect = canvas.getBoundingClientRect();
+    const cx = (e.clientX-rect.left)*(canvas.width/rect.width);
+    let hit = null;
+    months.forEach((mo,mi) => { const x=xOf(mi); if(cx>=x&&cx<=x+barW) hit=mo; });
+    selectedMonth = (hit===selectedMonth) ? null : hit;
+    renderMonthly();
+  };
+
+  // Legend
+  let leg = reps.map((r,i)=>`<div style="display:flex;align-items:center;gap:5px"><div style="width:11px;height:11px;border-radius:2px;background:${REP_COLORS[i]};flex-shrink:0"></div><span>${r.name}</span></div>`).join('');
+  leg += `<div style="display:flex;align-items:center;gap:5px;margin-left:6px;padding-left:6px;border-left:1px solid rgba(255,255,255,0.1)"><svg width="22" height="12"><line x1="0" y1="6" x2="22" y2="6" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5 3"/></svg>${viewMode==='cumulative'?'$7.1M target':'$591K/mo target'}</div>`;
+  document.getElementById('monthlyLegend').innerHTML = leg;
+
+  // ── Full Grid ─────────────────────────────────────────────────────────────
+  renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals);
+}
+
+function renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals) {
+  const TARGET_MONTHLY = 591667;
+  const wrap = document.getElementById('monthlyGridWrap');
+
+  // ── Ramp % table ──────────────────────────────────────────────────────────
+  const totalMonths = Math.ceil((+document.getElementById('trainDays').value + +document.getElementById('rampDays').value) / 30);
+  const curve = getRampCurve();
+
+  let rampHtml = `
+  <div style="margin-bottom:24px">
+    <div style="font-size:11px;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
+      Ramp curve — productivity % by month since hire
+      <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:8px">Based on ${document.getElementById('trainDays').value}d training + ${document.getElementById('rampDays').value}d ramp = ${+document.getElementById('trainDays').value + +document.getElementById('rampDays').value} days total · scales with top controls</span>
+    </div>
+    <div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:11px;min-width:600px">
+    <thead><tr>
+      <th style="padding:6px 10px;text-align:left;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--border2);white-space:nowrap">Month since hire</th>`;
+  const showMonths = Math.min(totalMonths + 2, 12);
+  for (let i=0; i<showMonths; i++) {
+    rampHtml += `<th style="padding:6px 10px;text-align:center;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--border2)">Mo ${i+1}</th>`;
+  }
+  rampHtml += `</tr></thead><tbody><tr>
+    <td style="padding:7px 10px;background:var(--navy2);font-weight:600;color:#a78bfa;border:1px solid var(--border)">Productivity %</td>`;
+  for (let i=0; i<showMonths; i++) {
+    const pct = Math.round((i < curve.length ? curve[i] : 1.0)*100);
+    const bg = pct>=100?'rgba(22,163,74,.2)':pct>=80?'rgba(52,211,153,.12)':pct>=50?'rgba(251,191,36,.15)':'rgba(155,127,232,.15)';
+    const col = pct>=100?'#4ade80':pct>=80?'#34d399':pct>=50?'#fbbf24':'#c4b0f5';
+    rampHtml += `<td style="padding:7px 10px;text-align:center;background:${bg};color:${col};font-weight:700;border:1px solid var(--border)">${pct}%</td>`;
+  }
+  rampHtml += `</tr></tbody></table></div></div>`;
+
+  // ── Per-rep monthly % table ───────────────────────────────────────────────
+  let pctHtml = `
+  <div style="margin-bottom:24px">
+    <div style="font-size:11px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
+      Ramp % per rep per month — FY2027
+    </div>
+    <div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:11px;min-width:700px;width:100%">
+    <thead><tr>
+      <th style="padding:6px 10px;text-align:left;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--border2);min-width:140px;position:sticky;left:0">Rep</th>`;
+  months.forEach(mo => {
+    const {y,m} = ym(mo);
+    const isQ = m===1||m===4||m===7||m===10;
+    pctHtml += `<th style="padding:6px 8px;text-align:center;background:${isQ?'rgba(26,127,212,.15)':'var(--navy3)'};color:${isQ?'#7bbfe8':'var(--muted)'};font-size:10px;border:1px solid var(--border2);white-space:nowrap">${MN[m-1]}<br><span style="font-size:9px;opacity:.7">${y}</span></th>`;
+  });
+  pctHtml += `</tr></thead><tbody>`;
+  // Seasonality band row
+  pctHtml += `<tr><td style="padding:5px 10px;font-size:9px;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:.06em;background:var(--navy3);border:1px solid var(--border2);position:sticky;left:0">District Season</td>`;
+  months.forEach(mo => {
+    const {m}=ym(mo);
+    const sea=SEASONALITY[m];
+    const lbl=sea.cat==='buy'?'BUY':sea.cat==='block'?'STAAR':sea.cat==='slow'?'SLOW':'BUDGET';
+    pctHtml += `<td style="padding:4px 4px;text-align:center;background:${sea.color}18;border:1px solid var(--border2)" title="${sea.label} · ${seasonalityEnabled()?'×'+sea.mult.toFixed(2):'multiplier off'}"><span style="font-size:8px;font-weight:700;color:${sea.color}">${lbl}</span><br><span style="font-size:8px;color:${sea.color};opacity:.8">×${sea.mult.toFixed(2)}</span></td>`;
+  });
+  pctHtml += `</tr>`;
+  reps.forEach((r,ri) => {
+    pctHtml += `<tr><td style="padding:7px 10px;font-weight:600;color:${REP_COLORS[ri]};background:var(--navy2);border:1px solid var(--border);position:sticky;left:0">${r.name}<br><span style="font-size:9px;color:var(--muted);font-weight:400">${r.territory}</span></td>`;
+    months.forEach((mo,mi) => {
+      const pct = rampMatrix[ri][mi];
+      if (pct === null) {
+        pctHtml += `<td style="padding:7px 8px;text-align:center;color:var(--muted);background:rgba(255,255,255,.01);border:1px solid var(--border);font-size:10px">—</td>`;
+      } else {
+        const bg = pct>=100?'rgba(22,163,74,.18)':pct>=80?'rgba(52,211,153,.1)':pct>=50?'rgba(251,191,36,.12)':'rgba(155,127,232,.12)';
+        const col = pct>=100?'#4ade80':pct>=80?'#34d399':pct>=50?'#fbbf24':'#c4b0f5';
+        pctHtml += `<td style="padding:7px 8px;text-align:center;background:${bg};color:${col};font-weight:700;border:1px solid var(--border);font-size:11px">${pct}%</td>`;
+      }
+    });
+    pctHtml += `</tr>`;
+  });
+  pctHtml += `</tbody></table></div></div>`;
+
+  // ── Per-rep monthly $ quota table ─────────────────────────────────────────
+  let dollarHtml = `
+  <div>
+    <div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
+      Monthly quota ($) per rep — FY2027
+      <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:8px">Ramp-adjusted · steady-state quota ÷ 12 × ramp % ${seasonalityEnabled()?'× buying-season multiplier':'(buying-season multiplier OFF)'}</span>
+    </div>
+    <div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:11px;min-width:700px;width:100%">
+    <thead><tr>
+      <th style="padding:6px 10px;text-align:left;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--border2);min-width:140px;position:sticky;left:0">Rep / SS quota</th>`;
+  months.forEach(mo => {
+    const {y,m} = ym(mo);
+    const isQ = m===1||m===4||m===7||m===10;
+    dollarHtml += `<th style="padding:6px 8px;text-align:right;background:${isQ?'rgba(26,127,212,.15)':'var(--navy3)'};color:${isQ?'#7bbfe8':'var(--muted)'};font-size:10px;border:1px solid var(--border2);white-space:nowrap">${MN[m-1]}<br><span style="font-size:9px;opacity:.7">${y}</span></th>`;
+  });
+  dollarHtml += `<th style="padding:6px 10px;text-align:right;background:var(--navy3);color:var(--muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--border2)">FY Total</th>`;
+  dollarHtml += `</tr></thead><tbody>`;
+
+  // Seasonality band row
+  dollarHtml += `<tr><td style="padding:5px 10px;font-size:9px;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:.06em;background:var(--navy3);border:1px solid var(--border2);position:sticky;left:0">District Season</td>`;
+  months.forEach(mo => {
+    const {m}=ym(mo);
+    const sea=SEASONALITY[m];
+    const lbl=sea.cat==='buy'?'BUY':sea.cat==='block'?'STAAR':sea.cat==='slow'?'SLOW':'BUDGET';
+    dollarHtml += `<td style="padding:4px 4px;text-align:center;background:${sea.color}18;border:1px solid var(--border2)" title="${sea.label} · ${seasonalityEnabled()?'×'+sea.mult.toFixed(2):'multiplier off'}"><span style="font-size:8px;font-weight:700;color:${sea.color}">${lbl}</span><br><span style="font-size:8px;color:${sea.color};opacity:.8">×${sea.mult.toFixed(2)}</span></td>`;
+  });
+  dollarHtml += `<td style="background:var(--navy3);border:1px solid var(--border2)"></td></tr>`;
+
+
+  reps.forEach((r,ri) => {
+    const fyTotal = months.reduce((s,_,mi)=>s+matrix[ri][mi],0);
+    dollarHtml += `<tr><td style="padding:7px 10px;font-weight:600;color:${REP_COLORS[ri]};background:var(--navy2);border:1px solid var(--border);position:sticky;left:0">${r.name}<br><span style="font-size:9px;color:var(--muted);font-weight:400">${fmtK(r.ssQuota)}/yr SS</span></td>`;
+    months.forEach((mo,mi) => {
+      const val = matrix[ri][mi];
+      const pct = rampMatrix[ri][mi];
+      if (pct === null) {
+        dollarHtml += `<td style="padding:7px 8px;text-align:right;color:var(--muted);background:rgba(255,255,255,.01);border:1px solid var(--border);font-size:10px">—</td>`;
+      } else {
+        const intensity = pct/100;
+        const bg = `rgba(251,191,36,${(intensity*0.18).toFixed(2)})`;
+        dollarHtml += `<td style="padding:7px 8px;text-align:right;background:${bg};color:#e8edf2;font-weight:${pct>=100?'600':'400'};border:1px solid var(--border);font-variant-numeric:tabular-nums;font-size:11px">${fmtK(val)}</td>`;
+      }
+    });
+    dollarHtml += `<td style="padding:7px 10px;text-align:right;font-weight:700;color:#fbbf24;background:rgba(251,191,36,.08);border:1px solid var(--border2);font-variant-numeric:tabular-nums">${fmtK(fyTotal)}</td></tr>`;
+  });
+
+  // Team total row
+  dollarHtml += `<tr style="background:var(--navy3)">
+    <td style="padding:8px 10px;font-weight:700;color:var(--text);border:2px solid var(--border2);position:sticky;left:0;background:var(--navy3)">Team total<br><span style="font-size:9px;color:var(--muted);font-weight:400">$591K/mo target</span></td>`;
+  months.forEach((_,mi) => {
+    const val = colTotals[mi];
+    const pctOfTarget = val / TARGET_MONTHLY;
+    const col = pctOfTarget>=0.95?'#4ade80':pctOfTarget>=0.70?'#fbbf24':'#f87171';
+    const bg = pctOfTarget>=0.95?'rgba(22,163,74,.15)':pctOfTarget>=0.70?'rgba(251,191,36,.12)':'rgba(220,38,38,.12)';
+    dollarHtml += `<td style="padding:8px 8px;text-align:right;font-weight:700;color:${col};background:${bg};border:2px solid var(--border2);font-variant-numeric:tabular-nums">${fmtK(val)}</td>`;
+  });
+  const fyGrandTotal = colTotals.reduce((s,v)=>s+v,0);
+  const gtColor = fyGrandTotal>=TARGET_MONTHLY*months.length*0.95?'#4ade80':'#fbbf24';
+  dollarHtml += `<td style="padding:8px 10px;text-align:right;font-weight:700;color:${gtColor};background:rgba(251,191,36,.12);border:2px solid var(--border2);font-variant-numeric:tabular-nums">${fmtK(fyGrandTotal)}</td></tr>`;
+
+  // % of target row
+  dollarHtml += `<tr><td style="padding:6px 10px;font-size:10px;color:var(--muted);background:var(--navy2);border:1px solid var(--border);position:sticky;left:0;background:var(--navy2)">% of $591K target</td>`;
+  months.forEach((_,mi) => {
+    const pct = Math.round(colTotals[mi]/TARGET_MONTHLY*100);
+    const col = pct>=95?'#4ade80':pct>=70?'#fbbf24':'#f87171';
+    dollarHtml += `<td style="padding:6px 8px;text-align:right;font-size:10px;font-weight:600;color:${col};background:rgba(255,255,255,.01);border:1px solid var(--border)">${pct}%</td>`;
+  });
+  dollarHtml += `<td style="padding:6px 10px;text-align:right;font-size:10px;font-weight:600;color:${gtColor};background:rgba(255,255,255,.01);border:1px solid var(--border)">${Math.round(fyGrandTotal/(TARGET_MONTHLY*months.length)*100)}%</td></tr>`;
+
+  dollarHtml += `</tbody></table></div></div>`;
+
+  wrap.innerHTML = rampHtml + pctHtml + dollarHtml;
+}
+
+// ── TABS ─────────────────────────────────────────────────────────────────────
+const TABS=['swimlane','quota','monthly','align','phases','reps','scenarios','howto'];
+function howtoScroll(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function showTab(t){
+  TABS.forEach(id=>{document.getElementById('tab-'+id).style.display=id===t?'':'none'});
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',TABS[i]===t));
+  document.getElementById('statsBar').style.display=(t==='quota'||t==='swimlane'||t==='monthly')?'flex':'none';
+  if(t==='quota')renderQuota();
+  if(t==='monthly')renderMonthly();
+  if(t==='align')renderAlignment();
+  if(t==='phases')renderPhaseEditor();
+  if(t==='reps')renderRepEditor();
+  if(t==='scenarios')renderScenarios();
+}
+
+function renderAll(){
+  renderStats();
+  const active=TABS.find(id=>document.getElementById('tab-'+id).style.display!=='none')||'swimlane';
+  if(active==='swimlane')renderSwimlane();
+  else if(active==='quota')renderQuota();
+  else if(active==='monthly')renderMonthly();
+  else if(active==='align')renderAlignment();
+  else if(active==='phases')renderPhaseEditor();
+  else if(active==='reps')renderRepEditor();
+  else if(active==='scenarios')renderScenarios();
+}
+
+renderStats();
+renderSwimlane();
+window.addEventListener('resize',()=>{clearTimeout(window._rt);window._rt=setTimeout(renderAll,100)});
+</script>
+</body>
+</html>
