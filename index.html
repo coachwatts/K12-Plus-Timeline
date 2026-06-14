@@ -1782,7 +1782,56 @@ function renderBridge() {
     </div>
   </div>`;
 
-  document.getElementById('bridgeContent').innerHTML = unlockHtml + bridgeHtml + scenHtml + quarterlyHtml;
+  // ── New Business by Motion (Non-Member / Member / Co-op) ──────────────────
+  // Deck Target mix (slide 12) applied proportionally to the live current-plan number.
+  const MOTIONS = [
+    {name:'Non-Member Districts', sub:'4-module · Foundation bundle (RTI+504+IEP+LPAC)', deckARR:3640000, pct:0.515, logos:70, color:'#8abde8', winRate:'43% win rate (non-SSA)'},
+    {name:'Member Districts',     sub:'3-module · RTI+504+LPAC', deckARR:2780000, pct:0.393, logos:42, color:'#34d399', winRate:'mixed — SSA & direct'},
+    {name:'Co-op / SSA Deals',    sub:'IEP per co-op · one master agreement closes many districts', deckARR:420000, pct:0.060, logos:15, color:'#fbbf24', winRate:'74% win rate (SSA-affiliated)'},
+  ];
+  const liveNewBiz = b.newBizARR;
+  // Normalize weights so live dollar shares sum exactly to the new-business total
+  // (deck's published percentages round to 96.8%; we keep those as display labels
+  //  but split the actual dollars on the normalized weights so they reconcile).
+  const pctSum = MOTIONS.reduce((s,m)=>s+m.pct, 0);
+
+  let motionCards = '';
+  MOTIONS.forEach(m => {
+    const liveShare = liveNewBiz * (m.pct / pctSum);
+    motionCards += `
+    <div style="flex:1;min-width:200px;background:var(--navy2);border:1px solid var(--border);border-left:3px solid ${m.color};border-radius:8px;padding:14px">
+      <div style="font-size:12px;font-weight:700;color:${m.color};margin-bottom:2px">${m.name}</div>
+      <div style="font-size:9px;color:var(--muted);margin-bottom:10px;line-height:1.4">${m.sub}</div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px">
+        <div style="font-size:24px;font-weight:700;color:${m.color}">${fmtK(Math.round(liveShare))}</div>
+        <div style="font-size:11px;color:var(--muted)">${Math.round(m.pct*100)}% of new biz</div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.6">
+        ~${m.logos} ${m.name.includes('Co-op')?'deals':'logos'}<br>
+        Deck Target: ${fmtK(m.deckARR)}<br>
+        <span style="color:${m.color}">${m.winRate}</span>
+      </div>
+    </div>`;
+  });
+
+  // Horizontal stacked bar showing the mix (normalized)
+  const barSegs = MOTIONS.map(m =>
+    `<div style="width:${m.pct/pctSum*100}%;background:${m.color};opacity:.85;height:100%" title="${m.name}: ${Math.round(m.pct/pctSum*100)}%"></div>`
+  ).join('');
+
+  const motionHtml = `
+  <div style="margin-bottom:24px">
+    <div style="font-size:11px;font-weight:700;color:#e879f9;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">New Business ARR by Motion</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:14px">How the new-business number splits across go-to-market motions · deck Target mix applied to the live current-plan number · Source: Slide 12</div>
+    <div style="display:flex;height:16px;border-radius:4px;overflow:hidden;margin-bottom:14px">${barSegs}</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">${motionCards}</div>
+    <div style="font-size:11px;color:var(--muted);line-height:1.7;border-top:1px solid var(--border);padding-top:10px">
+      <strong style="color:var(--text)">The strategic read:</strong> ~90% of the 2027 number comes from individual district sales (Non-Member + Member). The <strong>Co-op/SSA channel has the win-rate edge</strong> — 74% vs 43% for non-SSA, and one master agreement can close 10+ districts at once — but at only 6% of target it can't carry the plan on its own.<br>
+      <strong style="color:var(--text)">Implication:</strong> closing the gap to $7.1M is primarily a <strong>district-volume problem</strong> (Non-Member + Member motions), with the co-op channel as a high-efficiency accelerator rather than the main engine.
+    </div>
+  </div>`;
+
+  document.getElementById('bridgeContent').innerHTML = unlockHtml + bridgeHtml + scenHtml + motionHtml + quarterlyHtml;
 }
 
 // ── SENSITIVITY / WHAT-IF TAB ────────────────────────────────────────────────
