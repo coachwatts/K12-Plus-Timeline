@@ -33,11 +33,40 @@ select:focus,input:focus{outline:1px solid var(--accent);border-color:var(--acce
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-btn.t-align.active{color:#a78bfa;border-bottom-color:#a78bfa}
+.tab-btn.t-fy26.active{color:#34d399;border-bottom-color:#34d399}
+.tab-btn.t-pipe.active{color:#a78bfa;border-bottom-color:#a78bfa}
 .tab-btn.t-quota.active{color:#fbbf24;border-bottom-color:#fbbf24}
 .tab-btn.t-monthly.active{color:#34d399;border-bottom-color:#34d399}
 .tab-btn.t-phases.active{color:#c4b0f5;border-bottom-color:#c4b0f5}
 .tab-btn.t-reps.active{color:#8abde8;border-bottom-color:#8abde8}
 .tab-btn.t-howto.active{color:#f0f0f0;border-bottom-color:#f0f0f0}
+.tab-btn.t-bridge.active{color:#e879f9;border-bottom-color:#e879f9}
+.tab-btn.t-sensitivity.active{color:#f472b6;border-bottom-color:#f472b6}
+
+/* ── SENSITIVITY TAB ── */
+.sens-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.sens-lever{background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.sens-lever-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.sens-lever-desc{font-size:10px;color:var(--muted);margin-bottom:10px;line-height:1.5}
+.sens-lever-input{display:flex;align-items:center;gap:10px}
+.sens-lever-input input[type=range]{flex:1;accent-color:#f472b6}
+.sens-lever-input .sens-val{min-width:64px;text-align:right;font-size:13px;font-weight:700;color:#f472b6}
+.sens-results{background:var(--navy2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:20px}
+.sens-results-header{padding:12px 16px;background:var(--navy3);border-bottom:1px solid var(--border2);font-size:11px;font-weight:700;color:#f472b6;text-transform:uppercase;letter-spacing:.08em}
+.sens-table{width:100%;border-collapse:collapse;font-size:12px}
+.sens-table th{padding:8px 14px;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border2);text-align:right}
+.sens-table th:first-child{text-align:left}
+.sens-table td{padding:9px 14px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums;text-align:right}
+.sens-table td:first-child{text-align:left;font-weight:600;color:var(--text)}
+.sens-table tr:last-child td{border-bottom:none}
+.sens-table .delta-pos{color:#4ade80;font-weight:700}
+.sens-table .delta-neg{color:#f87171;font-weight:700}
+.sens-table .delta-zero{color:var(--muted)}
+.sens-waterfall{display:flex;gap:8px;align-items:flex-end;padding:16px;background:var(--navy2);border:1px solid var(--border);border-radius:8px;margin-bottom:20px;overflow-x:auto}
+.sens-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:70px}
+.sens-bar{border-radius:3px 3px 0 0;width:48px;transition:height .3s}
+.sens-bar-label{font-size:9px;color:var(--muted);text-align:center;line-height:1.3}
+.sens-bar-value{font-size:10px;font-weight:700;color:var(--text)}
 .tab-btn.t-scenarios.active{color:#fb923c;border-bottom-color:#fb923c}
 
 /* ── STATS BAR ── */
@@ -122,6 +151,36 @@ table.swim{border-collapse:collapse;width:100%}
 .db-flat{background:rgba(100,100,100,.2);color:var(--muted);border:1px solid var(--border2)}
 .ramp-note{margin-top:16px;padding:10px 14px;background:var(--navy3);border:1px solid var(--border);border-radius:6px;font-size:11px;color:var(--muted);line-height:1.6}
 .ramp-note strong{color:var(--text)}
+
+/* ── 2026 FORECAST TAB ── */
+.fy26-scenarios{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.fy26-card{flex:1;min-width:200px;border:1px solid var(--border);border-radius:8px;padding:14px;background:var(--navy2)}
+.fy26-card.conservative{border-color:rgba(248,113,113,.35)}
+.fy26-card.moderate{border-color:rgba(251,191,36,.35)}
+.fy26-card.aggressive{border-color:rgba(74,222,128,.35)}
+.fy26-card .fc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.fy26-card.conservative .fc-label{color:#f87171}
+.fy26-card.moderate .fc-label{color:#fbbf24}
+.fy26-card.aggressive .fc-label{color:#4ade80}
+.fy26-card .fc-value{font-size:24px;font-weight:700;color:#fff;line-height:1;margin-bottom:4px}
+.fy26-card .fc-sub{font-size:10px;color:var(--muted);line-height:1.5}
+.fy26-assumptions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.fy26-assumptions .fa-row{display:flex;flex-direction:column;gap:2px;font-size:10px;padding:6px 8px;background:var(--navy3);border-radius:5px}
+.fy26-assumptions .fa-row label{color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.05em}
+.fy26-assumptions .fa-row input{width:100%;font-size:11px}
+.fy26-pipeline-table{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:16px}
+.fy26-pipeline-table table{width:100%;border-collapse:collapse;font-size:11px}
+.fy26-pipeline-table th{background:var(--navy3);padding:8px 10px;text-align:left;font-weight:600;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border2);white-space:nowrap}
+.fy26-pipeline-table th.r{text-align:right}
+.fy26-pipeline-table td{padding:7px 10px;border-bottom:1px solid var(--border)}
+.fy26-pipeline-table tr:last-child td{border-bottom:none}
+.fy26-pipeline-table tr:hover td{background:rgba(255,255,255,.02)}
+.fy26-pipeline-table .r{text-align:right;font-variant-numeric:tabular-nums}
+.stage-pill{font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;white-space:nowrap}
+.stage-signed{background:rgba(22,163,74,.2);color:#4ade80;border:1px solid rgba(22,163,74,.4)}
+.stage-active{background:rgba(91,155,213,.2);color:#8abde8;border:1px solid rgba(91,155,213,.4)}
+.stage-proposed{background:rgba(251,191,36,.2);color:#fbbf24;border:1px solid rgba(251,191,36,.4)}
+.stage-demo{background:rgba(155,127,232,.2);color:#c4b0f5;border:1px solid rgba(155,127,232,.4)}
 
 /* ── MONTHLY CHART ── */
 .monthly-area{padding:20px}
@@ -243,6 +302,8 @@ table.swim{border-collapse:collapse;width:100%}
       <div class="cg"><span class="cl">Training days</span><input type="number" id="trainDays" value="30" min="0" max="180" style="width:52px" onchange="renderAll()"></div>
       <div class="cg"><span class="cl">Ramp days</span><input type="number" id="rampDays" value="90" min="0" max="365" style="width:52px" onchange="renderAll()"></div>
       <div class="cg"><span class="cl">FY end</span><input type="month" id="fyEnd" value="2027-12" onchange="renderAll()"></div>
+      <div class="cg"><span class="cl">Monthly view start</span><input type="month" id="monthlyStart" value="2026-09" onchange="renderAll()" title="Controls the starting month shown in Monthly ARR Build, so hires before FY start are still visible"></div>
+      <div class="cg"><span class="cl" style="color:#fb923c">Pipeline conv. %/mo</span><input type="number" id="pipelineConvRate" value="40" min="1" max="100" style="width:52px" onchange="renderAll()" title="Monthly % of accumulated pipeline balance that converts to closed ARR. Drives the pipeline build-up model: earlier hires enter FY27 with a larger balance."></div>
       <div class="cg" style="border-left:1px solid var(--border2);padding-left:8px;margin-left:2px">
         <label style="display:flex;align-items:center;gap:5px;cursor:pointer">
           <input type="checkbox" id="seasonToggle" checked onchange="renderAll()" style="width:14px;height:14px;cursor:pointer;accent-color:#a78bfa">
@@ -255,11 +316,15 @@ table.swim{border-collapse:collapse;width:100%}
 
 <div class="tab-row">
   <button class="tab-btn active" onclick="showTab('swimlane')">Swimlane</button>
+  <button class="tab-btn t-fy26" onclick="showTab('fy26')">2026 Forecast</button>
+  <button class="tab-btn t-pipe" onclick="showTab('pipe')">Pipeline Required</button>
   <button class="tab-btn t-quota" onclick="showTab('quota')">Quota &amp; ARR Impact</button>
   <button class="tab-btn t-monthly" onclick="showTab('monthly')">Monthly ARR Build</button>
   <button class="tab-btn t-align" onclick="showTab('align')">Readiness Alignment</button>
   <button class="tab-btn t-phases" onclick="showTab('phases')">Edit Phases</button>
   <button class="tab-btn t-reps" onclick="showTab('reps')">Edit Reps</button>
+  <button class="tab-btn t-bridge" onclick="showTab('bridge')">ARR Bridge</button>
+  <button class="tab-btn t-sensitivity" onclick="showTab('sensitivity')">What-If</button>
   <button class="tab-btn t-scenarios" onclick="showTab('scenarios')">Scenarios</button>
   <button class="tab-btn t-howto" onclick="showTab('howto')" style="margin-left:auto">How To Use This</button>
 </div>
@@ -269,6 +334,59 @@ table.swim{border-collapse:collapse;width:100%}
 <div id="tab-swimlane">
   <div class="chart-area"><div id="chartWrap"></div></div>
   <div class="legend" id="legend"></div>
+</div>
+
+<div id="tab-fy26" style="display:none">
+  <div class="quota-area">
+    <div class="quota-header">
+      <h2 style="color:#34d399">2026 ARR Forecast — RTI/504 Pipeline</h2>
+      <span class="fy-note" id="fy26GANote"></span>
+    </div>
+    <div class="ramp-note" style="margin-top:0;margin-bottom:16px">
+      <strong>The constraint:</strong> RTI/504 General Availability is <span id="fy26GADate" style="color:#34d399;font-weight:700"></span>, leaving only <span id="fy26MonthsLeft" style="color:#34d399;font-weight:700"></span> invoiceable months in 2026 (Aug–Dec). Every dollar of ARR below is divided by 12 and multiplied by however many of those months it's active. New districts from TEPSA/TCASE are assumed to close later in the window, so they get fewer billable months — adjust below.
+    </div>
+
+    <div class="fy26-scenarios" id="fy26Scenarios"></div>
+
+    <div style="margin-top:18px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Scenario Assumptions</div>
+    <div class="fy26-assumptions" id="fy26Assumptions"></div>
+
+    <div style="margin-top:20px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Current Pipeline — 25 Deals (RTI/504)</div>
+    <div class="fy26-pipeline-table"><table id="fy26PipelineTable"></table></div>
+
+    <div class="ramp-note" id="fy26Note"></div>
+
+    <div style="margin-top:28px;border-top:1px solid var(--border);padding-top:20px">
+      <div style="font-size:13px;font-weight:700;color:#f472b6;margin-bottom:4px">
+        Expansion ARR — 2026 Alphas → 2027 Upsell
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:14px">
+        IEP + LPAC launch Jan 2027 makes every 2026 customer an upgrade target.
+        Wall ISD proof: added RTI to 504 contract → 158% NRR in Year 1. · Source: Slide 10
+      </div>
+      <div id="expansionScenarios" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px"></div>
+      <div id="expansionAssumptionsEl" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px"></div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
+        Alpha customer list — 17 logos (IEP/LPAC eligible Jan 2027)
+      </div>
+      <div class="fy26-pipeline-table"><table id="expansionTable"></table></div>
+      <div class="ramp-note" id="expansionNote" style="margin-top:12px"></div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-pipe" style="display:none">
+  <div class="quota-area">
+    <div class="quota-header">
+      <h2 style="color:#a78bfa">Pipeline Required to Hit Forecast</h2>
+      <span class="fy-note">Steady-state pipeline needed per rep · close rate × cycle length drives the math · gap between today and what each rep needs at full ramp · Source: Slide 21</span>
+    </div>
+    <div class="quota-totals" id="pipeTotals"></div>
+    <div style="margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap" id="pipeControls"></div>
+    <div id="pipeProof"></div>
+    <div class="quota-table-wrap"><table class="quota-table" id="pipeTable"></table></div>
+    <div class="ramp-note" id="pipeNote"></div>
+  </div>
 </div>
 
 <div id="tab-quota" style="display:none">
@@ -333,6 +451,26 @@ table.swim{border-collapse:collapse;width:100%}
 <div id="tab-phases" style="display:none"><div class="editor-area" id="phaseEditor"></div></div>
 <div id="tab-reps" style="display:none"><div class="editor-area" id="repEditor"></div></div>
 
+<div id="tab-bridge" style="display:none">
+  <div class="quota-area">
+    <div class="quota-header">
+      <h2 style="color:#e879f9">2026 → 2027 ARR Bridge</h2>
+      <span class="fy-note">How the 2026 foundation becomes the 2027 target · two unlocks · Source: Slide 10–13</span>
+    </div>
+    <div id="bridgeContent"></div>
+  </div>
+</div>
+
+<div id="tab-sensitivity" style="display:none">
+  <div class="quota-area">
+    <div class="quota-header">
+      <h2 style="color:#f472b6">What-If Revenue Sensitivity</h2>
+      <span class="fy-note">Adjust any lever to see the combined impact on FY26 and FY27 ARR · All levers applied simultaneously · Baseline = current plan</span>
+    </div>
+    <div id="sensitivityContent"></div>
+  </div>
+</div>
+
 <div id="tab-scenarios" style="display:none">
   <div class="scenarios-area">
     <div style="margin-bottom:4px;font-size:14px;font-weight:700;color:#fb923c">Scenario Save &amp; Compare</div>
@@ -355,14 +493,20 @@ table.swim{border-collapse:collapse;width:100%}
 <div id="tab-howto" style="display:none">
   <div class="howto-area">
     <h2>How To Use This Tool</h2>
-    <div class="howto-sub">K12 Plus product development timeline, rep hiring/ramp plan, and live ARR scenario model — six connected views, one shared dataset.</div>
+    <div class="howto-sub">K12 Plus product development timeline, rep hiring/ramp plan, and live ARR scenario model — eleven connected views, one shared dataset. Built on a pipeline-balance engine where hire timing drives FY27 revenue.</div>
 
     <div class="howto-toc">
       <a onclick="howtoScroll('hc-global')">Global controls</a>
+      <a onclick="howtoScroll('hc-model')">★ How the model works</a>
       <a onclick="howtoScroll('hc-swimlane')">Swimlane</a>
+      <a onclick="howtoScroll('hc-fy26')">2026 Forecast</a>
+      <a onclick="howtoScroll('hc-expansion')">Expansion ARR</a>
+      <a onclick="howtoScroll('hc-pipe')">Pipeline Required</a>
       <a onclick="howtoScroll('hc-quota')">Quota &amp; ARR Impact</a>
       <a onclick="howtoScroll('hc-monthly')">Monthly ARR Build</a>
       <a onclick="howtoScroll('hc-align')">Readiness Alignment</a>
+      <a onclick="howtoScroll('hc-bridge')">ARR Bridge</a>
+      <a onclick="howtoScroll('hc-sensitivity')">What-If</a>
       <a onclick="howtoScroll('hc-edit')">Edit Phases / Edit Reps</a>
       <a onclick="howtoScroll('hc-season')">Buying-season multipliers</a>
       <a onclick="howtoScroll('hc-ga')">GA milestone linkage</a>
@@ -380,6 +524,17 @@ table.swim{border-collapse:collapse;width:100%}
       </div>
     </div>
 
+    <div class="howto-section" id="hc-model">
+      <h3 style="color:#f472b6"><span class="dot" style="background:#f472b6"></span>★ How the Model Works (read this first)</h3>
+      <div class="howto-body">
+        <p>The whole tool runs on one core idea: <strong>a rep's revenue is driven by the pipeline they build, not by a fixed ramp curve.</strong> This is the pipeline-balance engine, and it's why hire timing matters so much.</p>
+        <p><strong>Each month, a rep generates new pipeline</strong> (at a rate that ramps up over their first few months), that pipeline accumulates into a running <strong>balance</strong>, and a fixed percentage of that balance <strong>converts to closed ARR</strong> each month (the "Pipeline conv. %/mo" control, default 40%). A rep hired in July enters January 2027 with a much larger pipeline balance than one hired in October — so they convert more ARR in FY27 even though both follow the same ramp curve. That gap (often $100K+ per rep) is the single most important thing the model captures.</p>
+        <p><strong>Two revenue streams feed FY27:</strong> <em>new business</em> (reps closing new districts, ~$5.69M at current plan) and <em>expansion</em> (2026 alpha customers upgrading to IEP/LPAC in 2027, ~$77K). The stats bar shows both. Most tabs focus on new business; the Expansion ARR section and ARR Bridge tab bring in the expansion layer.</p>
+        <p><strong>2026 vs FY27 are different questions.</strong> 2026 ARR (the green stat) is constrained by the RTI/504 GA date — only a few invoiceable months this year. FY27 ARR (the amber/pink stats) is the full-year run starting January 2027. The 2026 Forecast tab answers the first; Quota, Monthly Build, Pipeline Required, and ARR Bridge answer the second.</p>
+        <p><strong>Everything is connected.</strong> Change a hire date once (in Quota or Edit Reps) and it ripples through every tab: pipeline balance, FY27 contribution, GA coverage, the bridge, and the what-if baseline all move together.</p>
+      </div>
+    </div>
+
     <div class="howto-section" id="hc-swimlane">
       <h3 style="color:#00C2A8"><span class="dot" style="background:#00C2A8"></span>Swimlane</h3>
       <div class="howto-body">
@@ -389,20 +544,51 @@ table.swim{border-collapse:collapse;width:100%}
       </div>
     </div>
 
+    <div class="howto-section" id="hc-fy26">
+      <h3 style="color:#34d399"><span class="dot" style="background:#34d399"></span>2026 Forecast</h3>
+      <div class="howto-body">
+        <p>Answers: <strong>"What will our actual ARR be for 2026?"</strong> — distinct from the FY27 quota model. The core constraint is that RTI/504 isn't invoiceable until the GA date (linked live to the "504 / RTI GA" phase in Edit Phases, currently August 2026), leaving only a handful of billable months in 2026.</p>
+        <p>Three scenario cards — <strong>Conservative, Moderate, Aggressive</strong> — apply different conversion rates to the current 25-deal pipeline (Signed/Active/Proposed) and add a configurable number of new districts sourced from TEPSA and the upcoming TCASE conference. Each card shows the math breakdown and a "full run-rate if sustained" reference figure.</p>
+        <p>The <strong>Scenario Assumptions</strong> grid lets you edit conversion percentages, new-district counts, billable months for new districts, and the shared average new-district ARR — everything recalculates live. The <strong>pipeline table</strong> below shows all 25 deals with editable ARR values; the 5 Demo-stage deals show "TBD" until quantified.</p>
+        <p>The stats bar's "2026 ARR (Moderate)" card and the Scenarios tab's comparison both reflect this tab's Moderate scenario for quick reference.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-expansion">
+      <h3 style="color:#f472b6"><span class="dot" style="background:#f472b6"></span>Expansion ARR (bottom of 2026 Forecast)</h3>
+      <div class="howto-body">
+        <p>Answers: <strong>"How much extra ARR comes from upselling our existing customers?"</strong> When IEP and LPAC go GA in January 2027, every 2026 alpha district that's live on RTI/504 becomes an upgrade target. This is the land-and-expand half of the growth story.</p>
+        <p>Three scenario cards model how many of the 17 alpha logos upgrade and how big the lift is: <strong>Conservative</strong> ($27K, 30% adopt IEP only), <strong>Moderate</strong> ($77K, 45% adopt IEP + partial LPAC — this matches the deck), and <strong>Aggressive</strong> ($150K, 65% adopt full bundle). Each card shows the resulting <strong>net revenue retention (NRR)</strong> for that cohort.</p>
+        <p>The <strong>adopt rate %</strong> and <strong>lift per district $</strong> are editable per scenario. The alpha customer table lists all 17 logos with current ARR and max expansion potential. Wall ISD is the live proof point: it added RTI to an existing 504 contract and hit 158% NRR in Year 1 — before IEP/LPAC even existed.</p>
+        <p>The Moderate expansion figure flows into the stats bar's "FY27 — incl. expansion" card, the ARR Bridge, and the What-If tab's expansion line.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-pipe">
+      <h3 style="color:#a78bfa"><span class="dot" style="background:#a78bfa"></span>Pipeline Required</h3>
+      <div class="howto-body">
+        <p>Answers: <strong>"How much pipeline does each rep need to hit their number, and how far are we from it?"</strong> This is the demand-side mirror of the quota model (originally Slide 21 of the deck).</p>
+        <p>For each rep: <strong>Pipeline needed = Deals/mo × Sales cycle months × Avg ACV.</strong> Two editable cycle controls at the top set the assumption — Mid/Ent reps default to a 9-month cycle, Velocity reps to 4 months (smaller districts, faster decisions). The table shows opps needed, pipeline ARR needed, the balance already built by January 2027 (from the pipeline-balance model + hire dates), and the resulting gap.</p>
+        <p>The <strong>proof-point callout</strong> cites real results: one AE built $163K of ARR pipeline in 17.7 weeks via cold sequences alone, before any tradeshow leads — evidence that the pipeline generation assumption is grounded, not optimistic. The per-rep progress bars show each rep's balance building toward their threshold month by month.</p>
+        <p>Change a hire date and the "Balance Jan '27" and "Gap" columns update live — earlier hires close more of the gap before FY27 starts.</p>
+      </div>
+    </div>
+
     <div class="howto-section" id="hc-quota">
       <h3 style="color:#fbbf24"><span class="dot" style="background:#fbbf24"></span>Quota &amp; ARR Impact</h3>
       <div class="howto-body">
-        <p>Shows each rep's Avg ACV, Deals/mo, and Steady-State Quota (their full annual quota once fully ramped), alongside <strong>Base FY27</strong> (the original mid-year model figure) and <strong>Current FY27</strong> (live-calculated from the rep's current hire date, the ramp curve, and — if enabled — the buying-season multiplier).</p>
-        <p>You can edit a rep's <strong>hire date directly in this table</strong> — the totals at the top, the delta vs. base model, and every other tab update immediately. This is the fastest way to test "what if this hire slips a month?"</p>
+        <p>Shows each rep's Avg ACV, Deals/mo, and Steady-State Quota (their full annual quota once fully ramped), alongside <strong>Base FY27</strong> (the original mid-year model figure) and <strong>Current FY27</strong> (live-calculated from the rep's hire date through the pipeline-balance model — the pipeline they build, ramp, and convert, adjusted by the buying-season multiplier if enabled).</p>
+        <p>Because FY27 now runs on the pipeline-balance engine, the <strong>Current FY27</strong> figure is systematically more conservative than the old straight-line ramp model, and it's far more sensitive to hire timing. You can edit a rep's <strong>hire date directly in this table</strong> — the totals, the delta vs. base model, and every other tab update immediately. This is the fastest way to test "what if this hire slips a month?" and watch the FY27 number move.</p>
+        <p>For 2026 revenue (as opposed to FY27 quota), see the <strong>2026 Forecast</strong> tab. For the pipeline each rep needs to hit these numbers, see <strong>Pipeline Required</strong>.</p>
       </div>
     </div>
 
     <div class="howto-section" id="hc-monthly">
       <h3 style="color:#34d399"><span class="dot" style="background:#34d399"></span>Monthly ARR Build</h3>
       <div class="howto-body">
-        <p>The most detailed view. The chart shows monthly (or cumulative) ARR contribution stacked by rep, against the $7.1M annual / $591K monthly target line. Click any bar to highlight it.</p>
-        <p>Below the chart, three tables: the <strong>ramp curve</strong> (productivity % by month-since-hire, which stretches or compresses based on your Training/Ramp day settings), <strong>ramp % per rep per month</strong>, and <strong>monthly quota ($) per rep</strong> with a team total row colored against the target.</p>
-        <p>Use <strong>Edit season multipliers</strong> to open an inline editor for the 12 monthly buying-season multipliers — change any value and everything recalculates.</p>
+        <p>The most detailed view. The chart shows monthly (or cumulative) ARR contribution stacked by rep, against the $7.1M annual / $591K monthly target line. The "Monthly view start" control (top bar) lets you show pre-FY27 months so a July or August hire's pipeline build-up is visible; months before January 2027 are dimmed and excluded from the FY27 total.</p>
+        <p>Below the chart, four tables: the <strong>ramp curve</strong> (productivity % by month-since-hire, a reference for how training/ramp days stretch the curve), the <strong>pipeline balance per rep per month</strong> (the orange table — this is the engine: watch each rep's accumulated pipeline build from their hire date), <strong>ramp % per rep per month</strong>, and <strong>monthly ARR per rep</strong> from the pipeline-balance model with a team total row colored against the target.</p>
+        <p>The pipeline balance table is the clearest place to see why hire timing matters: a July hire's balance line starts three months before an October hire's, so it's already converting at a higher rate when FY27 begins. Use <strong>Edit season multipliers</strong> to open the inline editor for the 12 monthly buying-season multipliers.</p>
       </div>
     </div>
 
@@ -412,6 +598,26 @@ table.swim{border-collapse:collapse;width:100%}
         <p>Answers: <strong>"Will we have enough ramped reps when a product hits GA?"</strong> Each GA milestone is a vertical line, colored green (2+ reps ramped), amber (1 rep), or red (0 reps) based on coverage at that date. Rep rows below show their hire → train → ramp → full progression on the same timeline.</p>
         <p>The background shading and bottom strip show the buying-season overlay — useful for spotting cases where a rep's ramp period lands during STAAR testing season, when pipeline generation is structurally harder.</p>
         <p>The gap table below the chart spells out exact coverage and "days until next ramped rep" for each GA date.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-bridge">
+      <h3 style="color:#e879f9"><span class="dot" style="background:#e879f9"></span>ARR Bridge</h3>
+      <div class="howto-body">
+        <p>Answers: <strong>"How do we get from where we are in 2026 to the FY27 target?"</strong> This is the investor-facing storytelling view (Slides 10–13 of the deck).</p>
+        <p>The <strong>Two Unlocks</strong> panel frames the growth: AE Scale (1.5 FTE → 6-8 ramped reps, ACV rising from $6-8K to $22-80K as territory mix improves) and Module Expansion (IEP+LPAC launch lifting avg ACV from $6.9K to $20.5K). The <strong>visual bridge</strong> walks left to right: 2026 EOY run-rate → AE scale → new business ARR → + expansion → − attrition → FY27 plan, with horizontal lines marking the Floor ($5.3M), Target ($7.1M), and Upside ($9.5M) scenarios.</p>
+        <p>The <strong>Floor / Target / Upside comparison</strong> shows your live current-plan number against all three deck scenarios, with a full reconciliation ladder: new business + expansion − churn − rep attrition = net FY27 ARR. The <strong>churn % and rep attrition %</strong> are editable inline — set them above zero to stress-test the plan. Logos count, total booked revenue, and comp/ARR ratio are shown per scenario.</p>
+        <p>Right now the current plan sits above Floor but below Target. Open the What-If tab and raise the win-rate or deal-size lever to see the bridge close the gap to Target.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-sensitivity">
+      <h3 style="color:#f472b6"><span class="dot" style="background:#f472b6"></span>What-If</h3>
+      <div class="howto-body">
+        <p>Answers: <strong>"What's the combined revenue impact if several things change at once?"</strong> Seven sliders, all applied simultaneously, with a live baseline-vs-what-if comparison.</p>
+        <p>The levers: <strong>GA acceleration</strong> (more 2026 invoiceable months — FY26 only), <strong>hire acceleration</strong> (earlier hires build more pipeline before FY27), <strong>win rate</strong> and <strong>deal size</strong> (both scale rep quota and flow through the pipeline model), <strong>pipeline volume</strong> (faster balance build-up), <strong>sales cycle speed</strong> (faster conversion, also shrinks the pipeline gap), and <strong>module adoption</strong> (scales the IEP/LPAC expansion ARR).</p>
+        <p>The results table shows FY26 (all three scenarios), FY27 new business, expansion ARR, FY27 incl. expansion, and the pipeline gap — each with baseline, what-if, and dollar/percent deltas. The baseline FY27-incl-expansion figure reconciles exactly with the ARR Bridge. The <strong>per-lever waterfall</strong> isolates each lever's individual contribution so you can see which moves the needle most.</p>
+        <p>For reference: win rate and deal size are the biggest single FY27 levers (~$1.1M each at 1.2×); sales cycle speed has the biggest effect on the pipeline gap; module adoption is the only lever that moves the expansion line.</p>
       </div>
     </div>
 
@@ -448,11 +654,11 @@ table.swim{border-collapse:collapse;width:100%}
     <div class="howto-section" id="hc-scenarios">
       <h3 style="color:#fb923c"><span class="dot" style="background:#fb923c"></span>Scenario Save &amp; Compare</h3>
       <div class="howto-body">
-        <p>The Scenarios tab lets you capture a full snapshot of the current state — every phase date, every rep's hire date and quota, the global controls, and the season multipliers — under a name you choose.</p>
-        <p><strong>Save current as scenario</strong> — captures everything as it stands right now. Make changes anywhere in the tool (e.g. slip the Dallas Metro hire to January), save again under a different name, and you now have two scenarios.</p>
-        <p><strong>Load</strong> — restores the tool to exactly that scenario's state, across all tabs. <strong>Update</strong> — overwrites a saved scenario with whatever the working state currently is. <strong>Delete</strong> — removes it.</p>
-        <p>Check <strong>2 or more scenarios</strong> to see a side-by-side comparison table: FY27 ARR total, delta vs. the base model, training/ramp settings, GA coverage (reps ramped at each milestone), and each rep's hire date and FY27 contribution. The best/worst FY27 totals are highlighted in green/red.</p>
-        <p><strong>Export / Import</strong> — saves all scenarios to a <code>.json</code> file you can keep or share, and load them back in later (e.g. in a future session, since scenarios aren't saved automatically when you close the file).</p>
+        <p>The Scenarios tab lets you capture a full snapshot of the current state under a name you choose. A snapshot now captures <strong>everything</strong>: every phase date, every rep's hire date and quota, the global controls (including pipeline conversion rate), the season multipliers, the 2026 forecast assumptions, the expansion assumptions, the sales-cycle settings, the What-If levers, and the bridge churn/attrition inputs.</p>
+        <p><strong>Save current as scenario</strong> — captures everything as it stands right now. Make changes anywhere (e.g. slip the Dallas Metro hire to January, or bump expansion to aggressive), save again under a different name, and you have two fully independent scenarios.</p>
+        <p><strong>Load</strong> — restores the tool to exactly that scenario's state across all eleven tabs. <strong>Update</strong> — overwrites a saved scenario with the current working state. <strong>Delete</strong> — removes it.</p>
+        <p>Check <strong>2 or more scenarios</strong> to see a side-by-side comparison: 2026 ARR, FY27 new business, expansion ARR, FY27 incl. expansion, delta vs. base model, training/ramp settings, GA coverage, and each rep's hire date and FY27 contribution. Best/worst FY27 totals are highlighted green/red.</p>
+        <p><strong>Export / Import</strong> — saves all scenarios to a <code>.json</code> file you can keep or share, and load them back later (scenarios aren't saved automatically when you close the file).</p>
       </div>
     </div>
 
@@ -558,6 +764,100 @@ function getRampPct(moIdx) {
   return moIdx < curve.length ? curve[moIdx] : 1.0;
 }
 
+// ── PIPELINE GENERATION & BALANCE MODEL ─────────────────────────────────────
+// Closing ability (getRampCurve/getRampPct) measures how productive a rep is at
+// *closing* deals in a given month. But reps generate PIPELINE (demos, proposals)
+// faster than they close — even in month 1, an untrained rep can prospect.
+// This curve ramps faster than the closing curve: 50% Mo1, 80% Mo2, 100% Mo3+.
+// Pipeline generated each month accumulates into a balance; a portion of that
+// balance converts to closed ARR each month (PIPELINE_CONVERSION_RATE).
+// This is what creates the "July hire enters 2027 with a stronger pipeline than
+// an October hire" effect — the gap shows up in the balance, not the closing %.
+function getPipelineGenCurve() {
+  const RAMP = Math.max(1, +document.getElementById('rampDays').value);
+  const TRAIN = Math.max(0, +document.getElementById('trainDays').value);
+  const totalDays = TRAIN + RAMP;
+  const totalMonths = Math.max(1, Math.ceil(totalDays / 30));
+  // Pipeline-gen anchors ramp faster than closing anchors (reach 100% sooner)
+  const anchors = [
+    {frac: 1/3, pct: 0.50},
+    {frac: 2/3, pct: 0.80},
+    {frac: 3/3, pct: 1.00},
+  ];
+  const curve = [];
+  for (let mo = 0; mo < totalMonths + 4; mo++) {
+    if (mo >= totalMonths) { curve.push(1.0); continue; }
+    const frac = (mo + 1) / totalMonths;
+    let pct = 1.0;
+    for (let a = 0; a < anchors.length; a++) {
+      if (frac <= anchors[a].frac) {
+        if (a === 0) { pct = anchors[0].pct * (frac / anchors[0].frac); }
+        else {
+          const t = (frac - anchors[a-1].frac) / (anchors[a].frac - anchors[a-1].frac);
+          pct = anchors[a-1].pct + t * (anchors[a].pct - anchors[a-1].pct);
+        }
+        break;
+      }
+    }
+    curve.push(Math.min(1.0, Math.max(0, pct)));
+  }
+  return curve;
+}
+function getPipelineGenPct(moIdx) {
+  if (moIdx < 0) return 0;
+  const curve = getPipelineGenCurve();
+  return moIdx < curve.length ? curve[moIdx] : 1.0;
+}
+
+// Monthly conversion rate: the fraction of pipeline balance that converts to
+// closed ARR each month. Editable global assumption (default 0.40 = 40%/mo).
+function getPipelineConversionRate(){
+  const el=document.getElementById('pipelineConvRate');
+  const v = el ? +el.value : 40;
+  return Math.max(0.01, Math.min(1, v/100));
+}
+
+// Simulates a rep's pipeline balance and resulting monthly ARR contribution for
+// every month from hire through targetMonthMk (inclusive). Returns a map
+// monthMk -> {balance, generated, converted, arr} so callers can read any month
+// without re-simulating. Active reps (already fully ramped at start) get a
+// steady-state balance from month 0 so their ARR matches ssQuota/12 immediately.
+function simulateRepPipeline(rep, targetMonthMk){
+  const monthlySSARR = rep.ssQuota / 12;
+  const convRate = getPipelineConversionRate();
+  const result = {};
+
+  if (rep.status === 'active') {
+    // Steady-state: balance sized so that balance*convRate == monthlySSARR
+    const steadyBalance = monthlySSARR / convRate;
+    let cy=2026, cm=1;
+    while (mk(cy,cm) <= targetMonthMk) {
+      const moK=mk(cy,cm);
+      result[moK] = {balance: steadyBalance, generated: monthlySSARR, converted: monthlySSARR, arr: monthlySSARR};
+      const n=addM(cy,cm,1); cy=n.y; cm=n.m;
+    }
+    return result;
+  }
+
+  if (targetMonthMk < rep.hire) return result;
+
+  const {y:hy,m:hm} = ym(rep.hire);
+  let balance = 0;
+  let cy=hy, cm=hm, moIdx=0;
+  while (mk(cy,cm) <= targetMonthMk) {
+    const moK = mk(cy,cm);
+    // Pipeline generated this month, at steady-state-equivalent rate
+    const generated = monthlySSARR * getPipelineGenPct(moIdx);
+    // Convert a portion of the existing balance (before adding this month's gen)
+    const converted = Math.min(balance * convRate, balance);
+    balance = balance - converted + generated;
+    result[moK] = {balance, generated, converted, arr: converted};
+    moIdx++;
+    const n=addM(cy,cm,1); cy=n.y; cm=n.m;
+  }
+  return result;
+}
+
 // GA events are derived live from the corresponding phase end-dates below,
 // so editing a phase's End month in Edit Phases automatically moves its GA marker
 // everywhere (swimlane, alignment chart, stats bar, gap table).
@@ -616,7 +916,13 @@ function dim(y,m){return new Date(y,m,0).getDate()}
 function toD(s){return new Date(s+'T00:00:00')}
 function addDays(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r}
 function fmtD(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
-function fmtK(n){return n>=1000000?'$'+(n/1000000).toFixed(2)+'M':n>=1000?'$'+(n/1000).toFixed(0)+'K':'$'+n}
+function fmtK(n){
+  const sign = n<0 ? '-' : '';
+  const a = Math.abs(n);
+  if(a>=1000000) return sign+'$'+(a/1000000).toFixed(2)+'M';
+  if(a>=1000) return sign+'$'+(a/1000).toFixed(0)+'K';
+  return sign+'$'+a;
+}
 function fmtMoney(n){return '$'+Math.round(n||0).toLocaleString('en-US')}
 function parseMoney(s){const n=parseFloat(String(s).replace(/[^0-9.\-]/g,''));return isNaN(n)?0:Math.round(n)}
 
@@ -639,35 +945,166 @@ function computeRepDates(TRAIN,RAMP){
   });
 }
 
-// Compute ramp-adjusted FY contribution for a rep given hire month and FY end month
-// Uses the edu ramp curve from the deck: Mo1=35%, Mo2=65%, Mo3=92%, Mo4+=100%
+// Compute ramp-adjusted FY contribution for a rep given hire month and FY end month.
+// Uses the pipeline-balance simulation (see simulateRepPipeline) so that a rep's
+// FY27 contribution reflects the pipeline they've built up before Jan 2027, not
+// just their closing-ramp % at each point in time.
 function computeFY27Contribution(rep, fyEndMk){
   const seasonMult = seasonalityEnabled();
-  if(rep.status==='active'){
-    if(!seasonMult) return rep.ssQuota;
-    // sum monthly with seasonality across FY
-    let total=0,cy=2027,cm=1;
-    while(mk(cy,cm)<=fyEndMk){
-      total += (rep.ssQuota/12) * getSeasonMultiplier(mk(cy,cm));
-      const n=addM(cy,cm,1);cy=n.y;cm=n.m;
-    }
-    return Math.round(total);
-  }
-  const{y:hy,m:hm}=ym(rep.hire);
-  const monthlyARR = rep.ssQuota / 12;
+  const series = getRepPipelineSeries(rep, fyEndMk);
   let total = 0;
-  let cy=hy, cm=hm, moIdx=0;
+  let cy=2027, cm=1;
   while(mk(cy,cm) <= fyEndMk){
-    if(mk(cy,cm) >= '2027-01'){
-      const sm = seasonMult ? getSeasonMultiplier(mk(cy,cm)) : 1.0;
-      total += monthlyARR * getRampPct(moIdx) * sm;
+    const moK=mk(cy,cm);
+    const entry=series[moK];
+    if(entry){
+      const sm = seasonMult ? getSeasonMultiplier(moK) : 1.0;
+      total += entry.arr * sm;
     }
-    moIdx++;
-    const next=addM(cy,cm,1);cy=next.y;cm=next.m;
-    if(mk(cy,cm) > fyEndMk) break;
+    const n=addM(cy,cm,1);cy=n.y;cm=n.m;
   }
   return Math.round(total);
 }
+
+// ── 2026 FORECAST — PIPELINE DATA ────────────────────────────────────────────
+// Source: hubspot-crm-exports-pilot-demo-2026-06-13.xlsx — 25 deals, all RTI/504-based
+let pipelineDeals=[
+  {name:'WALL ISD — RTI',                          stage:'signed',  modules:'RTI',          arr:5286},
+  {name:'SHALLOWATER ISD — RTI, 504',              stage:'signed',  modules:'RTI; 504',      arr:10089},
+  {name:'PRINGLE-MORSE CISD — 504',                stage:'signed',  modules:'504; RTI',      arr:4423},
+  {name:'IDALOU ISD — 504',                        stage:'signed',  modules:'504; RTI',      arr:6894},
+  {name:'BOOKER ISD — RTI, 504',                   stage:'signed',  modules:'RTI; 504',      arr:4697},
+  {name:'WALL ISD — 504',                          stage:'active',  modules:'504',           arr:5644},
+  {name:'VERIBEST ISD — 504',                      stage:'active',  modules:'504; RTI',      arr:4785},
+  {name:'TEXAS LEADERSHIP PUBLIC SCHOOLS — 504',   stage:'active',  modules:'504; RTI',      arr:12036},
+  {name:'SONORA ISD — 504',                        stage:'active',  modules:'504; RTI',      arr:5965},
+  {name:'SCHLEICHER ISD — 504',                    stage:'active',  modules:'504; RTI',      arr:4840},
+  {name:'REAGAN COUNTY ISD — 504',                 stage:'active',  modules:'504; RTI',      arr:6323},
+  {name:'PLEMONS-STINNETT-PHILLIPS CISD — 504',    stage:'active',  modules:'504; RTI',      arr:6021},
+  {name:'PARADISE ISD — RTI, 504',                 stage:'active',  modules:'RTI; 504',      arr:9465},
+  {name:'MENARD ISD — 504',                        stage:'active',  modules:'504; RTI',      arr:4604},
+  {name:'IRION COUNTY ISD — 504',                  stage:'active',  modules:'504; RTI',      arr:4848},
+  {name:'CANADIAN ISD — 504',                      stage:'active',  modules:'504; RTI',      arr:6488},
+  {name:'504 Alpha — Iraan Sheffield ISD',         stage:'active',  modules:'504',           arr:4652},
+  {name:'Small Schools Cooperative — RTI,504,IEP', stage:'proposed',modules:'RTI; 504; IEP', arr:39434},
+  {name:'ROBINSON ISD — RTI, 504',                 stage:'proposed',modules:'RTI; 504',      arr:10644},
+  {name:'CISCO ISD — RTI, 504',                    stage:'proposed',modules:'RTI; 504',      arr:6546},
+  {name:'SANFORD-FRITCH ISD — 504',                stage:'demo',    modules:'504; RTI',      arr:null},
+  {name:'SAN FELIPE-DEL RIO CISD — RTI,504,LPAC',  stage:'demo',    modules:'RTI; 504; LPAC',arr:null},
+  {name:'PLAINVIEW ISD — RTI, 504',                stage:'demo',    modules:'RTI; 504',      arr:null},
+  {name:'HASKELL CISD — RTI, 504',                 stage:'demo',    modules:'RTI; 504',      arr:null},
+  {name:'East End Education SSA — 504, IEP',       stage:'demo',    modules:'504; IEP',      arr:null},
+];
+const STAGE_LABELS={signed:'Signed',active:'Active',proposed:'Proposed',demo:'Demo'};
+let AVG_DEAL_ARR=10138; // average ARR across pipeline, used to size new TEPSA/TCASE-sourced deals
+
+// FY26 scenario conversion assumptions — editable via the UI
+let fy26Scenarios={
+  conservative:{convSigned:1.00, convActive:0.60, convProposed:0.00, newDistricts:0, newDistrictMonths:3},
+  moderate:    {convSigned:1.00, convActive:0.80, convProposed:0.50, newDistricts:3, newDistrictMonths:3},
+  aggressive:  {convSigned:1.00, convActive:1.00, convProposed:1.00, newDistricts:6, newDistrictMonths:3},
+};
+
+function getFY26MonthsInvoiceable(){
+  // Derived from the 504/RTI GA phase end date (id1) via getGAEvents()
+  const gaEvents=getGAEvents();
+  const ga=gaEvents.find(g=>g.label==='504 / RTI GA');
+  if(!ga) return 5;
+  const {m}=ym(ga.date.slice(0,7));
+  // Months remaining in 2026 from GA month through December, inclusive
+  return Math.max(0, 12 - m + 1);
+}
+
+// Returns the calendar months of the invoiceable 2026 window, e.g. ['2026-08',...,'2026-12']
+function getFY26InvoiceableMonths(){
+  const gaEvents=getGAEvents();
+  const ga=gaEvents.find(g=>g.label==='504 / RTI GA');
+  const gaMk=ga?ga.date.slice(0,7):'2026-08';
+  const months=[];
+  let {y,m}=ym(gaMk);
+  while(y===2026 && m<=12){
+    months.push(mk(y,m));
+    m++;
+  }
+  return months;
+}
+
+// Rep selling-capacity within the 2026 invoiceable window: sums each rep's ramp %
+// across those months (active reps = 1.0/mo, not-yet-hired = 0, ramping = partial).
+// Used to scale the "new districts from TEPSA/TCASE" assumption — more rep-months
+// of capacity during the window means more new-pipeline can realistically be worked.
+function getRepCapacity2026(repList){
+  const months=getFY26InvoiceableMonths();
+  let total=0;
+  repList.forEach(r=>{
+    months.forEach(mo=>{
+      if(r.status==='active'){ total+=1; return; }
+      if(mo<r.hire) return;
+      const{y:hy,m:hm}=ym(r.hire);
+      const{y:my,m:mm}=ym(mo);
+      const moIdx=(my-hy)*12+(mm-hm);
+      total+=getRampPct(moIdx);
+    });
+  });
+  return total;
+}
+
+// Baseline capacity snapshot — captured once at load from the original roster,
+// used to normalize the capacity multiplier (1.0 = same as original plan)
+let FY26_BASELINE_CAPACITY=null;
+function getFY26BaselineCapacity(){
+  if(FY26_BASELINE_CAPACITY===null){
+    // Original hire dates from the mid-year deck (matches initial `reps` array)
+    const baselineReps=[
+      {hire:'2026-01',status:'active'},
+      {hire:'2026-06',status:'training'},
+      {hire:'2026-08',status:'planned'},
+      {hire:'2026-10',status:'planned'},
+      {hire:'2027-01',status:'planned'},
+      {hire:'2027-01',status:'planned'},
+      {hire:'2027-02',status:'planned'},
+      {hire:'2027-04',status:'planned'},
+    ];
+    FY26_BASELINE_CAPACITY=getRepCapacity2026(baselineReps);
+  }
+  return FY26_BASELINE_CAPACITY;
+}
+
+// Capacity multiplier applied to each scenario's new-district count.
+// 1.0 = same rep capacity as the baseline plan; >1.0 = more capacity (earlier hires);
+// <1.0 = less capacity (later hires / slips). Clamped to [0, 2] to avoid extreme swings.
+function getFY26CapacityMultiplier(){
+  const baseline=getFY26BaselineCapacity();
+  if(baseline<=0) return 1.0;
+  const current=getRepCapacity2026(reps);
+  return Math.max(0, Math.min(2, current/baseline));
+}
+
+function computeFY26Scenario(key){
+  const s=fy26Scenarios[key];
+  const monthsLeft=getFY26MonthsInvoiceable();
+  const signedARR=pipelineDeals.filter(d=>d.stage==='signed').reduce((sum,d)=>sum+(d.arr||0),0);
+  const activeARR=pipelineDeals.filter(d=>d.stage==='active').reduce((sum,d)=>sum+(d.arr||0),0);
+  const proposedARR=pipelineDeals.filter(d=>d.stage==='proposed').reduce((sum,d)=>sum+(d.arr||0),0);
+
+  const convertedARR = signedARR*s.convSigned + activeARR*s.convActive + proposedARR*s.convProposed;
+
+  const capacityMult = getFY26CapacityMultiplier();
+  const effectiveNewDistricts = s.newDistricts * capacityMult;
+  const newLeadsARR = AVG_DEAL_ARR * effectiveNewDistricts;
+
+  const pipelinePartial = convertedARR * (monthsLeft/12);
+  const newLeadsPartial = newLeadsARR * (s.newDistrictMonths/12);
+  const total2026 = pipelinePartial + newLeadsPartial;
+
+  return {
+    signedARR, activeARR, proposedARR, convertedARR, newLeadsARR,
+    pipelinePartial, newLeadsPartial, total2026, monthsLeft,
+    fullRunRate: convertedARR + newLeadsARR,
+    capacityMult, effectiveNewDistricts,
+  };
+}
+
 
 // ── SCENARIOS ────────────────────────────────────────────────────────────────
 let scenarios = [];
@@ -681,6 +1118,8 @@ function getControlState(){
     rampDays: +document.getElementById('rampDays').value,
     fyEnd: document.getElementById('fyEnd').value,
     seasonOn: document.getElementById('seasonToggle').checked,
+    monthlyStart: document.getElementById('monthlyStart').value,
+    pipelineConvRate: +document.getElementById('pipelineConvRate').value,
   };
 }
 
@@ -691,6 +1130,8 @@ function applyControlState(cs){
   document.getElementById('rampDays').value = cs.rampDays;
   document.getElementById('fyEnd').value = cs.fyEnd;
   document.getElementById('seasonToggle').checked = cs.seasonOn;
+  if(cs.monthlyStart!==undefined) document.getElementById('monthlyStart').value = cs.monthlyStart;
+  if(cs.pipelineConvRate!==undefined) document.getElementById('pipelineConvRate').value = cs.pipelineConvRate;
 }
 
 function captureSnapshot(){
@@ -699,6 +1140,16 @@ function captureSnapshot(){
     reps: JSON.parse(JSON.stringify(reps)),
     seasonality: JSON.parse(JSON.stringify(SEASONALITY)),
     controls: getControlState(),
+    // Model assumptions added in later builds — capture so scenarios are complete
+    fy26Scenarios: JSON.parse(JSON.stringify(fy26Scenarios)),
+    pipelineDeals: JSON.parse(JSON.stringify(pipelineDeals)),
+    avgDealARR: AVG_DEAL_ARR,
+    expansionAssumptions: JSON.parse(JSON.stringify(expansionAssumptions)),
+    expansionCustomers: JSON.parse(JSON.stringify(expansionCustomers)),
+    bridgeAssumptions: JSON.parse(JSON.stringify(bridgeAssumptions)),
+    salesCycleMonths: salesCycleMonths,
+    velocityCycleMonths: velocityCycleMonths,
+    sens: JSON.parse(JSON.stringify(sens)),
   };
 }
 
@@ -707,6 +1158,17 @@ function applySnapshot(snap){
   reps = JSON.parse(JSON.stringify(snap.reps));
   SEASONALITY = JSON.parse(JSON.stringify(snap.seasonality));
   applyControlState(snap.controls);
+  // Restore model assumptions if present (older saved scenarios won't have them)
+  if(snap.fy26Scenarios) fy26Scenarios = JSON.parse(JSON.stringify(snap.fy26Scenarios));
+  if(snap.pipelineDeals) pipelineDeals = JSON.parse(JSON.stringify(snap.pipelineDeals));
+  if(snap.avgDealARR!==undefined) AVG_DEAL_ARR = snap.avgDealARR;
+  if(snap.expansionAssumptions) expansionAssumptions = JSON.parse(JSON.stringify(snap.expansionAssumptions));
+  if(snap.expansionCustomers) expansionCustomers = JSON.parse(JSON.stringify(snap.expansionCustomers));
+  if(snap.bridgeAssumptions) bridgeAssumptions = JSON.parse(JSON.stringify(snap.bridgeAssumptions));
+  if(snap.salesCycleMonths!==undefined) salesCycleMonths = snap.salesCycleMonths;
+  if(snap.velocityCycleMonths!==undefined) velocityCycleMonths = snap.velocityCycleMonths;
+  if(snap.sens) sens = JSON.parse(JSON.stringify(snap.sens));
+  clearPipelineCache();
 }
 
 function saveScenario(){
@@ -784,14 +1246,30 @@ function computeScenarioMetrics(snap){
   // Temporarily swap in this snapshot's data to reuse existing calc functions
   const savedPhases=phases, savedReps=reps, savedSeasonality=SEASONALITY;
   const savedControls=getControlState();
+  const savedFy26=fy26Scenarios, savedDeals=pipelineDeals, savedAvg=AVG_DEAL_ARR;
+  const savedExpA=expansionAssumptions, savedExpC=expansionCustomers, savedBridge=bridgeAssumptions;
+  const savedSCM=salesCycleMonths, savedVCM=velocityCycleMonths, savedSens=sens;
 
   phases = snap.phases; reps = snap.reps; SEASONALITY = snap.seasonality;
   applyControlState(snap.controls);
+  if(snap.fy26Scenarios) fy26Scenarios = snap.fy26Scenarios;
+  if(snap.pipelineDeals) pipelineDeals = snap.pipelineDeals;
+  if(snap.avgDealARR!==undefined) AVG_DEAL_ARR = snap.avgDealARR;
+  if(snap.expansionAssumptions) expansionAssumptions = snap.expansionAssumptions;
+  if(snap.expansionCustomers) expansionCustomers = snap.expansionCustomers;
+  if(snap.bridgeAssumptions) bridgeAssumptions = snap.bridgeAssumptions;
+  if(snap.salesCycleMonths!==undefined) salesCycleMonths = snap.salesCycleMonths;
+  if(snap.velocityCycleMonths!==undefined) velocityCycleMonths = snap.velocityCycleMonths;
+  if(snap.sens) sens = snap.sens;
+  clearPipelineCache();
 
   const fyEnd = snap.controls.fyEnd;
   const repData = computeRepDates(snap.controls.trainDays, snap.controls.rampDays);
   const totalFY27 = reps.reduce((s,r)=>s+computeFY27Contribution(r, fyEnd), 0);
   const totalBase = reps.reduce((s,r)=>s+r.baseFY27, 0);
+  const fy26Moderate = computeFY26Scenario('moderate').total2026;
+  const expansionMod = computeExpansionARR('moderate').expansionARR;
+  const totalWithExpansion = totalFY27 + expansionMod;
 
   const gaEvents = getGAEvents();
   const gaCoverage = gaEvents.map(ev=>{
@@ -810,8 +1288,12 @@ function computeScenarioMetrics(snap){
   // Restore working state
   phases=savedPhases; reps=savedReps; SEASONALITY=savedSeasonality;
   applyControlState(savedControls);
+  fy26Scenarios=savedFy26; pipelineDeals=savedDeals; AVG_DEAL_ARR=savedAvg;
+  expansionAssumptions=savedExpA; expansionCustomers=savedExpC; bridgeAssumptions=savedBridge;
+  salesCycleMonths=savedSCM; velocityCycleMonths=savedVCM; sens=savedSens;
+  clearPipelineCache();
 
-  return {totalFY27, totalBase, delta: totalFY27-totalBase, gaCoverage, repSummary, controls: snap.controls};
+  return {totalFY27, totalBase, fy26Moderate, expansionMod, totalWithExpansion, delta: totalFY27-totalBase, gaCoverage, repSummary, controls: snap.controls};
 }
 
 function renderScenarios(){
@@ -858,18 +1340,39 @@ function renderComparison(){
   metrics.forEach(x=>h+=`<th>${x.name}</th>`);
   h += `</tr></thead><tbody>`;
 
+  // 2026 ARR (Moderate scenario)
+  h += `<tr><td class="metric-col">2026 ARR (Moderate, Aug–Dec)</td>`;
+  metrics.forEach(x=>{
+    h += `<td style="color:#34d399">${fmtK(x.m.fy26Moderate)}</td>`;
+  });
+  h += `</tr>`;
+
   // FY27 total
-  h += `<tr><td class="metric-col">FY27 ARR (current plan)</td>`;
+  h += `<tr><td class="metric-col">FY27 ARR — new business</td>`;
   metrics.forEach(x=>{
     const cls = x.m.totalFY27===maxFY27&&maxFY27!==minFY27 ? 'compare-best' : x.m.totalFY27===minFY27&&maxFY27!==minFY27 ? 'compare-worst' : '';
     h += `<td class="${cls}">${fmtK(x.m.totalFY27)}</td>`;
   });
   h += `</tr>`;
 
+  // Expansion ARR
+  h += `<tr><td class="metric-col">+ Expansion ARR (Moderate)</td>`;
+  metrics.forEach(x=>{
+    h += `<td style="color:#f472b6">${fmtK(x.m.expansionMod||0)}</td>`;
+  });
+  h += `</tr>`;
+
+  // FY27 incl expansion
+  h += `<tr><td class="metric-col">FY27 ARR — incl. expansion</td>`;
+  metrics.forEach(x=>{
+    h += `<td style="color:#f472b6;font-weight:700">${fmtK(x.m.totalWithExpansion||x.m.totalFY27)}</td>`;
+  });
+  h += `</tr>`;
+
   // Delta vs base
   h += `<tr><td class="metric-col">Delta vs base model</td>`;
   metrics.forEach(x=>{
-    const sign = x.m.delta>=0?'+':'';
+    const sign = x.m.delta>0?'+':'';
     const col = x.m.delta<-50000?'#f87171':x.m.delta>50000?'#4ade80':'inherit';
     h += `<td style="color:${col}">${sign}${fmtK(x.m.delta)}</td>`;
   });
@@ -918,6 +1421,1172 @@ function renderComparison(){
 }
 
 
+// ── ARR BRIDGE TAB ────────────────────────────────────────────────────────────
+// Visualizes the path from 2026 EOY run-rate → FY27 Target.
+// Two unlocks (Slide 10): AE Scale + Module Expansion.
+// Floor / Target / Upside framing (Slides 12-13).
+
+const BRIDGE = {
+  // 2026 foundation (slide 10)
+  eoy2026RunRate: 224000,   // EOY ARR run-rate (what tool would show at Dec 2026)
+  recognized2026: 146000,  // actual recognized revenue in 2026
+
+  // Deck scenario targets (slide 13)
+  floor:  { arr: 5300000,  logos: 80,  totalBooked: 5600000, compPct: 22 },
+  target: { arr: 7100000,  logos: 120, totalBooked: 7400000, compPct: 16 },
+  upside: { arr: 9500000,  logos: 138, totalBooked:10000000, compPct: 12 },
+
+  // Attrition (slide 13 — all $0 for now, but modeled)
+  custAttrition: 0,
+  repAttrition:  0,
+  strategic:     0,
+  oneFees:       310000,   // slide 12: one-time implementation fees
+};
+
+// Editable attrition/churn assumptions
+let bridgeAssumptions = {
+  custAttritionPct: 0,   // % of current ARR lost to churn annually
+  repAttritionPct:  0,   // % of FY27 new biz lost to rep attrition
+};
+
+function computeBridge() {
+  const fyEnd = document.getElementById('fyEnd').value;
+  const newBizARR  = reps.reduce((s,r) => s+computeFY27Contribution(r,fyEnd), 0);
+  const expansionMod = computeExpansionARR('moderate').expansionARR;
+  const expansionCon = computeExpansionARR('conservative').expansionARR;
+  const expansionAgg = computeExpansionARR('aggressive').expansionARR;
+
+  const currentARR = expansionCustomers.reduce((s,c)=>s+c.currentARR, 0);
+  const custAttr   = Math.round(currentARR * bridgeAssumptions.custAttritionPct / 100);
+  const repAttr    = Math.round(newBizARR  * bridgeAssumptions.repAttritionPct  / 100);
+
+  const netFY27    = newBizARR + expansionMod - custAttr - repAttr + BRIDGE.strategic;
+
+  return {
+    newBizARR, expansionMod, expansionCon, expansionAgg,
+    custAttr, repAttr, netFY27,
+    currentARR,
+    floor:  BRIDGE.floor.arr,
+    target: BRIDGE.target.arr,
+    upside: BRIDGE.upside.arr,
+  };
+}
+
+function renderBridge() {
+  const b = computeBridge();
+  const fyEnd = document.getElementById('fyEnd').value;
+
+  // Current plan vs three scenarios
+  const planLabel = b.netFY27 >= BRIDGE.upside.arr*0.95 ? 'Approaching Upside'
+    : b.netFY27 >= BRIDGE.target.arr*0.95 ? 'On Target'
+    : b.netFY27 >= BRIDGE.floor.arr*0.95 ? 'Above Floor'
+    : 'Below Floor';
+  const planColor = b.netFY27 >= BRIDGE.target.arr*0.95 ? '#4ade80'
+    : b.netFY27 >= BRIDGE.floor.arr*0.95 ? '#fbbf24' : '#f87171';
+
+  // ── Visual ARR bridge ─────────────────────────────────────────────────────
+  const steps = [
+    {label:'2026 EOY\nrun-rate',   value: BRIDGE.eoy2026RunRate, color:'#64748b', type:'base'},
+    {label:'AE scale\n(1.5→8 reps)', value: b.newBizARR - BRIDGE.eoy2026RunRate, color:'#8abde8', type:'add'},
+    {label:'New biz\nARR',         value: b.newBizARR, color:'#8abde8', type:'subtotal'},
+    {label:'Expansion\n(IEP+LPAC)', value: b.expansionMod, color:'#f472b6', type:'add'},
+    {label:'−Attrition',          value: -(b.custAttr + b.repAttr), color:'#f87171', type:'sub'},
+    {label:'FY27\ncurrent plan',   value: b.netFY27, color:planColor, type:'total'},
+  ];
+
+  const maxVal = Math.max(...steps.map(s=>Math.abs(s.value)), BRIDGE.upside.arr) * 1.08;
+  const BAR_MAX_H = 160;
+
+  const barsHtml = steps.map((s,i) => {
+    const h = Math.max(4, Math.round(Math.abs(s.value)/maxVal*BAR_MAX_H));
+    const isNeg = s.value < 0;
+    const isSub = s.type === 'subtotal' || s.type === 'total';
+    return `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:72px">
+      <div style="font-size:11px;font-weight:700;color:${s.color}">${fmtK(Math.abs(s.value))}</div>
+      <div style="width:48px;height:${h}px;background:${s.color};border-radius:3px 3px 0 0;opacity:${isSub?0.95:isNeg?0.7:0.8}"></div>
+      <div style="font-size:9px;color:var(--muted);text-align:center;white-space:pre;line-height:1.3">${s.label}</div>
+    </div>
+    ${i===1?`<div style="display:flex;align-items:flex-end;padding-bottom:${Math.round(Math.abs(steps[0].value)/maxVal*BAR_MAX_H)+24}px;font-size:18px;color:var(--muted);margin:0 2px">+</div>`:''}
+    ${i===3?`<div style="display:flex;align-items:flex-end;padding-bottom:${Math.round(Math.abs(s.value)/maxVal*BAR_MAX_H/2)}px;font-size:18px;color:var(--muted);margin:0 2px">+</div>`:''}
+    ${i===4&&s.value<0?`<div style="display:flex;align-items:flex-end;padding-bottom:${Math.round(Math.abs(s.value)/maxVal*BAR_MAX_H/2)}px;font-size:18px;color:#f87171;margin:0 2px">−</div>`:''}
+    ${i===4?`<div style="display:flex;align-items:center;font-size:18px;color:var(--muted);margin:0 4px;padding-bottom:20px">=</div>`:''}`;
+  }).join('');
+
+  // Target range lines
+  const targetLineH = (BRIDGE.target.arr/maxVal*BAR_MAX_H);
+  const floorLineH  = (BRIDGE.floor.arr /maxVal*BAR_MAX_H);
+  const upsideLineH = (BRIDGE.upside.arr/maxVal*BAR_MAX_H);
+
+  const bridgeHtml = `
+  <div style="margin-bottom:24px">
+    <div style="font-size:11px;font-weight:700;color:#e879f9;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">ARR bridge — 2026 foundation → FY27 plan</div>
+    <div style="display:flex;align-items:flex-end;gap:4px;padding:12px 0;position:relative;overflow:hidden">
+      ${barsHtml}
+      <div style="position:absolute;right:0;left:0;height:1px;bottom:${floorLineH+32}px;background:#fbbf24;opacity:.4;pointer-events:none">
+        <span style="font-size:9px;color:#fbbf24;position:absolute;right:4px;top:-10px">Floor $5.3M</span>
+      </div>
+      <div style="position:absolute;right:0;left:0;height:1px;bottom:${targetLineH+32}px;background:#4ade80;opacity:.4;pointer-events:none">
+        <span style="font-size:9px;color:#4ade80;position:absolute;right:4px;top:-10px">Target $7.1M</span>
+      </div>
+      <div style="position:absolute;right:0;left:0;height:1px;bottom:${upsideLineH+32}px;background:#818cf8;opacity:.3;pointer-events:none">
+        <span style="font-size:9px;color:#818cf8;position:absolute;right:4px;top:-10px">Upside $9.5M</span>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:4px">
+      Current plan: <strong style="color:${planColor}">${fmtK(b.netFY27)} — ${planLabel}</strong> · 
+      Gap to Target: <strong style="color:#fbbf24">${fmtK(BRIDGE.target.arr - b.netFY27)}</strong> · 
+      Adjust levers in the <strong>What-If</strong> tab to model paths to $7.1M
+    </div>
+  </div>`;
+
+  // ── Floor / Target / Upside comparison ────────────────────────────────────
+  const scenarios = [
+    {key:'floor',  label:'Floor',  color:'#f87171', bg:'rgba(248,113,113,.06)',
+     desc:'Conservative execution · 8 AEs · ~80 logos · lower win rate'},
+    {key:'target', label:'Target', color:'#4ade80', bg:'rgba(74,222,128,.06)',
+     desc:'Base execution · 8 AEs · ~120 logos · current hire plan · Source: Slide 12'},
+    {key:'upside', label:'Upside', color:'#818cf8', bg:'rgba(129,140,248,.06)',
+     desc:'12 AEs by EOY · ~138 logos · higher ACV · SSA acceleration'},
+  ];
+
+  const currentCol = b.netFY27 < BRIDGE.floor.arr*0.95 ? '#f87171'
+    : b.netFY27 < BRIDGE.target.arr*0.95 ? '#fbbf24' : '#4ade80';
+
+  let scenHtml = `
+  <div style="margin-bottom:24px">
+    <div style="font-size:11px;font-weight:700;color:#e879f9;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Floor · Target · Upside — scenario comparison</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px">
+      <div style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:14px">
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Current plan (live)</div>
+        <div style="font-size:26px;font-weight:700;color:${planColor}">${fmtK(b.netFY27)}</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:4px">New biz + ${fmtK(b.expansionMod)} expansion<br><strong style="color:${planColor}">${planLabel}</strong></div>
+      </div>`;
+  scenarios.forEach(sc => {
+    const deck = BRIDGE[sc.key];
+    const gap = deck.arr - b.netFY27;
+    const gapStr = gap > 0 ? `${fmtK(gap)} to ${sc.label}` : `${fmtK(Math.abs(gap))} above ${sc.label}`;
+    const gapColor = gap > 0 ? '#f87171' : '#4ade80';
+    scenHtml += `
+      <div style="background:${sc.bg};border:1px solid var(--border);border-left:3px solid ${sc.color};border-radius:8px;padding:14px">
+        <div style="font-size:10px;font-weight:700;color:${sc.color};text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">${sc.label}</div>
+        <div style="font-size:26px;font-weight:700;color:${sc.color}">${fmtK(deck.arr)}</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:4px">${sc.desc}</div>
+        <div style="font-size:10px;margin-top:6px;color:${gapColor}">${gapStr}</div>
+      </div>`;
+  });
+  scenHtml += `</div>`;
+
+  // Reconciliation ladder table
+  scenHtml += `
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <thead><tr>
+        <th style="padding:8px 12px;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;text-align:left;border:1px solid var(--border2)">Component</th>
+        <th style="padding:8px 12px;background:rgba(248,113,113,.1);color:#f87171;font-size:10px;text-transform:uppercase;text-align:right;border:1px solid var(--border2)">Floor</th>
+        <th style="padding:8px 12px;background:rgba(74,222,128,.1);color:#4ade80;font-size:10px;text-transform:uppercase;text-align:right;border:1px solid var(--border2)">Target</th>
+        <th style="padding:8px 12px;background:rgba(129,140,248,.1);color:#818cf8;font-size:10px;text-transform:uppercase;text-align:right;border:1px solid var(--border2)">Upside</th>
+        <th style="padding:8px 12px;background:rgba(232,121,249,.1);color:#e879f9;font-size:10px;text-transform:uppercase;text-align:right;border:1px solid var(--border2)">Current plan</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border)">New business ARR (AE-led)</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:#f87171">${fmtK(BRIDGE.floor.arr - b.expansionMod)}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:#4ade80">${fmtK(BRIDGE.target.arr - b.expansionMod)}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:#818cf8">${fmtK(BRIDGE.upside.arr - b.expansionMod)}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:#e879f9;font-weight:700">${fmtK(b.newBizARR)}</td></tr>
+        <tr style="background:rgba(244,114,182,.04)"><td style="padding:8px 12px;border:1px solid var(--border)">+ Expansion ARR (IEP+LPAC upsell)</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:#f472b6">${fmtK(b.expansionCon)}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:#f472b6">${fmtK(b.expansionMod)}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:#f472b6">${fmtK(b.expansionAgg)}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:#f472b6;font-weight:700">${fmtK(b.expansionMod)}</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);color:var(--muted)">+ Strategic accounts</td>
+          <td colspan="5" style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">$0 (not modeled)</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);color:${b.custAttr>0?'#f87171':'var(--muted)'}">− Customer attrition</td>
+          <td colspan="4" style="padding:8px 12px;border:1px solid var(--border)">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="color:${b.custAttr>0?'#f87171':'#4ade80'};font-weight:600">${b.custAttr>0?'-'+fmtK(b.custAttr):'$0 — none modeled'}</span>
+              <span style="font-size:10px;color:var(--muted)">Churn rate:
+                <input type="number" min="0" max="100" value="${bridgeAssumptions.custAttritionPct}" step="0.5" style="width:46px;font-size:10px"
+                  onchange="bridgeAssumptions.custAttritionPct=+this.value;renderAll()">%
+                of current $${(expansionCustomers.reduce((s,c)=>s+c.currentARR,0)/1000).toFixed(0)}K base
+              </span>
+            </div>
+          </td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);color:${b.repAttr>0?'#f87171':'var(--muted)'}">− Rep attrition risk</td>
+          <td colspan="4" style="padding:8px 12px;border:1px solid var(--border)">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="color:${b.repAttr>0?'#f87171':'#4ade80'};font-weight:600">${b.repAttr>0?'-'+fmtK(b.repAttr):'$0 — none modeled'}</span>
+              <span style="font-size:10px;color:var(--muted)">Rep attrition:
+                <input type="number" min="0" max="100" value="${bridgeAssumptions.repAttritionPct}" step="1" style="width:46px;font-size:10px"
+                  onchange="bridgeAssumptions.repAttritionPct=+this.value;renderAll()">%
+                of new biz ARR
+              </span>
+            </div>
+          </td></tr>
+        <tr style="background:var(--navy3);font-weight:700">
+          <td style="padding:10px 12px;border:2px solid var(--border2)">→ Net FY27 ARR</td>
+          <td style="padding:10px 12px;text-align:right;border:2px solid var(--border2);color:#f87171">${fmtK(BRIDGE.floor.arr)}</td>
+          <td style="padding:10px 12px;text-align:right;border:2px solid var(--border2);color:#4ade80">${fmtK(BRIDGE.target.arr)}</td>
+          <td style="padding:10px 12px;text-align:right;border:2px solid var(--border2);color:#818cf8">${fmtK(BRIDGE.upside.arr)}</td>
+          <td style="padding:10px 12px;text-align:right;border:2px solid var(--border2);color:${planColor};font-size:16px">${fmtK(b.netFY27)}</td>
+        </tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);color:var(--muted);font-size:11px">New logos</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">~${BRIDGE.floor.logos}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">~${BRIDGE.target.logos}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">~${BRIDGE.upside.logos}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">—</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);color:var(--muted);font-size:11px">Total booked (incl. impl.)</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">${fmtK(BRIDGE.floor.totalBooked)}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">${fmtK(BRIDGE.target.totalBooked)}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">${fmtK(BRIDGE.upside.totalBooked)}</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">+${fmtK(BRIDGE.oneFees)}</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);color:var(--muted);font-size:11px">Comp/ARR ratio</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">${BRIDGE.floor.compPct}%</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">${BRIDGE.target.compPct}%</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">${BRIDGE.upside.compPct}%</td>
+          <td style="padding:8px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">—</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:10px;font-size:11px;color:var(--muted)">
+      ✅ Target ($7.1M) is achievable at base execution · $7M is cleared at ~87% of Target assumptions · Floor requires a replan · Source: Slide 13
+    </div>
+  </div>`;
+
+  // ── Two Unlocks callout ───────────────────────────────────────────────────
+  const unlockHtml = `
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+    <div style="background:rgba(138,189,232,.06);border:1px solid rgba(138,189,232,.3);border-left:3px solid #8abde8;border-radius:8px;padding:14px">
+      <div style="font-size:11px;font-weight:700;color:#8abde8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Unlock 1 — AE scale</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+        <div style="text-align:center"><div style="font-size:18px;font-weight:700;color:#fff">1.5×</div><div style="font-size:9px;color:var(--muted)">2026 FTE</div></div>
+        <div style="text-align:center;font-size:20px;color:var(--muted)">→</div>
+        <div style="text-align:center"><div style="font-size:18px;font-weight:700;color:#8abde8">6–8×</div><div style="font-size:9px;color:var(--muted)">2027 ramped</div></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.6">ACV: $6–8K → $22–80K (5× lift from territory mix)<br>Headcount: ~5× by EOY 2027<br>Modules available: 3 → 5+</div>
+    </div>
+    <div style="background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.3);border-left:3px solid #f472b6;border-radius:8px;padding:14px">
+      <div style="font-size:11px;font-weight:700;color:#f472b6;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Unlock 2 — Module expansion</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+        <div style="text-align:center"><div style="font-size:18px;font-weight:700;color:#fff">$6.9K</div><div style="font-size:9px;color:var(--muted)">2026 avg ACV</div></div>
+        <div style="text-align:center;font-size:20px;color:var(--muted)">→</div>
+        <div style="text-align:center"><div style="font-size:18px;font-weight:700;color:#f472b6">$20.5K</div><div style="font-size:9px;color:var(--muted)">2027 full bundle</div></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.6">IEP + LPAC GA: Jan 2027<br>3× ACV lift at full bundle<br>17 alpha districts → expansion targets<br>Wall ISD proof: 158% NRR Year 1</div>
+    </div>
+  </div>`;
+
+  // ── Quarterly revenue bridge ──────────────────────────────────────────────
+  // Live new-business phasing from the pipeline-balance model, summed by quarter.
+  // Expansion phased across the year (IEP/LPAC GA Jan 2027 → front-loaded adoption).
+  // Deck Target phasing shown as a benchmark reference. Source: Slide 12.
+  const QUARTERS = [
+    {label:'Q1 2027', months:['2027-01','2027-02','2027-03']},
+    {label:'Q2 2027', months:['2027-04','2027-05','2027-06']},
+    {label:'Q3 2027', months:['2027-07','2027-08','2027-09']},
+    {label:'Q4 2027', months:['2027-10','2027-11','2027-12']},
+  ];
+  // Deck Target benchmark (slide 12)
+  const DECK_Q = [
+    {exp:16000, newBiz:1110000, total:1130000, logos:24},
+    {exp:16000, newBiz:1750000, total:1770000, logos:37},
+    {exp:10000, newBiz:1980000, total:1990000, logos:34},
+    {exp:0,     newBiz:1990000, total:2000000, logos:25},
+  ];
+  // Expansion phasing weights — adoption ramps after Jan 2027 GA then tapers
+  const EXP_WEIGHTS = [0.40, 0.32, 0.20, 0.08];
+
+  // Live new business per quarter from the model
+  const qNewBiz = QUARTERS.map(q =>
+    q.months.reduce((mSum, mo) =>
+      mSum + reps.reduce((rSum, r) => rSum + getRepMonthlyARR(r, mo), 0), 0)
+  );
+  const totalNewBiz = qNewBiz.reduce((s,v)=>s+v, 0);
+  // Live expansion per quarter (phased)
+  const qExp = EXP_WEIGHTS.map(w => b.expansionMod * w);
+  // Logos per quarter — estimate from each quarter's share of new biz × deck total logos (120)
+  const qLogos = qNewBiz.map(v => totalNewBiz > 0 ? Math.round(v/totalNewBiz * 120) : 0);
+
+  let qRows = '';
+  QUARTERS.forEach((q,i) => {
+    const total = qNewBiz[i] + qExp[i];
+    const deck = DECK_Q[i];
+    const vsTarget = deck.total > 0 ? (total/deck.total - 1) : 0;
+    const vsColor = total >= deck.total*0.95 ? '#4ade80' : total >= deck.total*0.75 ? '#fbbf24' : '#f87171';
+    qRows += `<tr>
+      <td style="padding:9px 12px;border:1px solid var(--border);font-weight:600">${q.label}</td>
+      <td style="padding:9px 12px;text-align:right;border:1px solid var(--border);color:#f472b6">${fmtK(Math.round(qExp[i]))}</td>
+      <td style="padding:9px 12px;text-align:right;border:1px solid var(--border);color:#8abde8">${fmtK(Math.round(qNewBiz[i]))}</td>
+      <td style="padding:9px 12px;text-align:right;border:1px solid var(--border);color:#e879f9;font-weight:700">${fmtK(Math.round(total))}</td>
+      <td style="padding:9px 12px;text-align:right;border:1px solid var(--border);color:var(--muted)">${qLogos[i]}</td>
+      <td style="padding:9px 12px;text-align:right;border:1px solid var(--border);color:var(--muted);font-size:11px">${fmtK(deck.total)}</td>
+      <td style="padding:9px 12px;text-align:right;border:1px solid var(--border);color:${vsColor};font-size:11px">${vsTarget>=0?'+':''}${Math.round(vsTarget*100)}%</td>
+    </tr>`;
+  });
+  const totalExp = qExp.reduce((s,v)=>s+v,0);
+  const grandTotal = totalNewBiz + totalExp;
+  const totalLogos = qLogos.reduce((s,v)=>s+v,0);
+  qRows += `<tr style="background:var(--navy3);font-weight:700">
+    <td style="padding:10px 12px;border:2px solid var(--border2)">Total FY27</td>
+    <td style="padding:10px 12px;text-align:right;border:2px solid var(--border2);color:#f472b6">${fmtK(Math.round(totalExp))}</td>
+    <td style="padding:10px 12px;text-align:right;border:2px solid var(--border2);color:#8abde8">${fmtK(Math.round(totalNewBiz))}</td>
+    <td style="padding:10px 12px;text-align:right;border:2px solid var(--border2);color:#e879f9">${fmtK(Math.round(grandTotal))}</td>
+    <td style="padding:10px 12px;text-align:right;border:2px solid var(--border2);color:var(--muted)">${totalLogos}</td>
+    <td style="padding:10px 12px;text-align:right;border:2px solid var(--border2);color:var(--muted);font-size:11px">${fmtK(7070000)}</td>
+    <td style="padding:10px 12px;text-align:right;border:2px solid var(--border2)"></td>
+  </tr>`;
+
+  // Visual quarterly bars
+  const qMax = Math.max(...QUARTERS.map((q,i)=>qNewBiz[i]+qExp[i]), ...DECK_Q.map(d=>d.total)) * 1.1;
+  const Q_BAR_H = 100;
+  const qBars = QUARTERS.map((q,i) => {
+    const total = qNewBiz[i] + qExp[i];
+    const liveH = Math.round(total/qMax*Q_BAR_H);
+    const deckH = Math.round(DECK_Q[i].total/qMax*Q_BAR_H);
+    const expH = Math.round(qExp[i]/qMax*Q_BAR_H);
+    const newH = Math.round(qNewBiz[i]/qMax*Q_BAR_H);
+    return `<div style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1">
+      <div style="display:flex;gap:3px;align-items:flex-end;height:${Q_BAR_H}px">
+        <div style="display:flex;flex-direction:column;justify-content:flex-end;width:32px" title="Current plan: ${fmtK(Math.round(total))}">
+          <div style="width:100%;height:${expH}px;background:#f472b6;opacity:.8;border-radius:3px 3px 0 0"></div>
+          <div style="width:100%;height:${newH}px;background:#8abde8;opacity:.8"></div>
+        </div>
+        <div style="width:32px;height:${deckH}px;background:#475569;opacity:.5;border-radius:3px 3px 0 0" title="Deck Target: ${fmtK(DECK_Q[i].total)}"></div>
+      </div>
+      <div style="font-size:11px;font-weight:700;color:#e879f9">${fmtK(Math.round(total))}</div>
+      <div style="font-size:9px;color:var(--muted)">${q.label}</div>
+    </div>`;
+  }).join('');
+
+  const quarterlyHtml = `
+  <div style="margin-bottom:24px">
+    <div style="font-size:11px;font-weight:700;color:#e879f9;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Quarterly Revenue Bridge — FY27</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:14px">Live phasing from the pipeline-balance model vs the deck's Target benchmark · expansion phased to follow the Jan 2027 IEP/LPAC launch · Source: Slide 12</div>
+    <div style="display:flex;gap:12px;align-items:flex-end;margin-bottom:8px;padding:0 4px">${qBars}</div>
+    <div style="font-size:9px;color:var(--muted);margin-bottom:16px;display:flex;gap:14px">
+      <span><span style="display:inline-block;width:8px;height:8px;background:#8abde8;border-radius:2px"></span> New business</span>
+      <span><span style="display:inline-block;width:8px;height:8px;background:#f472b6;border-radius:2px"></span> Expansion</span>
+      <span><span style="display:inline-block;width:8px;height:8px;background:#475569;border-radius:2px"></span> Deck Target benchmark</span>
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <thead><tr>
+        <th style="padding:8px 12px;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;text-align:left;border:1px solid var(--border2)">Quarter</th>
+        <th style="padding:8px 12px;background:var(--navy3);color:#f472b6;font-size:10px;text-transform:uppercase;text-align:right;border:1px solid var(--border2)">Expansion</th>
+        <th style="padding:8px 12px;background:var(--navy3);color:#8abde8;font-size:10px;text-transform:uppercase;text-align:right;border:1px solid var(--border2)">New biz</th>
+        <th style="padding:8px 12px;background:var(--navy3);color:#e879f9;font-size:10px;text-transform:uppercase;text-align:right;border:1px solid var(--border2)">Total (plan)</th>
+        <th style="padding:8px 12px;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;text-align:right;border:1px solid var(--border2)">Logos</th>
+        <th style="padding:8px 12px;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;text-align:right;border:1px solid var(--border2)">Deck Target</th>
+        <th style="padding:8px 12px;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;text-align:right;border:1px solid var(--border2)">vs Target</th>
+      </tr></thead>
+      <tbody>${qRows}</tbody>
+    </table>
+    <div style="margin-top:10px;font-size:11px;color:var(--muted)">
+      The deck's Target phasing assumes $7.07M total (back-loaded as reps ramp); the live plan reflects the current pipeline-balance model and hire dates. Q1 is lightest because reps are still ramping pipeline; the back half carries the year as balances mature. Change hire dates to see the phasing shift — earlier hires pull revenue into earlier quarters.
+    </div>
+  </div>`;
+
+  document.getElementById('bridgeContent').innerHTML = unlockHtml + bridgeHtml + scenHtml + quarterlyHtml;
+}
+
+// ── SENSITIVITY / WHAT-IF TAB ────────────────────────────────────────────────
+// Six levers. Each has a baseline (derived from current plan) and a what-if override.
+// All levers are applied simultaneously so you can see combined effects.
+// Levers that affect FY27 ARR do so by modifying ssQuota or the pipeline model;
+// levers that affect FY26 do so via the 2026 Forecast scenario engine.
+
+let sens = {
+  gaMonthsEarlier:   0,   // accelerate 504/RTI GA by N months (0 = no change)
+  hireMonthsEarlier: 0,   // pull all planned rep hire dates forward by N months
+  winRateMult:       1.0, // multiplier on deals/mo (1.0 = baseline win rate)
+  dealSizeMult:      1.0, // multiplier on avg ACV and ssQuota
+  pipeVolumeMult:    1.0, // multiplier on pipeline generation rate
+  salesCycleMult:    1.0, // multiplier on conv rate (shorter cycle = faster conversion)
+  moduleAdoptMult:   1.0, // multiplier on expansion ARR (IEP/LPAC upsell adoption)
+};
+
+// Compute all key metrics under the current sens levers, without modifying
+// any global state (phases/reps stay untouched). Returns baseline + whatif.
+function computeSensitivity() {
+  const fyEnd = document.getElementById('fyEnd').value;
+  const baseConvRate = getPipelineConversionRate();
+
+  // ── Baseline (current plan) ──────────────────────────────────────────────
+  const baseFY27 = reps.reduce((s,r) => s+computeFY27Contribution(r, fyEnd), 0);
+  const baseFY26mod = computeFY26Scenario('moderate').total2026;
+  const baseFY26con = computeFY26Scenario('conservative').total2026;
+  const baseFY26agg = computeFY26Scenario('aggressive').total2026;
+  const basePipeNeeded = reps.reduce((s,r) => s+computePipelineRequired(r).pipelineARRNeeded, 0);
+  const basePipeBal  = reps.reduce((s,r) => s+computePipelineRequired(r).balanceJan27, 0);
+  const basePipeGap  = Math.max(0, basePipeNeeded - basePipeBal - ACTIVE_PIPELINE_TODAY);
+
+  // ── What-if: build modified reps + GA date ───────────────────────────────
+  // Modified reps: apply winRate, dealSize, pipeVolume multipliers
+  const modReps = reps.map(r => ({
+    ...r,
+    // winRateMult and dealSizeMult both scale revenue — win rate scales deals/mo,
+    // deal size scales ACV. Both flow into ssQuota = dealsMo × avgACV × 12.
+    ssQuota: Math.round(r.ssQuota * sens.winRateMult * sens.dealSizeMult),
+    // hireMonthsEarlier: shift planned reps earlier (active reps stay put)
+    hire: r.status === 'active' ? r.hire : (() => {
+      if (sens.hireMonthsEarlier === 0) return r.hire;
+      const {y,m} = ym(r.hire);
+      const shifted = addM(y, m, -sens.hireMonthsEarlier);
+      // Don't shift earlier than today (Jun 2026)
+      return mk(shifted.y, shifted.m) < '2026-06' ? '2026-06' : mk(shifted.y, shifted.m);
+    })(),
+  }));
+
+  // Modified GA: shift 504/RTI GA earlier by sens.gaMonthsEarlier months
+  const gaPhase = phases.find(p => p.id === 1);
+  let modGAMonthsLeft = getFY26MonthsInvoiceable();
+  if (sens.gaMonthsEarlier > 0 && gaPhase) {
+    const {y,m} = ym(gaPhase.end);
+    const shifted = addM(y, m, -sens.gaMonthsEarlier);
+    const shiftedMk = mk(shifted.y, shifted.m);
+    modGAMonthsLeft = Math.max(0, 12 - shifted.m + 1);
+  }
+
+  // Modified pipeline conv rate: salesCycleMult speeds up conversion
+  const modConvRate = Math.min(0.99, baseConvRate * sens.salesCycleMult);
+
+  // Modified pipeline volume: pipeVolumeMult scales generation rate
+  // We approximate this by scaling the resulting pipeline balance proportionally
+  // (since simulateRepPipeline uses ssQuota/12 as generation rate, and
+  //  pipeVolumeMult represents "more/better pipeline activity")
+  // Implementation: scale ssQuota's generation component only (not the quota target)
+  const modRepsWithVolume = modReps.map(r => ({
+    ...r,
+    // Store the volume multiplier for use in a custom simulation below
+    _pipeVolMult: sens.pipeVolumeMult,
+  }));
+
+  // FY27 under what-if: simulate with modified reps and conv rate
+  // We need to temporarily swap globals, compute, then restore.
+  // Use a pure simulation approach to avoid touching global state.
+  function computeWhatIfFY27(mReps, mConvRate) {
+    const origConvEl = document.getElementById('pipelineConvRate');
+    const origConv = origConvEl.value;
+    origConvEl.value = Math.round(mConvRate * 100);
+    clearPipelineCache();
+
+    // Temporarily replace reps for computation
+    const origReps = reps;
+    reps = mReps;
+    const result = mReps.reduce((s,r) => {
+      // Custom simulation incorporating pipeVolumeMult
+      const monthlySSARR = r.ssQuota / 12;
+      let balance = 0;
+      let total = 0;
+      const {y:hy,m:hm} = ym(r.hire);
+      const volMult = r._pipeVolMult || 1.0;
+      if (r.status === 'active') {
+        // Active rep: steady state from start
+        let cy=2027, cm=1;
+        while(mk(cy,cm)<=fyEnd){
+          const moK=mk(cy,cm);
+          const sm = seasonalityEnabled() ? getSeasonMultiplier(moK) : 1.0;
+          total += (monthlySSARR / mConvRate) * mConvRate * sm;
+          const n=addM(cy,cm,1);cy=n.y;cm=n.m;
+        }
+      } else {
+        // Simulate from hire
+        let cy=hy,cm=hm,moIdx=0;
+        while(mk(cy,cm)<=fyEnd){
+          const moK=mk(cy,cm);
+          const generated = monthlySSARR * getPipelineGenPct(moIdx) * volMult;
+          const converted = balance * mConvRate;
+          balance = balance - converted + generated;
+          if(moK>='2027-01'){
+            const sm = seasonalityEnabled() ? getSeasonMultiplier(moK) : 1.0;
+            total += converted * sm;
+          }
+          moIdx++;
+          const n=addM(cy,cm,1);cy=n.y;cm=n.m;
+        }
+      }
+      return s + Math.round(total);
+    }, 0);
+    reps = origReps;
+    origConvEl.value = origConv;
+    clearPipelineCache();
+    return result;
+  }
+
+  const whatIfFY27 = computeWhatIfFY27(modRepsWithVolume, modConvRate);
+
+  // FY26 under what-if: scale the 2026 scenario using modified GA months + deal size
+  // Scale ARR proportionally: deal size mult applies to per-deal ARR
+  const arrScale = sens.dealSizeMult * sens.winRateMult;
+  const whatIfFY26mod = computeFY26Scenario('moderate').total2026
+    * (modGAMonthsLeft / Math.max(1, getFY26MonthsInvoiceable()))
+    * arrScale;
+  const whatIfFY26con = computeFY26Scenario('conservative').total2026
+    * (modGAMonthsLeft / Math.max(1, getFY26MonthsInvoiceable()))
+    * arrScale;
+  const whatIfFY26agg = computeFY26Scenario('aggressive').total2026
+    * (modGAMonthsLeft / Math.max(1, getFY26MonthsInvoiceable()))
+    * arrScale;
+
+  // Pipeline gap under what-if
+  const modPipeNeeded = basePipeNeeded / (sens.salesCycleMult); // faster cycle = less in-flight
+  const modPipeBal = basePipeBal * sens.pipeVolumeMult * (sens.hireMonthsEarlier > 0 ? 1.15 : 1.0);
+  const whatIfPipeGap = Math.max(0, modPipeNeeded - modPipeBal - ACTIVE_PIPELINE_TODAY);
+
+  // Expansion ARR: baseline (moderate) vs what-if (scaled by module adoption lever)
+  const baseExpansion = computeExpansionARR('moderate').expansionARR;
+  const whatIfExpansion = baseExpansion * sens.moduleAdoptMult;
+  const baseTotalFY27 = baseFY27 + baseExpansion;
+  const whatIfTotalFY27 = whatIfFY27 + whatIfExpansion;
+
+  return {
+    baseline: { fy27: baseFY27, expansion: baseExpansion, totalFY27: baseTotalFY27, fy26mod: baseFY26mod, fy26con: baseFY26con, fy26agg: baseFY26agg, pipeGap: basePipeGap, pipeNeeded: basePipeNeeded },
+    whatif:   { fy27: whatIfFY27, expansion: whatIfExpansion, totalFY27: whatIfTotalFY27, fy26mod: whatIfFY26mod, fy26con: whatIfFY26con, fy26agg: whatIfFY26agg, pipeGap: whatIfPipeGap, pipeNeeded: modPipeNeeded },
+  };
+}
+
+function renderSensitivity() {
+  const fyEnd = document.getElementById('fyEnd').value;
+  const results = computeSensitivity();
+  const b = results.baseline;
+  const w = results.whatif;
+
+  function deltaCell(base, val) {
+    const d = val - base;
+    const pct = base > 0 ? Math.round(d/base*100) : 0;
+    const cls = d > 500 ? 'delta-pos' : d < -500 ? 'delta-neg' : 'delta-zero';
+    const sign = d > 0 ? '+' : '';
+    return `<td class="${cls}">${sign}${fmtK(Math.round(d))}</td><td class="${cls}" style="font-size:10px">${sign}${pct}%</td>`;
+  }
+
+  // ── Lever definitions ─────────────────────────────────────────────────────
+  const levers = [
+    {
+      key: 'gaMonthsEarlier',
+      label: 'GA date acceleration',
+      desc: 'Months earlier than planned for 504/RTI GA (Aug 2026). Each month adds another month of 2026 invoiceable revenue.',
+      min: 0, max: 6, step: 1,
+      format: v => v === 0 ? 'No change' : `${v} month${v>1?'s':''} earlier`,
+      color: '#34d399',
+    },
+    {
+      key: 'hireMonthsEarlier',
+      label: 'Hire date acceleration',
+      desc: 'Pull all planned rep hire dates forward by N months. Earlier hires enter FY27 with more pipeline built up.',
+      min: 0, max: 6, step: 1,
+      format: v => v === 0 ? 'No change' : `${v} month${v>1?'s':''} earlier`,
+      color: '#8abde8',
+    },
+    {
+      key: 'winRateMult',
+      label: 'Win rate improvement',
+      desc: 'Multiplier on deals closed per month. 1.2× = 20% more deals close from the same pipeline — drives ssQuota and FY27 ARR.',
+      min: 0.5, max: 2.0, step: 0.05,
+      format: v => v === 1.0 ? 'Baseline' : `${v.toFixed(2)}× (${v>=1?'+':''}${Math.round((v-1)*100)}%)`,
+      color: '#4ade80',
+    },
+    {
+      key: 'dealSizeMult',
+      label: 'Average deal size',
+      desc: `Multiplier on avg ACV ($${fmtK(Math.round(AVG_DEAL_ARR))} baseline). Scales both ssQuota and 2026 new-district ARR.`,
+      min: 0.5, max: 2.0, step: 0.05,
+      format: v => `${fmtK(Math.round(AVG_DEAL_ARR * v))} avg (${v>=1?'+':''}${Math.round((v-1)*100)}%)`,
+      color: '#fbbf24',
+    },
+    {
+      key: 'pipeVolumeMult',
+      label: 'Pipeline generation volume',
+      desc: 'Multiplier on pipeline generation rate — more/better prospecting activity. Directly scales the pipeline balance entering FY27.',
+      min: 0.5, max: 2.0, step: 0.05,
+      format: v => v === 1.0 ? 'Baseline' : `${v.toFixed(2)}× generation rate`,
+      color: '#fb923c',
+    },
+    {
+      key: 'salesCycleMult',
+      label: 'Sales cycle speed',
+      desc: 'Multiplier on monthly pipeline conversion rate. 1.5× = 50% faster close cycle — same as raising conv %/mo from 40% to 60%.',
+      min: 0.5, max: 2.0, step: 0.05,
+      format: v => {
+        const base = getPipelineConversionRate() * 100;
+        return `${Math.round(base * v)}%/mo conv (${v>=1?'+':''}${Math.round((v-1)*100)}%)`;
+      },
+      color: '#c4b0f5',
+    },
+    {
+      key: 'moduleAdoptMult',
+      label: 'Module adoption (expansion)',
+      desc: `Multiplier on IEP/LPAC expansion ARR ($${fmtK(computeExpansionARR('moderate').expansionARR)} baseline). 1.5× = 50% more alpha districts upgrade in 2027.`,
+      min: 0.5, max: 2.0, step: 0.05,
+      format: v => `${fmtK(Math.round(computeExpansionARR('moderate').expansionARR * v))} expansion (${v>=1?'+':''}${Math.round((v-1)*100)}%)`,
+      color: '#f472b6',
+    },
+  ];
+
+  // ── Render levers ─────────────────────────────────────────────────────────
+  let leversHtml = `<div class="sens-grid">`;
+  levers.forEach(lv => {
+    const val = sens[lv.key];
+    leversHtml += `
+    <div class="sens-lever" style="border-color:${lv.color}22">
+      <div class="sens-lever-label" style="color:${lv.color}">${lv.label}</div>
+      <div class="sens-lever-desc">${lv.desc}</div>
+      <div class="sens-lever-input">
+        <input type="range" min="${lv.min}" max="${lv.max}" step="${lv.step}" value="${val}"
+          oninput="sens['${lv.key}']=+this.value;renderAll()"
+          style="accent-color:${lv.color}">
+        <span class="sens-val" style="color:${lv.color}">${lv.format(val)}</span>
+      </div>
+    </div>`;
+  });
+  leversHtml += `</div>`;
+
+  // ── Reset button ──────────────────────────────────────────────────────────
+  const sensDefaults = {gaMonthsEarlier:0,hireMonthsEarlier:0,winRateMult:1,dealSizeMult:1,pipeVolumeMult:1,salesCycleMult:1,moduleAdoptMult:1};
+  const anyChanged = Object.keys(sensDefaults).some(k => sens[k] !== sensDefaults[k]);
+  leversHtml += `<div style="margin-bottom:16px;display:flex;gap:10px;align-items:center">
+    <button onclick="sens={gaMonthsEarlier:0,hireMonthsEarlier:0,winRateMult:1,dealSizeMult:1,pipeVolumeMult:1,salesCycleMult:1,moduleAdoptMult:1};renderAll()"
+      style="padding:6px 14px;border:1px solid var(--border);border-radius:5px;background:var(--navy3);color:var(--muted);cursor:pointer;font-size:11px">
+      Reset all levers to baseline
+    </button>
+    ${anyChanged?`<span style="font-size:11px;color:#f472b6">● Levers active — baseline vs what-if shown below</span>`:'<span style="font-size:11px;color:var(--muted)">All levers at baseline</span>'}
+  </div>`;
+
+  // ── Results table ─────────────────────────────────────────────────────────
+  const rows = [
+    { label: '2026 ARR — Conservative', base: b.fy26con, wi: w.fy26con },
+    { label: '2026 ARR — Moderate',     base: b.fy26mod, wi: w.fy26mod },
+    { label: '2026 ARR — Aggressive',   base: b.fy26agg, wi: w.fy26agg },
+    { label: 'FY27 ARR — new business', base: b.fy27,    wi: w.fy27,  bold: true },
+    { label: '+ Expansion ARR (IEP/LPAC)', base: b.expansion, wi: w.expansion, pink: true },
+    { label: 'FY27 ARR — incl. expansion', base: b.totalFY27, wi: w.totalFY27, bold: true },
+    { label: 'Pipeline gap (team)',      base: b.pipeGap, wi: w.pipeGap, invert: true },
+    { label: 'Pipeline needed (SS)',     base: b.pipeNeeded, wi: w.pipeNeeded, invert: true },
+  ];
+
+  let tableHtml = `
+  <div class="sens-results">
+    <div class="sens-results-header">Revenue impact — Baseline vs What-If</div>
+    <table class="sens-table">
+      <thead><tr>
+        <th style="text-align:left">Metric</th>
+        <th>Baseline</th>
+        <th>What-If</th>
+        <th>Change ($)</th>
+        <th>Change (%)</th>
+      </tr></thead>
+      <tbody>`;
+
+  rows.forEach(row => {
+    const d = row.wi - row.base;
+    const pct = row.base > 0 ? Math.round(d/row.base*100) : 0;
+    // For pipeline gap/needed, lower is better (invert color logic)
+    const isGood = row.invert ? d < -500 : d > 500;
+    const isBad  = row.invert ? d > 500  : d < -500;
+    const cls = isGood ? 'delta-pos' : isBad ? 'delta-neg' : 'delta-zero';
+    const sign = d > 0 ? '+' : '';
+    const rowStyle = row.bold ? ' style="background:rgba(244,114,182,.06);font-weight:700"' : row.pink ? ' style="background:rgba(244,114,182,.03)"' : '';
+    const labelStyle = row.bold ? 'color:#f472b6' : row.pink ? 'color:#f472b6' : '';
+    tableHtml += `<tr${rowStyle}>
+      <td style="${labelStyle}${row.invert?';color:var(--muted)':''}">${row.label}</td>
+      <td>${fmtK(Math.round(row.base))}</td>
+      <td style="color:#f472b6;font-weight:700">${fmtK(Math.round(row.wi))}</td>
+      <td class="${cls}">${sign}${fmtK(Math.round(d))}</td>
+      <td class="${cls}" style="font-size:10px">${sign}${pct}%</td>
+    </tr>`;
+  });
+  tableHtml += `</tbody></table></div>`;
+
+  // ── Visual waterfall: FY27 contribution by lever ──────────────────────────
+  const totalDelta = w.fy27 - b.fy27;
+  const leverDeltas = [
+    { label: 'GA earlier', color: '#34d399', key: 'ga' },
+    { label: 'Hire earlier', color: '#8abde8', key: 'hire' },
+    { label: 'Win rate', color: '#4ade80', key: 'win' },
+    { label: 'Deal size', color: '#fbbf24', key: 'deal' },
+    { label: 'Pipeline vol.', color: '#fb923c', key: 'vol' },
+    { label: 'Faster close', color: '#c4b0f5', key: 'cycle' },
+  ];
+
+  // Approximate per-lever contribution: compute each lever in isolation
+  function singleLeverFY27(leverKey, leverVal) {
+    const origSens = {...sens};
+    const resetSens = {gaMonthsEarlier:0,hireMonthsEarlier:0,winRateMult:1,dealSizeMult:1,pipeVolumeMult:1,salesCycleMult:1,moduleAdoptMult:1};
+    sens = {...resetSens, [leverKey]: leverVal};
+    const result = computeSensitivity().whatif.totalFY27;
+    sens = origSens;
+    return result;
+  }
+
+  const leverContribs = [
+    { label:'GA earlier',   color:'#34d399', delta: singleLeverFY27('gaMonthsEarlier', sens.gaMonthsEarlier) - b.totalFY27 },
+    { label:'Hire earlier', color:'#8abde8', delta: singleLeverFY27('hireMonthsEarlier', sens.hireMonthsEarlier) - b.totalFY27 },
+    { label:'Win rate',     color:'#4ade80', delta: singleLeverFY27('winRateMult', sens.winRateMult) - b.totalFY27 },
+    { label:'Deal size',    color:'#fbbf24', delta: singleLeverFY27('dealSizeMult', sens.dealSizeMult) - b.totalFY27 },
+    { label:'Pipeline vol.',color:'#fb923c', delta: singleLeverFY27('pipeVolumeMult', sens.pipeVolumeMult) - b.totalFY27 },
+    { label:'Faster close', color:'#c4b0f5', delta: singleLeverFY27('salesCycleMult', sens.salesCycleMult) - b.totalFY27 },
+    { label:'Module adopt', color:'#f472b6', delta: singleLeverFY27('moduleAdoptMult', sens.moduleAdoptMult) - b.totalFY27 },
+  ].filter(lc => Math.abs(lc.delta) > 100);
+
+  const maxAbs = Math.max(200000, ...leverContribs.map(lc => Math.abs(lc.delta)));
+  const BAR_H = 120;
+
+  let waterfallHtml = '';
+  if (leverContribs.length > 0) {
+    waterfallHtml = `
+    <div style="margin-bottom:20px">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">FY27 delta by lever — isolated impact (incl. expansion)</div>
+      <div style="display:flex;gap:12px;align-items:flex-end;padding:12px 0;overflow-x:auto">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:64px">
+          <div style="font-size:10px;font-weight:700;color:#fff">${fmtK(b.totalFY27)}</div>
+          <div style="width:48px;background:#334155;border-radius:3px 3px 0 0;height:${BAR_H}px"></div>
+          <div style="font-size:9px;color:var(--muted);text-align:center">Baseline</div>
+        </div>
+        ${leverContribs.map(lc => {
+          const h = Math.round(Math.abs(lc.delta)/maxAbs*BAR_H);
+          const pos = lc.delta >= 0;
+          return `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:64px">
+            <div style="font-size:10px;font-weight:700;color:${lc.color}">${lc.delta>0?'+':''}${fmtK(Math.round(lc.delta))}</div>
+            <div style="width:48px;background:${lc.color};border-radius:3px 3px 0 0;height:${Math.max(4,h)}px;opacity:${pos?'0.85':'0.5'}"></div>
+            <div style="font-size:9px;color:var(--muted);text-align:center">${lc.label}</div>
+          </div>`;
+        }).join('')}
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:64px">
+          <div style="font-size:10px;font-weight:700;color:#f472b6">${fmtK(w.totalFY27)}</div>
+          <div style="width:48px;background:#f472b6;border-radius:3px 3px 0 0;height:${Math.round(w.totalFY27/Math.max(b.totalFY27,w.totalFY27)*BAR_H)}px;opacity:.75"></div>
+          <div style="font-size:9px;color:var(--muted);text-align:center">What-If</div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // ── Assemble ──────────────────────────────────────────────────────────────
+  const note = `
+  <div class="ramp-note" style="margin-top:0">
+    <strong>GA acceleration</strong> only affects FY26 ARR (adds invoiceable months). FY27 ARR is unaffected since FY27 starts Jan 2027 regardless.<br>
+    <strong>Hire acceleration</strong> pulls planned rep hire dates earlier, building more pipeline before FY27 starts. Active reps (San Angelo) are unaffected.<br>
+    <strong>Win rate</strong> and <strong>deal size</strong> multiply the effective steady-state quota for all reps — they flow through the pipeline-balance model and directly lift FY27 ARR.<br>
+    <strong>Pipeline volume</strong> scales the generation rate — more prospecting activity means faster balance build-up and earlier ramp to steady state.<br>
+    <strong>Sales cycle speed</strong> scales the monthly pipeline conversion rate — faster close cycles mean the balance converts to ARR sooner and FY27 ramp is steeper.<br>
+    <strong>Module adoption</strong> scales expansion ARR — how many 2026 alpha districts upgrade to IEP/LPAC in 2027. This is the only lever that moves the expansion line, not new business.<br>
+    <strong>Per-lever waterfall</strong> shows the isolated impact of each lever set to its current what-if value, including expansion. Combined effect (table above) is not simply the sum due to interaction effects.
+  </div>`;
+
+  document.getElementById('sensitivityContent').innerHTML = leversHtml + waterfallHtml + tableHtml + note;
+}
+
+// ── PIPELINE REQUIRED TAB ────────────────────────────────────────────────────
+// Source: Slide 21 of Mid-Year deck. Pipeline source strings and risk notes per rep.
+const PIPE_META = {
+  'San Angelo Rep':   {sources:'Region 15 events · SSA relationships',        risk:'Low risk — regional market well-mapped',            riskLevel:'low'},
+  'Needville Rep':    {sources:'TCASE July · Houston metro inbound',           risk:'Largest metro outside DFW — event presence critical', riskLevel:'med'},
+  'Amarillo Rep':     {sources:'Region 16/17 events · SSA referrals',         risk:'Smallest territory — manageable pipeline',           riskLevel:'low'},
+  'Dallas Metro Rep': {sources:'TCASE · exec outreach · SSA channel',         risk:'⚠ Richest territory — biggest upside and biggest risk',riskLevel:'high'},
+  'Central Rep':      {sources:'Region 13/20 events · Austin inbound',        risk:'Jan 2027 start — limited ramp time in FY27',         riskLevel:'med'},
+  'Fort Worth Rep':   {sources:'Region 11 events · East TX SSA',              risk:'Jan 2027 start — sequential to Central',             riskLevel:'med'},
+  'Velocity Rep #1':  {sources:'TESPA · TCASE · outbound T0/T1 districts',   risk:'Lead volume is the constraint — needs event feed',    riskLevel:'med'},
+  'Velocity Rep #2':  {sources:'TESPA · TCASE · outbound T0/T1 districts',   risk:'Same as Vel #1 — pipeline velocity matters most',    riskLevel:'med'},
+};
+
+// Active pipeline today from HubSpot ARR export (Jun 13, 2026)
+// Signed $31,389 + Active $75,671 + Proposed $56,624 = $163,684 ARR
+// Demo stage (5 deals) not included — ARR not yet quantified
+const ACTIVE_PIPELINE_TODAY = 163684;
+
+// Proof point: San Angelo AE pipeline built via pure cold outreach sequences
+// Source: hubspot-custom-report-pipeline-created-by-arr-2026-06-14.xlsx
+// Jan 30 – Jun 4, 2026 (17.7 weeks), 1 AE, zero inbound
+const SEQUENCE_PROOF_POINT = {
+  deals: 25,
+  weeks: 17.7,
+  year1Total: 362490,   // Year-1 total (incl. implementation fees)
+  arrPipeline: 163684,  // ARR portion (from HubSpot ARR export)
+  dealsPerWeek: 1.41,
+  arrPerWeek: 9247,     // ARR pipeline per week ($163,684 / 17.7 weeks)
+  acvAvg: 10138,        // avg ARR deal size
+  note: 'All 25 deals created via cold sequences — no inbound, no tradeshow leads, no referrals. Tradeshows (TEPSA Jun, TCASE Jul) expected to meaningfully accelerate this rate.',
+};
+
+let salesCycleMonths = 9;     // editable: mid/ent rep opp→close cycle
+let velocityCycleMonths = 4;  // editable: velocity rep opp→close cycle (faster, smaller districts)
+
+function computePipelineRequired(rep) {
+  const cycle = rep.type === 'Velocity' ? velocityCycleMonths : salesCycleMonths;
+  const oppsNeeded = rep.dealsMo * cycle;
+  const pipelineARRNeeded = oppsNeeded * rep.avgACV;
+  // Monthly pipeline generation needed (at steady state) = deals/mo × avg ACV = ssQuota/12
+  const monthlyGenNeeded = rep.ssQuota / 12;
+  // Current balance from simulation at Jan 2027 (how much is already built)
+  const series = getRepPipelineSeries(rep, '2027-01');
+  const jan27 = series['2027-01'];
+  const balanceJan27 = jan27 ? jan27.balance : 0;
+  // Gap = pipeline needed - balance already built by Jan 2027
+  const pipelineGap = Math.max(0, pipelineARRNeeded - balanceJan27);
+  // Months of ramp still needed to close the gap (how many more months at current gen rate)
+  const monthlyGen = jan27 ? jan27.generated : (rep.ssQuota/12 * getPipelineGenPct(0));
+  const monthsToClose = monthlyGen > 0 ? Math.ceil(pipelineGap / monthlyGen) : 99;
+  return {oppsNeeded, pipelineARRNeeded, monthlyGenNeeded, balanceJan27, pipelineGap, monthsToClose};
+}
+
+function renderPipelineRequired(){
+  const fyEnd = document.getElementById('fyEnd').value;
+  const convRate = getPipelineConversionRate();
+
+  // ── Controls ──────────────────────────────────────────────────────────────
+  document.getElementById('pipeControls').innerHTML=`
+    <div class="cg" style="background:var(--navy2);border:1px solid var(--border);border-radius:6px;padding:6px 12px">
+      <span class="cl" style="color:#a78bfa">Mid/Ent sales cycle (months)</span>
+      <input type="number" min="1" max="24" value="${salesCycleMonths}" style="width:52px"
+        onchange="salesCycleMonths=Math.max(1,Math.min(24,+this.value));renderAll()">
+    </div>
+    <div class="cg" style="background:var(--navy2);border:1px solid var(--border);border-radius:6px;padding:6px 12px">
+      <span class="cl" style="color:#fb923c">Velocity sales cycle (months)</span>
+      <input type="number" min="1" max="24" value="${velocityCycleMonths}" style="width:52px"
+        onchange="velocityCycleMonths=Math.max(1,Math.min(24,+this.value));renderAll()">
+    </div>
+    <div style="font-size:11px;color:var(--muted);padding:4px 0">
+      Pipeline needed = <strong style="color:var(--text)">deals/mo × cycle months × avg ACV</strong> per rep
+    </div>`;
+
+  // ── Team totals ───────────────────────────────────────────────────────────
+  const repCalcs = reps.map(r => ({r, c: computePipelineRequired(r)}));
+  const teamPipeNeeded = repCalcs.reduce((s,{c}) => s+c.pipelineARRNeeded, 0);
+  const teamOppsNeeded = repCalcs.reduce((s,{r}) => s + r.dealsMo*(r.type==='Velocity'?velocityCycleMonths:salesCycleMonths), 0);
+  const teamFY27       = reps.reduce((s,r) => s+computeFY27Contribution(r, fyEnd), 0);
+  const teamBalJan27   = repCalcs.reduce((s,{c}) => s+c.balanceJan27, 0);
+  const teamGap        = Math.max(0, teamPipeNeeded - teamBalJan27 - ACTIVE_PIPELINE_TODAY);
+  const pipeGapColor   = teamGap > teamPipeNeeded*0.5 ? '#f87171' : teamGap > 0 ? '#fbbf24' : '#4ade80';
+
+  document.getElementById('pipeTotals').innerHTML=`
+    <div class="qt"><div class="qt-label">SS pipeline needed (team)</div><div class="qt-value" style="color:#a78bfa">${fmtK(teamPipeNeeded)}</div><div class="qt-sub">${Math.round(teamOppsNeeded)} qualified opps · Mid/Ent ${salesCycleMonths}mo · Velocity ${velocityCycleMonths}mo cycle</div></div>
+    <div class="qt"><div class="qt-label">Active pipeline today</div><div class="qt-value" style="color:#fbbf24">${fmtK(ACTIVE_PIPELINE_TODAY)}</div><div class="qt-sub">Signed + Active + Proposed · HubSpot Jun 13</div></div>
+    <div class="qt"><div class="qt-label">Pipeline gap</div><div class="qt-value" style="color:${pipeGapColor}">${fmtK(teamGap)}</div><div class="qt-sub">To build via TCASE · ESCs · outbound</div></div>
+    <div class="qt"><div class="qt-label">Jan 2027 balance (built)</div><div class="qt-value" style="color:#34d399">${fmtK(teamBalJan27)}</div><div class="qt-sub">Accruing via hire dates + pipeline model</div></div>
+    <div class="qt"><div class="qt-label">FY27 ARR (current plan)</div><div class="qt-value" style="color:#fbbf24">${fmtK(teamFY27)}</div><div class="qt-sub">From pipeline-balance model</div></div>`;
+
+  // ── Sequence proof point callout ──────────────────────────────────────────
+  const pp = SEQUENCE_PROOF_POINT;
+  const proofHtml = `
+  <div style="margin:14px 0;padding:14px 16px;background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.3);border-left:3px solid #a78bfa;border-radius:7px">
+    <div style="font-size:11px;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
+      ✓ Proof point — sequence-built pipeline (San Angelo AE, cold outreach only)
+    </div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:8px">
+      <div><div style="font-size:20px;font-weight:700;color:#fff">${pp.deals} deals</div><div style="font-size:10px;color:var(--muted)">created in ${pp.weeks} weeks</div></div>
+      <div><div style="font-size:20px;font-weight:700;color:#34d399">${fmtK(pp.arrPipeline)}</div><div style="font-size:10px;color:var(--muted)">ARR pipeline built</div></div>
+      <div><div style="font-size:20px;font-weight:700;color:#fbbf24">${pp.dealsPerWeek.toFixed(1)}</div><div style="font-size:10px;color:var(--muted)">deals/week pace</div></div>
+      <div><div style="font-size:20px;font-weight:700;color:#7bbfe8">${fmtK(pp.arrPerWeek)}/wk</div><div style="font-size:10px;color:var(--muted)">ARR pipeline/week</div></div>
+      <div><div style="font-size:20px;font-weight:700;color:#c4b0f5">${fmtK(pp.year1Total)}</div><div style="font-size:10px;color:var(--muted)">Year-1 total (incl. impl.)</div></div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);line-height:1.6">
+      ${pp.note}
+      <strong style="color:#a78bfa"> At this pace across 8 reps, the team would generate ${fmtK(Math.round(pp.arrPerWeek * 52 * 8))} ARR pipeline/year at steady state</strong> — more than enough to sustain the $5.60M needed. The constraint is ramp time, not market receptivity.
+    </div>
+  </div>`;
+
+  // ── Table ─────────────────────────────────────────────────────────────────
+  const riskColor = {low:'#4ade80', med:'#fbbf24', high:'#f87171'};
+  document.getElementById('pipeProof').innerHTML = proofHtml;
+
+  let th=`<thead><tr>
+    <th>Rep</th>
+    <th>Territory</th>
+    <th class="r">Avg ACV</th>
+    <th class="r">Deals/mo</th>
+    <th class="r">Opps needed</th>
+    <th class="r">Pipeline ARR needed</th>
+    <th class="r">Balance Jan '27</th>
+    <th class="r">Gap</th>
+    <th>Pipeline sources</th>
+    <th>Risk if missed</th>
+  </tr></thead>`;
+
+  let tb=`<tbody>`;
+  repCalcs.forEach(({r,c},ri)=>{
+    const meta = PIPE_META[r.name] || {sources:'—', risk:'—', riskLevel:'med'};
+    const gapColor = c.pipelineGap > c.pipelineARRNeeded*0.5 ? '#f87171' : c.pipelineGap > 0 ? '#fbbf24' : '#4ade80';
+    const gapDisplay = c.pipelineGap > 0 ? `-${fmtK(c.pipelineGap)}` : '✓ On track';
+    tb+=`<tr>
+      <td style="font-weight:600;color:${REP_COLORS[ri]}">${r.name}</td>
+      <td style="color:var(--muted);font-size:11px">${r.territory}</td>
+      <td class="qval">${fmtK(r.avgACV)}</td>
+      <td class="qval">${r.dealsMo.toFixed(1)}</td>
+      <td class="qval" style="color:#a78bfa;font-weight:700">${Math.round(c.oppsNeeded)}</td>
+      <td class="qval" style="color:#a78bfa">${fmtK(c.pipelineARRNeeded)}</td>
+      <td class="qval" style="color:#34d399">${fmtK(c.balanceJan27)}</td>
+      <td class="qval" style="color:${gapColor};font-weight:700">${gapDisplay}</td>
+      <td style="font-size:10px;color:var(--muted);max-width:180px">${meta.sources}</td>
+      <td style="font-size:10px;color:${riskColor[meta.riskLevel]};max-width:180px">${meta.risk}</td>
+    </tr>`;
+  });
+
+  // Totals row
+  const teamGapDisplay = teamGap > 0 ? `-${fmtK(teamGap)}` : '✓ On track';
+  tb+=`<tr class="total-row">
+    <td colspan="4">Total — 8 Reps</td>
+    <td class="qval" style="color:#a78bfa">${Math.round(teamOppsNeeded)}</td>
+    <td class="qval" style="color:#a78bfa">${fmtK(teamPipeNeeded)}</td>
+    <td class="qval" style="color:#34d399">${fmtK(teamBalJan27)}</td>
+    <td class="qval" style="color:${pipeGapColor};font-weight:700">${teamGapDisplay}</td>
+    <td colspan="2" style="font-size:10px;color:var(--muted)">Build rate: TCASE (Jul) ~$1.5M+ · ESC events ~$500K/yr · outbound TBD</td>
+  </tr></tbody>`;
+
+  document.getElementById('pipeTable').innerHTML=th+tb;
+
+  // ── Monthly pipeline build chart ──────────────────────────────────────────
+  // Show per-rep when each rep's balance crosses their pipeline-needed threshold
+  const wrap = document.getElementById('pipeNote');
+  const months=['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12',
+                 '2027-01','2027-02','2027-03','2027-04','2027-05','2027-06'];
+  let chartRows='';
+  repCalcs.forEach(({r,c},ri)=>{
+    if(r.status==='active'){ chartRows+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="width:130px;font-size:10px;font-weight:600;color:${REP_COLORS[ri]};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name}</span><span style="font-size:10px;color:#4ade80">✓ At steady state</span></div>`; return; }
+    let crossedAt=null;
+    months.forEach(mo=>{
+      const series=getRepPipelineSeries(r,mo);
+      const bal=series[mo]?.balance||0;
+      if(!crossedAt && bal>=c.pipelineARRNeeded*0.9) crossedAt=mo;
+    });
+    const totalMoBar=months.length;
+    chartRows+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+      <span style="width:130px;font-size:10px;font-weight:600;color:${REP_COLORS[ri]};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name}</span>
+      <div style="flex:1;height:14px;background:rgba(255,255,255,.05);border-radius:3px;position:relative;overflow:hidden">
+        ${months.map((mo,mi)=>{
+          const series=getRepPipelineSeries(r,mo);
+          const bal=series[mo]?.balance||0;
+          const pct=Math.min(1,bal/c.pipelineARRNeeded);
+          const isFY27=mo>='2027-01';
+          const bg=pct>=0.9?'#4ade80':pct>=0.5?'#fbbf24':'#a78bfa';
+          return `<div style="position:absolute;left:${(mi/totalMoBar)*100}%;width:${(1/totalMoBar)*100}%;height:100%;background:${bg};opacity:${0.3+pct*0.7};border-right:1px solid rgba(0,0,0,.3)" title="${mo}: ${fmtK(Math.round(bal))} of ${fmtK(c.pipelineARRNeeded)} needed (${Math.round(pct*100)}%)"></div>`;
+        }).join('')}
+        ${crossedAt?`<div style="position:absolute;top:0;height:100%;left:${(months.indexOf(crossedAt)/totalMoBar)*100}%;width:2px;background:#fff;opacity:.6" title="Reaches 90% of needed pipeline: ${crossedAt}"></div>`:''}
+      </div>
+      <span style="font-size:10px;color:var(--muted);white-space:nowrap;width:60px;text-align:right">${crossedAt?crossedAt.slice(5)+' '+crossedAt.slice(0,4):'> Jun 27'}</span>
+    </div>`;
+  });
+
+  wrap.innerHTML=`
+    <div style="margin-bottom:10px;font-size:11px;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:.06em">Pipeline build-up to threshold — by rep (Jul 2026 → Jun 2027)</div>
+    <div style="font-size:10px;color:var(--muted);margin-bottom:10px">Bar color: <span style="color:#a78bfa">■</span> building &nbsp;·&nbsp; <span style="color:#fbbf24">■</span> 50%+ &nbsp;·&nbsp; <span style="color:#4ade80">■</span> 90%+ of pipeline needed &nbsp;·&nbsp; White tick = crosses 90% threshold. Mid/Ent cycle: ${salesCycleMonths}mo · Velocity cycle: ${velocityCycleMonths}mo.</div>
+    ${chartRows}
+    <div style="margin-top:12px;font-size:11px;color:var(--muted);line-height:1.7;border-top:1px solid var(--border);padding-top:10px">
+      <strong style="color:var(--text)">Formula:</strong> Pipeline needed = Deals/mo × Sales cycle × Avg ACV — Mid/Ent reps use a ${salesCycleMonths}-month cycle, Velocity reps use ${velocityCycleMonths} months (smaller districts, faster decisions). Adjust both above.<br>
+      <strong style="color:var(--text)">Gap vs today:</strong> ${fmtK(ACTIVE_PIPELINE_TODAY)} ARR is in pipeline today (HubSpot Jun 13: Signed $31K + Active $76K + Proposed $57K; 5 Demo deals unquantified). The proof point above shows 1 AE generated ${fmtK(pp.arrPipeline)} ARR pipeline in ${pp.weeks} weeks via cold sequences alone — <em>before</em> any tradeshow leads. TCASE (Jul 15–17, 400+ SpEd directors) is the next major acceleration event.<br>
+      <strong style="color:var(--text)">Balance built by hire dates:</strong> ${fmtK(teamBalJan27)} already accruing via the pipeline-balance model. Earlier hires enter Jan 2027 with larger balances and close the gap faster — change hire dates in Edit Reps to see the Jan '27 Balance column update live.
+    </div>`;
+}
+
+// ── EXPANSION ARR MODEL ───────────────────────────────────────────────────────
+// Source: Slide 10 (ARR bridge) + Slide 100 (expansion comp plan)
+// When IEP and LPAC launch Jan 2027, every 2026 alpha customer becomes an upsell target.
+// Wall ISD proof: added RTI to 504 contract → 158% NRR in Year 1.
+// Deck assumption: 17 alphas × 45% IEP upgrade × ~$10K lift = ~$77K expansion ARR.
+
+// Current alpha customers — signed or active pilots as of Jun 2026.
+// Each has: name, currentARR (from HubSpot), currentModules, tier
+let expansionCustomers = [
+  {name:'Wall ISD (504)',               currentARR:5644,  modules:'504',           tier:'T0', enrolled:null},
+  {name:'Wall ISD (RTI)',               currentARR:5286,  modules:'RTI',           tier:'T0', enrolled:null},
+  {name:'Shallowater ISD',             currentARR:10089, modules:'RTI; 504',       tier:'T2', enrolled:null},
+  {name:'Veribest ISD',                currentARR:4785,  modules:'504; RTI',       tier:'T0', enrolled:null},
+  {name:'Texas Leadership PS',         currentARR:12036, modules:'504; RTI',       tier:'T2', enrolled:null},
+  {name:'Sonora ISD',                  currentARR:5965,  modules:'504; RTI',       tier:'T1', enrolled:null},
+  {name:'Schleicher ISD',              currentARR:4840,  modules:'504; RTI',       tier:'T0', enrolled:null},
+  {name:'Reagan County ISD',           currentARR:6323,  modules:'504; RTI',       tier:'T1', enrolled:null},
+  {name:'Plemons-Stinnett-Phillips',   currentARR:6021,  modules:'504; RTI',       tier:'T1', enrolled:null},
+  {name:'Paradise ISD',                currentARR:9465,  modules:'RTI; 504',       tier:'T2', enrolled:null},
+  {name:'Menard ISD',                  currentARR:4604,  modules:'504; RTI',       tier:'T0', enrolled:null},
+  {name:'Irion County ISD',            currentARR:4848,  modules:'504; RTI',       tier:'T0', enrolled:null},
+  {name:'Canadian ISD',                currentARR:6488,  modules:'504; RTI',       tier:'T1', enrolled:null},
+  {name:'Iraan Sheffield ISD',         currentARR:4652,  modules:'504',            tier:'T0', enrolled:null},
+  {name:'Pringle-Morse CISD',          currentARR:4423,  modules:'504; RTI',       tier:'T0', enrolled:null},
+  {name:'Idalou ISD',                  currentARR:6894,  modules:'504; RTI',       tier:'T1', enrolled:null},
+  {name:'Booker ISD',                  currentARR:4697,  modules:'RTI; 504',       tier:'T0', enrolled:null},
+];
+
+// Expansion scenarios: upgrade rate × avg lift per upgrading district
+// Moderate matches the deck ($77K): 17 × 45% × $10,065 = $76,997
+let expansionAssumptions = {
+  conservative: {upgradeRate:0.30, liftPerDistrict:5300,  label:'IEP only · 30% adopt'},
+  moderate:     {upgradeRate:0.45, liftPerDistrict:10065, label:'IEP + partial LPAC · 45% adopt (deck)'},
+  aggressive:   {upgradeRate:0.65, liftPerDistrict:13581, label:'Full bundle (IEP+LPAC) · 65% adopt'},
+};
+
+// Base ACV and full ACV from slide 10
+const EXPANSION_BASE_ACV  = 6961;   // 2026 bundle: RTI + 504 + Mobile
+const EXPANSION_FULL_ACV  = 20542;  // 2027 full: + IEP + LPAC
+const EXPANSION_MAX_LIFT  = EXPANSION_FULL_ACV - EXPANSION_BASE_ACV; // $13,581
+
+function computeExpansionARR(scenarioKey) {
+  const s = expansionAssumptions[scenarioKey];
+  const eligibleLogos = expansionCustomers.length;
+  const upgradingDistricts = eligibleLogos * s.upgradeRate;
+  const expansionARR = upgradingDistricts * s.liftPerDistrict;
+  // NRR = (currentARR + expansionARR) / currentARR
+  const totalCurrentARR = expansionCustomers.reduce((sum,c)=>sum+c.currentARR, 0);
+  const nrr = totalCurrentARR > 0 ? (totalCurrentARR + expansionARR) / totalCurrentARR : 1;
+  return {eligibleLogos, upgradingDistricts, expansionARR: Math.round(expansionARR), nrr, totalCurrentARR, s};
+}
+
+function computeExpansionModerate() {
+  return computeExpansionARR('moderate');
+}
+
+// ── 2026 FORECAST TAB ────────────────────────────────────────────────────────
+function renderFY26Forecast(){
+  const monthsLeft=getFY26MonthsInvoiceable();
+  const gaEvents=getGAEvents();
+  const ga=gaEvents.find(g=>g.label==='504 / RTI GA');
+  const gaMk=ga?ga.date.slice(0,7):'2026-08';
+  const{y:gy,m:gm}=ym(gaMk);
+
+  document.getElementById('fy26GADate').textContent=`${MN[gm-1]} ${gy}`;
+  document.getElementById('fy26MonthsLeft').textContent=monthsLeft;
+  const capMult=getFY26CapacityMultiplier();
+  const capColor=capMult>1.02?'#4ade80':capMult<0.98?'#f87171':'#fbbf24';
+  document.getElementById('fy26GANote').innerHTML=`504/RTI GA date is set in Edit Phases (phase id1) — currently ${MN[gm-1]} ${gy} &nbsp;·&nbsp; Rep capacity multiplier: <span style="color:${capColor};font-weight:700">×${capMult.toFixed(2)}</span> (vs. baseline hire plan — applied to new-district counts below)`;
+
+  // ── Scenario cards ──
+  const scenarioMeta=[
+    {key:'conservative', label:'Conservative', cls:'conservative'},
+    {key:'moderate',     label:'Moderate',     cls:'moderate'},
+    {key:'aggressive',   label:'Aggressive',   cls:'aggressive'},
+  ];
+  let cardsHtml='';
+  scenarioMeta.forEach(sm=>{
+    const r=computeFY26Scenario(sm.key);
+    const s=fy26Scenarios[sm.key];
+    const effRounded=Math.round(r.effectiveNewDistricts*10)/10;
+    cardsHtml+=`<div class="fy26-card ${sm.cls}">
+      <div class="fc-label">${sm.label}</div>
+      <div class="fc-value">${fmtK(r.total2026)}</div>
+      <div class="fc-sub">2026 partial-year revenue (${monthsLeft} mo)<br>
+        Pipeline: ${fmtK(r.convertedARR)} ARR × ${monthsLeft}/12 = ${fmtK(r.pipelinePartial)}<br>
+        ${s.newDistricts>0?`+${s.newDistricts} new district${s.newDistricts!==1?'s':''} × ${capMult.toFixed(2)} capacity = ${effRounded} effective (${fmtK(r.newLeadsARR)} ARR × ${s.newDistrictMonths}/12 = ${fmtK(r.newLeadsPartial)})`:'No new districts assumed to convert in 2026'}<br>
+        <span style="color:var(--text);font-weight:600">Full run-rate if sustained: ${fmtK(r.fullRunRate)}</span>
+      </div>
+    </div>`;
+  });
+  document.getElementById('fy26Scenarios').innerHTML=cardsHtml;
+
+  // ── Assumptions editors ──
+  let assumeHtml=`<div class="fa-row" style="grid-column:1 / -1;background:var(--navy2);border:1px solid var(--border2)"><label style="color:#34d399">Shared assumption — New district avg ARR ($, used by all scenarios)</label><input type="text" inputmode="numeric" value="${fmtMoney(AVG_DEAL_ARR)}" onfocus="this.value=${AVG_DEAL_ARR}" onblur="AVG_DEAL_ARR=parseMoney(this.value);this.value=fmtMoney(AVG_DEAL_ARR);renderAll()" onkeydown="if(event.key==='Enter')this.blur()" style="max-width:140px"></div>`;
+  scenarioMeta.forEach(sm=>{
+    const s=fy26Scenarios[sm.key];
+    assumeHtml+=`<div class="fa-row"><label>${sm.label} — Signed conv. %</label><input type="number" min="0" max="100" value="${Math.round(s.convSigned*100)}" onchange="fy26Scenarios['${sm.key}'].convSigned=Math.max(0,Math.min(100,+this.value))/100;renderAll()"></div>`;
+    assumeHtml+=`<div class="fa-row"><label>${sm.label} — Active conv. %</label><input type="number" min="0" max="100" value="${Math.round(s.convActive*100)}" onchange="fy26Scenarios['${sm.key}'].convActive=Math.max(0,Math.min(100,+this.value))/100;renderAll()"></div>`;
+    assumeHtml+=`<div class="fa-row"><label>${sm.label} — Proposed conv. %</label><input type="number" min="0" max="100" value="${Math.round(s.convProposed*100)}" onchange="fy26Scenarios['${sm.key}'].convProposed=Math.max(0,Math.min(100,+this.value))/100;renderAll()"></div>`;
+    assumeHtml+=`<div class="fa-row"><label>${sm.label} — New districts (TEPSA/TCASE)</label><input type="number" min="0" max="50" value="${s.newDistricts}" onchange="fy26Scenarios['${sm.key}'].newDistricts=Math.max(0,+this.value);renderAll()"></div>`;
+    assumeHtml+=`<div class="fa-row"><label>${sm.label} — New district billable months</label><input type="number" min="0" max="12" value="${s.newDistrictMonths}" onchange="fy26Scenarios['${sm.key}'].newDistrictMonths=Math.max(0,Math.min(12,+this.value));renderAll()"></div>`;
+    assumeHtml+=`<div class="fa-row" style="visibility:hidden"></div>`;
+  });
+  document.getElementById('fy26Assumptions').innerHTML=assumeHtml;
+
+  // ── Pipeline table ──
+  let th=`<thead><tr>
+    <th>Deal</th><th>Stage</th><th>Modules</th>
+    <th class="r">ARR</th>
+  </tr></thead>`;
+  let tb=`<tbody>`;
+  const stagePill={signed:'stage-signed',active:'stage-active',proposed:'stage-proposed',demo:'stage-demo'};
+  pipelineDeals.forEach((d,i)=>{
+    tb+=`<tr>
+      <td style="font-weight:600">${d.name}</td>
+      <td><span class="stage-pill ${stagePill[d.stage]}">${STAGE_LABELS[d.stage]}</span></td>
+      <td style="color:var(--muted);font-size:10px">${d.modules}</td>
+      <td class="r">${d.arr!=null?`<input type="text" inputmode="numeric" value="${fmtMoney(d.arr)}" style="width:90px" onfocus="this.value=${d.arr}" onblur="pipelineDeals[${i}].arr=parseMoney(this.value);this.value=fmtMoney(pipelineDeals[${i}].arr);renderAll()" onkeydown="if(event.key==='Enter')this.blur()">`:'<span style="color:var(--muted)">TBD</span>'}</td>
+    </tr>`;
+  });
+  const signedTotal=pipelineDeals.filter(d=>d.stage==='signed').reduce((s,d)=>s+(d.arr||0),0);
+  const activeTotal=pipelineDeals.filter(d=>d.stage==='active').reduce((s,d)=>s+(d.arr||0),0);
+  const proposedTotal=pipelineDeals.filter(d=>d.stage==='proposed').reduce((s,d)=>s+(d.arr||0),0);
+  const demoCount=pipelineDeals.filter(d=>d.stage==='demo').length;
+  tb+=`<tr style="background:var(--navy3);font-weight:700">
+    <td colspan="3">Totals — Signed ${fmtK(signedTotal)} · Active ${fmtK(activeTotal)} · Proposed ${fmtK(proposedTotal)} · Demo (${demoCount} deals, TBD)</td>
+    <td class="r">${fmtK(signedTotal+activeTotal+proposedTotal)}</td>
+  </tr>`;
+  tb+=`</tbody>`;
+  document.getElementById('fy26PipelineTable').innerHTML=th+tb;
+
+  document.getElementById('fy26Note').innerHTML=`
+    <strong>How this works:</strong> Each scenario's "Pipeline ARR" = Signed × conv% + Active × conv% + Proposed × conv%, then divided by 12 and multiplied by the ${monthsLeft} invoiceable months (Aug–Dec 2026 by default). New districts sourced from TEPSA (27 unique Hot districts, 24 Warm) and the upcoming TCASE conference (Jul 15–17) are modeled separately since they enter the pipeline later — by default they're assumed to close ~Sep/Oct, giving them only ${fy26Scenarios.moderate.newDistrictMonths} billable months rather than the full ${monthsLeft}.<br>
+    <strong>Rep capacity multiplier:</strong> The new-district count in each scenario is scaled by a capacity multiplier (×${capMult.toFixed(2)} currently) based on how much rep selling-capacity exists during the Aug–Dec window vs. the original hire plan. Hiring a rep earlier (e.g. Dallas Metro moved from October to July) increases capacity during this window and raises the multiplier above 1.0 — meaning more of the assumed new-district pipeline is realistically workable. Hiring later, or no reps ramped during the window, pulls the multiplier below 1.0. Change hire dates in <strong>Edit Reps</strong> or <strong>Quota &amp; ARR Impact</strong> to see this update.<br>
+    <strong>TCASE timing:</strong> July 15–17 is before the Aug 1 GA cutoff is meaningful for net-new closes, but it's a strong opportunity to accelerate Sep–Dec closes for districts already in the Demo/Proposed stages, or to generate the new-district leads this model counts in Moderate/Aggressive.<br>
+    <strong>Editable:</strong> Pipeline deal ARR values, conversion percentages, new-district counts, and billable months are all editable above — changes update the scenario cards live. The invoiceable month count is linked to the 504/RTI GA phase end date in Edit Phases.`;
+
+  // ── Expansion ARR section ────────────────────────────────────────────────
+  const expMeta = [
+    {key:'conservative', label:'Conservative', color:'#f87171'},
+    {key:'moderate',     label:'Moderate',     color:'#fbbf24'},
+    {key:'aggressive',   label:'Aggressive',   color:'#4ade80'},
+  ];
+  let expCards = '';
+  expMeta.forEach(em => {
+    const r = computeExpansionARR(em.key);
+    const s = expansionAssumptions[em.key];
+    const nrrPct = Math.round((r.nrr - 1) * 100);
+    expCards += `<div class="fy26-card" style="border-color:${em.color}50;min-width:180px">
+      <div class="fc-label" style="color:${em.color}">${em.label}</div>
+      <div class="fc-value" style="color:${em.color}">${fmtK(r.expansionARR)}</div>
+      <div class="fc-sub">
+        ${Math.round(r.eligibleLogos * s.upgradeRate * 10)/10} of ${r.eligibleLogos} districts upgrade<br>
+        ${fmtK(Math.round(s.liftPerDistrict))} avg lift · ${Math.round(s.upgradeRate*100)}% adopt rate<br>
+        ${s.label}<br>
+        <span style="color:${em.color};font-weight:600">Team NRR: ${Math.round(r.nrr*100)}% (+${nrrPct}pp)</span>
+      </div>
+    </div>`;
+  });
+  document.getElementById('expansionScenarios').innerHTML = expCards;
+
+  // Assumptions editors
+  let expAssume = '';
+  expMeta.forEach(em => {
+    const s = expansionAssumptions[em.key];
+    expAssume += `<div class="fa-row"><label style="color:${em.color}">${em.label} — adopt rate (%)</label>
+      <input type="number" min="0" max="100" value="${Math.round(s.upgradeRate*100)}"
+        onchange="expansionAssumptions['${em.key}'].upgradeRate=Math.max(0,Math.min(100,+this.value))/100;renderAll()"></div>`;
+    expAssume += `<div class="fa-row"><label style="color:${em.color}">${em.label} — lift per district ($)</label>
+      <input type="text" value="${fmtMoney(s.liftPerDistrict)}"
+        onfocus="this.value=${s.liftPerDistrict}"
+        onblur="expansionAssumptions['${em.key}'].liftPerDistrict=parseMoney(this.value);this.value=fmtMoney(expansionAssumptions['${em.key}'].liftPerDistrict);renderAll()"
+        onkeydown="if(event.key==='Enter')this.blur()"></div>`;
+    expAssume += `<div class="fa-row" style="visibility:hidden"></div>`;
+  });
+  document.getElementById('expansionAssumptionsEl').innerHTML = expAssume;
+
+  // Alpha customer table
+  const totalCurrentARR = expansionCustomers.reduce((s,c)=>s+c.currentARR, 0);
+  const modExp = computeExpansionARR('moderate');
+  let expTh = `<thead><tr>
+    <th>District</th><th>Current modules</th><th class="r">Current ARR</th>
+    <th class="r">Max expansion lift</th><th>Tier</th>
+  </tr></thead><tbody>`;
+  let expTb = '';
+  expansionCustomers.forEach(c => {
+    const maxLift = EXPANSION_MAX_LIFT;
+    const hasIEP = c.modules.includes('IEP');
+    const hasLPAC = c.modules.includes('LPAC');
+    const liftDisplay = (hasIEP && hasLPAC) ? '<span style="color:#4ade80;font-size:10px">Already full bundle</span>'
+      : fmtK(hasIEP ? Math.round(EXPANSION_MAX_LIFT * 0.3) : maxLift);
+    expTb += `<tr>
+      <td style="font-weight:600;font-size:12px">${c.name}</td>
+      <td style="font-size:11px;color:var(--muted)">${c.modules}</td>
+      <td class="r">${fmtK(c.currentARR)}</td>
+      <td class="r" style="color:#f472b6">${liftDisplay}</td>
+      <td style="font-size:10px;color:var(--muted)">${c.tier||'—'}</td>
+    </tr>`;
+  });
+  expTb += `<tr style="background:var(--navy3);font-weight:700">
+    <td colspan="2">Total — ${expansionCustomers.length} alpha logos</td>
+    <td class="r">${fmtK(totalCurrentARR)}</td>
+    <td class="r" style="color:#f472b6">${fmtK(modExp.expansionARR)} (Moderate)</td>
+    <td></td>
+  </tr>`;
+  document.getElementById('expansionTable').innerHTML = expTh + expTb + '</tbody>';
+
+  document.getElementById('expansionNote').innerHTML = `
+    <strong>How expansion works:</strong> IEP + LPAC go GA in January 2027. Every 2026 alpha customer who is live on RTI/504 becomes an upgrade target. Expansion ARR = (eligible logos × adopt rate × avg lift per district). The Moderate scenario matches the deck ($77K) using 17 logos × 45% × $10,065 lift.<br>
+    <strong>Wall ISD proof point:</strong> Added RTI module to an existing 504 contract in Year 1 — ARR lifted from $9,130 → $14,416, a 158% NRR. This is the land-and-expand motion at work before IEP/LPAC even exist.<br>
+    <strong>Max expansion lift:</strong> Full bundle upgrade (RTI + 504 + IEP + LPAC) goes from $6,961 avg to $20,542 avg — a $13,581 lift. The Moderate scenario assumes districts add IEP + partial LPAC at $10,065 lift. Adjust adopt rate and lift above to model your assumptions.<br>
+    <strong>Flowing to FY27 total:</strong> The stats bar "FY27 ARR" now includes the Moderate expansion ($${modExp.expansionARR.toLocaleString()}) added to the rep-quota model total.`;
+}
+
+
 function renderQuota(){
   const{fyEnd}=getParams();
 
@@ -934,11 +2603,11 @@ function renderQuota(){
 
   // Totals row
   const deltaClass=delta<0?'neg':delta>0?'pos':'';
-  const deltaSign=delta>=0?'+':'';
+  const deltaSign=delta>0?'+':delta<0?'-':'';
   document.getElementById('quotaTotals').innerHTML=`
     <div class="qt"><div class="qt-label">Base plan total</div><div class="qt-value">$6.84M</div><div class="qt-sub">From mid-year reforecast model</div></div>
     <div class="qt"><div class="qt-label">Current plan total</div><div class="qt-value" style="color:${delta<-50000?'#f87171':delta>50000?'#4ade80':'#fbbf24'}">${fmtK(totalComputed)}</div><div class="qt-sub">Based on current hire dates</div></div>
-    <div class="qt"><div class="qt-label">Delta vs base</div><div class="qt-value qt-delta ${deltaClass}">${deltaSign}${fmtK(delta)}</div><div class="qt-sub">${deltaSign}${Math.abs(pct)}% vs model</div></div>
+    <div class="qt"><div class="qt-label">Delta vs base</div><div class="qt-value qt-delta ${deltaClass}">${delta>0?'+':''}${fmtK(delta)}</div><div class="qt-sub">${deltaSign}${Math.abs(pct)}% vs model</div></div>
     <div class="qt"><div class="qt-label">FY end</div><div class="qt-value" style="font-size:15px;color:var(--muted)">${MN[+fyEnd.split('-')[1]-1]} ${fyEnd.split('-')[0]}</div><div class="qt-sub">Change in top controls</div></div>`;
 
   // Table
@@ -957,7 +2626,7 @@ function renderQuota(){
   let tb=`<tbody>`;
   repQuotas.forEach((r,i)=>{
     const d=r.computed-r.baseFY27;
-    const dSign=d>=0?'+':'';
+    const dSign=d>0?'+':'';
     const dClass=d<-5000?'db-neg':d>5000?'db-pos':'db-flat';
     const typeColor=r.type==='Velocity'?'#fbbf24':'#8abde8';
 
@@ -977,7 +2646,7 @@ function renderQuota(){
       <td style="font-weight:600;color:${REP_COLORS[i]}">${r.name}</td>
       <td style="color:var(--muted);font-size:11px">${r.territory}</td>
       <td><span style="font-size:10px;font-weight:600;color:${typeColor}">${r.type}</span></td>
-      <td><input type="month" class="hire-input" value="${r.hire}" onchange="reps[${i}].hire=this.value;reps[${i}].status=reps[${i}].status==='active'?'active':'planned';renderAll()"></td>
+      <td><input type="month" class="hire-input" value="${r.hire}" onchange="reps[${i}].hire=this.value;reps[${i}].status=reps[${i}].status==='active'?'active':'planned';clearPipelineCache();renderAll()"></td>
       <td class="qval">${fmtK(r.avgACV)}</td>
       <td class="qval">${r.dealsMo}</td>
       <td class="qval">${fmtK(r.ssQuota)}</td>
@@ -999,14 +2668,16 @@ function renderQuota(){
     <td></td>
     <td class="qval">${fmtK(totalBase)}</td>
     <td class="qval ${totalComputed<totalBase*0.95?'gap':'ok'}">${fmtK(totalComputed)}</td>
-    <td><span class="delta-badge ${delta<-5000?'db-neg':delta>5000?'db-pos':'db-flat'}">${deltaSign}${fmtK(delta)}</span></td>
+    <td><span class="delta-badge ${delta<-5000?'db-neg':delta>5000?'db-pos':'db-flat'}">${delta>0?'+':''}${fmtK(delta)}</span></td>
   </tr></tbody>`;
 
   document.getElementById('quotaTable').innerHTML=th+tb;
+  const convRate=Math.round(getPipelineConversionRate()*100);
   document.getElementById('rampNote').innerHTML=`
-    <strong>Ramp curve (education hire):</strong> Base shape from deck slide 25 — Month 1 = 35% · Month 2 = 65% · Month 3 = 92% · Month 4+ = 100%. The curve <strong>scales dynamically</strong> with your training + ramp day settings in the top controls — see the full breakdown in the Monthly ARR Build tab.<br>
-    <strong>Buying-season multiplier:</strong> ${seasonalityEnabled()?'<span style="color:#4ade80">ON</span> — monthly figures are also adjusted for Texas district buying patterns (STAAR testing months ×0.70–0.85, strong buying months ×1.10–1.15). Toggle off in the top controls to see ramp-only figures.':'<span style="color:#f87171">OFF</span> — figures reflect ramp curve only, with no seasonal adjustment. Toggle on in the top controls to factor in district buying patterns.'}<br>
-    <strong>How to use:</strong> Change any hire date in the "Hire date" column to see FY2027 contribution update live. A 3-month Dallas Metro slip costs ~$455K per the sensitivity model (before seasonality).`;
+    <strong>Pipeline build-up model:</strong> Each rep's FY27 contribution is driven by a simulated <strong>pipeline balance</strong>, not just a closing-ramp %. Reps generate pipeline faster than they close (Mo1=50%, Mo2=80%, Mo3+=100% of steady-state generation), and <strong>${convRate}% of the balance converts to closed ARR each month</strong> (editable in the top controls as "Pipeline conv. %/mo"). This means a rep hired earlier in 2026 enters FY27 with a larger pipeline balance and ramps to steady-state ARR faster than a later hire — even if their closing-skill ramp curve is identical.<br>
+    <strong>Closing-skill ramp curve:</strong> Base shape from deck slide 25 — Month 1 = 35% · Month 2 = 65% · Month 3 = 92% · Month 4+ = 100%, scales with training + ramp day settings. This still appears below as a reference, but FY27 totals are now driven by the pipeline balance above. See the full monthly breakdown in the Monthly ARR Build tab.<br>
+    <strong>Buying-season multiplier:</strong> ${seasonalityEnabled()?'<span style="color:#4ade80">ON</span> — monthly figures are also adjusted for Texas district buying patterns (STAAR testing months ×0.70–0.85, strong buying months ×1.10–1.15). Toggle off in the top controls to see pipeline-only figures.':'<span style="color:#f87171">OFF</span> — figures reflect the pipeline model only, with no seasonal adjustment.'}<br>
+    <strong>How to use:</strong> Change any hire date in the "Hire date" column to see FY2027 contribution update live — earlier hires now show a meaningfully larger FY27 contribution due to pipeline lead time. For 2026 revenue, see the <strong>2026 Forecast</strong> tab.`;
 }
 
 // ── STATS BAR ────────────────────────────────────────────────────────────────
@@ -1017,9 +2688,13 @@ function renderStats(){
   const nowTraining=repData.filter(r=>r.status==='training').length;
   const nowPlanned=repData.filter(r=>r.status==='planned').length;
   const totalComputed=reps.reduce((s,r)=>s+computeFY27Contribution(r,fyEnd),0);
+  const expansionMod = computeExpansionARR('moderate').expansionARR;
+  const totalWithExpansion = totalComputed + expansionMod;
   const delta=totalComputed-reps.reduce((s,r)=>s+r.baseFY27,0);
-  const dSign=delta>=0?'+':'';
+  const dSign=delta>0?'+':'';
   const dColor=delta<-50000?'#f87171':delta>50000?'#4ade80':'#fbbf24';
+
+  const fy26Mod=computeFY26Scenario('moderate');
 
   const stats=getGAEvents().map(ev=>{
     const gd=toD(ev.date);
@@ -1030,8 +2705,10 @@ function renderStats(){
 
   document.getElementById('statsBar').innerHTML=`
     <div class="stat-card"><div class="stat-label">Today — Jun 2026</div><div class="stat-value">${repData.length}</div><div class="stat-sub">${nowRamped} ramped · ${nowTraining} training · ${nowPlanned} planned</div></div>
+    <div class="stat-card"><div class="stat-label">2026 ARR (Moderate)</div><div class="stat-value" style="color:#34d399">${fmtK(fy26Mod.total2026)}</div><div class="stat-sub">Partial-year, Aug–Dec · see 2026 Forecast tab</div></div>
     ${stats.join('')}
-    <div class="stat-card"><div class="stat-label">FY27 ARR — current plan</div><div class="stat-value" style="color:${dColor}">${fmtK(totalComputed)}</div><div class="stat-sub">${dSign}${fmtK(delta)} vs base model</div></div>`;
+    <div class="stat-card"><div class="stat-label">FY27 — new business</div><div class="stat-value" style="color:${dColor}">${fmtK(totalComputed)}</div><div class="stat-sub">${dSign}${fmtK(delta)} vs base model</div></div>
+    <div class="stat-card"><div class="stat-label">FY27 — incl. expansion</div><div class="stat-value" style="color:#f472b6">${fmtK(totalWithExpansion)}</div><div class="stat-sub">+${fmtK(expansionMod)} expansion (Moderate · 17 alphas)</div></div>`;
 }
 
 // ── SWIMLANE ─────────────────────────────────────────────────────────────────
@@ -1286,7 +2963,7 @@ function renderRepEditor(){
     h+=`<div class="erow" style="border-left:3px solid ${sc}">
       <div class="ecg"><label>Rep name</label><input type="text" value="${r.name}" onchange="reps[${i}].name=this.value;renderAll()"></div>
       <div class="ecg"><label>Territory</label><input type="text" value="${r.territory}" onchange="reps[${i}].territory=this.value;renderAll()"></div>
-      <div class="ecg"><label>Hire month</label><input type="month" value="${r.hire}" onchange="reps[${i}].hire=this.value;renderAll()"></div>
+      <div class="ecg"><label>Hire month</label><input type="month" value="${r.hire}" onchange="reps[${i}].hire=this.value;clearPipelineCache();renderAll()"></div>
       <div class="ecg"><label>Avg ACV ($)</label><input type="text" inputmode="numeric" value="${fmtMoney(r.avgACV)}" onfocus="this.value=${r.avgACV}" onblur="reps[${i}].avgACV=parseMoney(this.value);this.value=fmtMoney(reps[${i}].avgACV);renderAll()" onkeydown="if(event.key==='Enter')this.blur()" style="width:90px"></div>
       <div class="ecg"><label>Deals/mo</label><input type="number" value="${r.dealsMo}" step="0.1" onchange="reps[${i}].dealsMo=+this.value;renderAll()"></div>
       <div class="ecg"><label>SS Quota ($)</label><input type="text" inputmode="numeric" value="${fmtMoney(r.ssQuota)}" onfocus="this.value=${r.ssQuota}" onblur="reps[${i}].ssQuota=parseMoney(this.value);this.value=fmtMoney(reps[${i}].ssQuota);renderAll()" onkeydown="if(event.key==='Enter')this.blur()" style="width:100px"></div>
@@ -1317,15 +2994,36 @@ function seasonalityEnabled(){
   return el ? el.checked : true;
 }
 
+// ── PIPELINE SIMULATION CACHE ────────────────────────────────────────────────
+// simulateRepPipeline is O(months-since-hire) per call; without caching, calling
+// it for every month in a range becomes O(n^2). We cache the full simulation per
+// rep, keyed by a fingerprint of the inputs that affect it (hire date, status,
+// ssQuota, training/ramp days, conversion rate). Cache is invalidated whenever
+// any of those change.
+let _pipelineCache = {};
+function getRepPipelineSeries(rep, targetMonthMk){
+  const fingerprint = [
+    rep.hire, rep.status, rep.ssQuota,
+    document.getElementById('trainDays').value,
+    document.getElementById('rampDays').value,
+    getPipelineConversionRate(),
+  ].join('|');
+  const cacheKey = (rep.name||rep.hire)+'::'+fingerprint;
+  let cached = _pipelineCache[cacheKey];
+  if (!cached || cached.maxMonth < targetMonthMk) {
+    cached = {series: simulateRepPipeline(rep, targetMonthMk), maxMonth: targetMonthMk};
+    _pipelineCache[cacheKey] = cached;
+  }
+  return cached.series;
+}
+function clearPipelineCache(){ _pipelineCache = {}; }
+
 function getRepMonthlyARR(rep, monthMk) {
-  const monthlySSARR = rep.ssQuota / 12;
   const seasonMult = seasonalityEnabled() ? getSeasonMultiplier(monthMk) : 1.0;
-  if (rep.status === 'active') return monthlySSARR * seasonMult;
-  if (monthMk < rep.hire) return 0;
-  const {y:hy, m:hm} = ym(rep.hire);
-  const {y:my, m:mm} = ym(monthMk);
-  const moIdx = (my - hy) * 12 + (mm - hm);
-  return monthlySSARR * getRampPct(moIdx) * seasonMult;
+  const series = getRepPipelineSeries(rep, monthMk);
+  const entry = series[monthMk];
+  if (!entry) return 0;
+  return entry.arr * seasonMult;
 }
 
 // ── SEASONALITY MULTIPLIER EDITOR ────────────────────────────────────────────
@@ -1387,18 +3085,25 @@ function setAllSeasonMultipliers(v){
 
 function renderMonthly() {
   const fyEnd = document.getElementById('fyEnd').value;
+  const monthlyStart = document.getElementById('monthlyStart').value;
   const viewMode = document.getElementById('monthlyView').value;
 
-  // Months Jan 2027 → FY end
+  // Months from Monthly-view-start → FY end
   const months = [];
-  let cy = 2027, cm = 1;
-  while (mk(cy, cm) <= fyEnd) {
-    months.push(mk(cy, cm));
-    const n = addM(cy, cm, 1); cy = n.y; cm = n.m;
+  {
+    const {y:sy,m:sm} = ym(monthlyStart);
+    let cy=sy, cm=sm;
+    while (mk(cy, cm) <= fyEnd) {
+      months.push(mk(cy, cm));
+      const n = addM(cy, cm, 1); cy = n.y; cm = n.m;
+    }
   }
   if (!months.length) return;
 
-  // Per-rep per-month matrix (ARR values)
+  // Which displayed months count toward the FY27 target (Jan 2027+)
+  const isFYMonth = months.map(mo => mo >= '2027-01');
+
+  // Per-rep per-month matrix (ARR values) — getRepMonthlyARR already returns 0 before hire
   const matrix = reps.map(r => months.map(mo => Math.round(getRepMonthlyARR(r, mo))));
   // Per-rep per-month ramp %
   const rampMatrix = reps.map(r => months.map(mo => {
@@ -1410,9 +3115,17 @@ function renderMonthly() {
     return Math.round(getRampPct(moIdx) * 100);
   }));
 
+  // Per-rep per-month pipeline balance (from the balance simulation)
+  const balanceMatrix = reps.map(r => months.map(mo => {
+    if (mo < r.hire && r.status !== 'active') return null;
+    const series = getRepPipelineSeries(r, mo);
+    const entry = series[mo];
+    return entry ? Math.round(entry.balance) : null;
+  }));
+
   const colTotals = months.map((_,mi) => matrix.reduce((s,row) => s+row[mi], 0));
   let running = 0;
-  const cumTotals = colTotals.map(v => { running += v; return running; });
+  const cumTotals = colTotals.map((v,mi) => { if(isFYMonth[mi]) running += v; return running; });
   const TARGET_MONTHLY = 591667;
   const TARGET_ANNUAL  = 7100000;
 
@@ -1423,7 +3136,7 @@ function renderMonthly() {
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, W, H);
-  const PAD = {top:28, right:90, bottom:40, left:64};
+  const PAD = {top:28, right:90, bottom:48, left:64};
   const chartW = W - PAD.left - PAD.right;
   const chartH = H - PAD.top - PAD.bottom;
   const N = months.length;
@@ -1449,10 +3162,12 @@ function renderMonthly() {
   months.forEach((mo, mi) => {
     const x = xOf(mi);
     const isSel = mo === selectedMonth;
+    const preFY = !isFYMonth[mi];
     if (viewMode === 'cumulative') {
       const val = cumTotals[mi];
       const bh = (val/maxVal)*chartH;
       ctx.fillStyle = isSel ? '#34d399' : 'rgba(52,211,153,0.5)';
+      if (preFY) { ctx.fillStyle = 'rgba(122,155,181,0.15)'; }
       ctx.fillRect(x, yOf(val), barW, bh);
       if (isSel) { ctx.strokeStyle='#34d399'; ctx.lineWidth=1.5; ctx.strokeRect(x,yOf(val),barW,bh); }
     } else {
@@ -1460,25 +3175,40 @@ function renderMonthly() {
       reps.forEach((r,ri) => {
         const val = matrix[ri][mi]; if (val<=0) return;
         const sh = (val/maxVal)*chartH; yBase -= sh;
-        ctx.fillStyle = REP_COLORS[ri] + (isSel?'ff':'c0');
+        ctx.fillStyle = REP_COLORS[ri] + (isSel?'ff':(preFY?'55':'c0'));
         ctx.fillRect(x, yBase, barW, sh);
       });
       if (isSel) { ctx.strokeStyle='rgba(255,255,255,0.8)'; ctx.lineWidth=1.5; const th=(colTotals[mi]/maxVal)*chartH; ctx.strokeRect(x,PAD.top+chartH-th,barW,th); }
     }
     // Month label
-    const {m:mm2} = ym(mo);
-    ctx.fillStyle = isSel ? '#fff' : '#7a9bb5';
+    const {y:yy2,m:mm2} = ym(mo);
+    ctx.fillStyle = isSel ? '#fff' : (preFY ? 'rgba(122,155,181,0.6)' : '#7a9bb5');
     ctx.textAlign = 'center';
     ctx.font = isSel ? 'bold 10px Segoe UI,sans-serif' : '10px Segoe UI,sans-serif';
     ctx.fillText(MN[mm2-1], x+barW/2, H-PAD.bottom+13);
+    if (mm2===1 || mi===0) {
+      ctx.font = '8px Segoe UI,sans-serif';
+      ctx.fillText("'"+String(yy2).slice(2), x+barW/2, H-PAD.bottom+24);
+    }
     // Value on top
     const tv = viewMode==='cumulative' ? cumTotals[mi] : colTotals[mi];
     if (tv>0 && barW>20) {
-      ctx.fillStyle = isSel?'#fff':'rgba(255,255,255,0.55)';
+      ctx.fillStyle = isSel?'#fff':(preFY?'rgba(255,255,255,0.3)':'rgba(255,255,255,0.55)');
       ctx.font = '9px Segoe UI,sans-serif';
       ctx.fillText(fmtK(Math.round(tv)), x+barW/2, yOf(tv)-4);
     }
   });
+
+  // FY27 boundary line
+  const fy27StartIdx = isFYMonth.indexOf(true);
+  if (fy27StartIdx > 0) {
+    const bx = xOf(fy27StartIdx) - 2;
+    ctx.strokeStyle = 'rgba(167,139,250,0.5)'; ctx.lineWidth = 1.5; ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.moveTo(bx, PAD.top-4); ctx.lineTo(bx, H-PAD.bottom+2); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#a78bfa'; ctx.font = 'bold 9px Segoe UI,sans-serif'; ctx.textAlign='left';
+    ctx.fillText('FY27 starts', bx+3, PAD.top+10);
+  }
 
   // Target line
   const tval = viewMode==='cumulative' ? TARGET_ANNUAL : TARGET_MONTHLY;
@@ -1505,12 +3235,13 @@ function renderMonthly() {
   document.getElementById('monthlyLegend').innerHTML = leg;
 
   // ── Full Grid ─────────────────────────────────────────────────────────────
-  renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals);
+  renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals, isFYMonth, balanceMatrix);
 }
 
-function renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals) {
+function renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals, isFYMonth, balanceMatrix) {
   const TARGET_MONTHLY = 591667;
   const wrap = document.getElementById('monthlyGridWrap');
+  const fyMonthCount = isFYMonth.filter(Boolean).length;
 
   // ── Ramp % table ──────────────────────────────────────────────────────────
   const totalMonths = Math.ceil((+document.getElementById('trainDays').value + +document.getElementById('rampDays').value) / 30);
@@ -1539,19 +3270,59 @@ function renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals) {
   }
   rampHtml += `</tr></tbody></table></div></div>`;
 
-  // ── Per-rep monthly % table ───────────────────────────────────────────────
-  let pctHtml = `
+  // ── Pipeline balance table ────────────────────────────────────────────────
+  const convRatePct = Math.round(getPipelineConversionRate()*100);
+  let balanceHtml = `
   <div style="margin-bottom:24px">
-    <div style="font-size:11px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
-      Ramp % per rep per month — FY2027
+    <div style="font-size:11px;font-weight:700;color:#fb923c;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
+      Pipeline balance per rep per month
+      <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:8px">Accumulated pipeline (demos/proposals not yet closed) · ${convRatePct}% converts to ARR each month · drives the $ table below</span>
     </div>
     <div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:11px;min-width:700px;width:100%">
     <thead><tr>
       <th style="padding:6px 10px;text-align:left;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--border2);min-width:140px;position:sticky;left:0">Rep</th>`;
-  months.forEach(mo => {
+  months.forEach((mo,mi) => {
     const {y,m} = ym(mo);
     const isQ = m===1||m===4||m===7||m===10;
-    pctHtml += `<th style="padding:6px 8px;text-align:center;background:${isQ?'rgba(26,127,212,.15)':'var(--navy3)'};color:${isQ?'#7bbfe8':'var(--muted)'};font-size:10px;border:1px solid var(--border2);white-space:nowrap">${MN[m-1]}<br><span style="font-size:9px;opacity:.7">${y}</span></th>`;
+    const pre = !isFYMonth[mi];
+    const bg = pre ? 'rgba(255,255,255,.02)' : (isQ?'rgba(26,127,212,.15)':'var(--navy3)');
+    const col = pre ? 'rgba(122,155,181,.5)' : (isQ?'#7bbfe8':'var(--muted)');
+    balanceHtml += `<th style="padding:6px 8px;text-align:right;background:${bg};color:${col};font-size:10px;border:1px solid var(--border2);white-space:nowrap${pre?';font-style:italic':''}">${MN[m-1]}<br><span style="font-size:9px;opacity:.7">${y}</span></th>`;
+  });
+  balanceHtml += `</tr></thead><tbody>`;
+  reps.forEach((r,ri) => {
+    balanceHtml += `<tr><td style="padding:7px 10px;font-weight:600;color:${REP_COLORS[ri]};background:var(--navy2);border:1px solid var(--border);position:sticky;left:0">${r.name}<br><span style="font-size:9px;color:var(--muted);font-weight:400">${r.status==='active'?'Steady-state':'Hired '+r.hire}</span></td>`;
+    months.forEach((mo,mi) => {
+      const bal = balanceMatrix[ri][mi];
+      const pre = !isFYMonth[mi];
+      const dimStyle = pre ? 'opacity:.5;' : '';
+      if (bal === null) {
+        balanceHtml += `<td style="padding:7px 8px;text-align:right;color:var(--muted);background:rgba(255,255,255,.01);border:1px solid var(--border);font-size:10px;${dimStyle}">—</td>`;
+      } else {
+        balanceHtml += `<td style="padding:7px 8px;text-align:right;background:rgba(251,146,60,.08);color:#fb923c;font-weight:500;border:1px solid var(--border);font-variant-numeric:tabular-nums;font-size:11px;${dimStyle}">${fmtK(bal)}</td>`;
+      }
+    });
+    balanceHtml += `</tr>`;
+  });
+  balanceHtml += `</tbody></table></div></div>`;
+
+  // ── Per-rep monthly % table ───────────────────────────────────────────────
+  let pctHtml = `
+  <div style="margin-bottom:24px">
+    <div style="font-size:11px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
+      Ramp % per rep per month
+      <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:8px">Months before FY27 (dimmed) show ramp progress leading into the fiscal year</span>
+    </div>
+    <div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:11px;min-width:700px;width:100%">
+    <thead><tr>
+      <th style="padding:6px 10px;text-align:left;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--border2);min-width:140px;position:sticky;left:0">Rep</th>`;
+  months.forEach((mo,mi) => {
+    const {y,m} = ym(mo);
+    const isQ = m===1||m===4||m===7||m===10;
+    const pre = !isFYMonth[mi];
+    const bg = pre ? 'rgba(255,255,255,.02)' : (isQ?'rgba(26,127,212,.15)':'var(--navy3)');
+    const col = pre ? 'rgba(122,155,181,.5)' : (isQ?'#7bbfe8':'var(--muted)');
+    pctHtml += `<th style="padding:6px 8px;text-align:center;background:${bg};color:${col};font-size:10px;border:1px solid var(--border2);white-space:nowrap${pre?';font-style:italic':''}">${MN[m-1]}<br><span style="font-size:9px;opacity:.7">${y}</span></th>`;
   });
   pctHtml += `</tr></thead><tbody>`;
   // Seasonality band row
@@ -1567,12 +3338,14 @@ function renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals) {
     pctHtml += `<tr><td style="padding:7px 10px;font-weight:600;color:${REP_COLORS[ri]};background:var(--navy2);border:1px solid var(--border);position:sticky;left:0">${r.name}<br><span style="font-size:9px;color:var(--muted);font-weight:400">${r.territory}</span></td>`;
     months.forEach((mo,mi) => {
       const pct = rampMatrix[ri][mi];
+      const pre = !isFYMonth[mi];
+      const dimStyle = pre ? 'opacity:.55;' : '';
       if (pct === null) {
-        pctHtml += `<td style="padding:7px 8px;text-align:center;color:var(--muted);background:rgba(255,255,255,.01);border:1px solid var(--border);font-size:10px">—</td>`;
+        pctHtml += `<td style="padding:7px 8px;text-align:center;color:var(--muted);background:rgba(255,255,255,.01);border:1px solid var(--border);font-size:10px;${dimStyle}">—</td>`;
       } else {
         const bg = pct>=100?'rgba(22,163,74,.18)':pct>=80?'rgba(52,211,153,.1)':pct>=50?'rgba(251,191,36,.12)':'rgba(155,127,232,.12)';
         const col = pct>=100?'#4ade80':pct>=80?'#34d399':pct>=50?'#fbbf24':'#c4b0f5';
-        pctHtml += `<td style="padding:7px 8px;text-align:center;background:${bg};color:${col};font-weight:700;border:1px solid var(--border);font-size:11px">${pct}%</td>`;
+        pctHtml += `<td style="padding:7px 8px;text-align:center;background:${bg};color:${col};font-weight:700;border:1px solid var(--border);font-size:11px;${dimStyle}">${pct}%</td>`;
       }
     });
     pctHtml += `</tr>`;
@@ -1583,18 +3356,21 @@ function renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals) {
   let dollarHtml = `
   <div>
     <div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
-      Monthly quota ($) per rep — FY2027
-      <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:8px">Ramp-adjusted · steady-state quota ÷ 12 × ramp % ${seasonalityEnabled()?'× buying-season multiplier':'(buying-season multiplier OFF)'}</span>
+      Monthly ARR per rep (pipeline-balance model)
+      <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:8px">Pipeline balance × ${convRatePct}% conversion/mo ${seasonalityEnabled()?'× buying-season multiplier':'(buying-season multiplier OFF)'} · pre-FY27 months dimmed, excluded from FY27 Total</span>
     </div>
     <div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:11px;min-width:700px;width:100%">
     <thead><tr>
       <th style="padding:6px 10px;text-align:left;background:var(--navy3);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--border2);min-width:140px;position:sticky;left:0">Rep / SS quota</th>`;
-  months.forEach(mo => {
+  months.forEach((mo,mi) => {
     const {y,m} = ym(mo);
     const isQ = m===1||m===4||m===7||m===10;
-    dollarHtml += `<th style="padding:6px 8px;text-align:right;background:${isQ?'rgba(26,127,212,.15)':'var(--navy3)'};color:${isQ?'#7bbfe8':'var(--muted)'};font-size:10px;border:1px solid var(--border2);white-space:nowrap">${MN[m-1]}<br><span style="font-size:9px;opacity:.7">${y}</span></th>`;
+    const pre = !isFYMonth[mi];
+    const bg = pre ? 'rgba(255,255,255,.02)' : (isQ?'rgba(26,127,212,.15)':'var(--navy3)');
+    const col = pre ? 'rgba(122,155,181,.5)' : (isQ?'#7bbfe8':'var(--muted)');
+    dollarHtml += `<th style="padding:6px 8px;text-align:right;background:${bg};color:${col};font-size:10px;border:1px solid var(--border2);white-space:nowrap${pre?';font-style:italic':''}">${MN[m-1]}<br><span style="font-size:9px;opacity:.7">${y}</span></th>`;
   });
-  dollarHtml += `<th style="padding:6px 10px;text-align:right;background:var(--navy3);color:var(--muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--border2)">FY Total</th>`;
+  dollarHtml += `<th style="padding:6px 10px;text-align:right;background:var(--navy3);color:var(--muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--border2)">FY27 Total</th>`;
   dollarHtml += `</tr></thead><tbody>`;
 
   // Seasonality band row
@@ -1609,17 +3385,19 @@ function renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals) {
 
 
   reps.forEach((r,ri) => {
-    const fyTotal = months.reduce((s,_,mi)=>s+matrix[ri][mi],0);
+    const fyTotal = months.reduce((s,_,mi)=>isFYMonth[mi]?s+matrix[ri][mi]:s,0);
     dollarHtml += `<tr><td style="padding:7px 10px;font-weight:600;color:${REP_COLORS[ri]};background:var(--navy2);border:1px solid var(--border);position:sticky;left:0">${r.name}<br><span style="font-size:9px;color:var(--muted);font-weight:400">${fmtK(r.ssQuota)}/yr SS</span></td>`;
     months.forEach((mo,mi) => {
       const val = matrix[ri][mi];
       const pct = rampMatrix[ri][mi];
+      const pre = !isFYMonth[mi];
+      const dimStyle = pre ? 'opacity:.5;' : '';
       if (pct === null) {
-        dollarHtml += `<td style="padding:7px 8px;text-align:right;color:var(--muted);background:rgba(255,255,255,.01);border:1px solid var(--border);font-size:10px">—</td>`;
+        dollarHtml += `<td style="padding:7px 8px;text-align:right;color:var(--muted);background:rgba(255,255,255,.01);border:1px solid var(--border);font-size:10px;${dimStyle}">—</td>`;
       } else {
         const intensity = pct/100;
         const bg = `rgba(251,191,36,${(intensity*0.18).toFixed(2)})`;
-        dollarHtml += `<td style="padding:7px 8px;text-align:right;background:${bg};color:#e8edf2;font-weight:${pct>=100?'600':'400'};border:1px solid var(--border);font-variant-numeric:tabular-nums;font-size:11px">${fmtK(val)}</td>`;
+        dollarHtml += `<td style="padding:7px 8px;text-align:right;background:${bg};color:#e8edf2;font-weight:${pct>=100?'600':'400'};border:1px solid var(--border);font-variant-numeric:tabular-nums;font-size:11px;${dimStyle}">${fmtK(val)}</td>`;
       }
     });
     dollarHtml += `<td style="padding:7px 10px;text-align:right;font-weight:700;color:#fbbf24;background:rgba(251,191,36,.08);border:1px solid var(--border2);font-variant-numeric:tabular-nums">${fmtK(fyTotal)}</td></tr>`;
@@ -1627,43 +3405,55 @@ function renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals) {
 
   // Team total row
   dollarHtml += `<tr style="background:var(--navy3)">
-    <td style="padding:8px 10px;font-weight:700;color:var(--text);border:2px solid var(--border2);position:sticky;left:0;background:var(--navy3)">Team total<br><span style="font-size:9px;color:var(--muted);font-weight:400">$591K/mo target</span></td>`;
+    <td style="padding:8px 10px;font-weight:700;color:var(--text);border:2px solid var(--border2);position:sticky;left:0;background:var(--navy3)">Team total<br><span style="font-size:9px;color:var(--muted);font-weight:400">$591K/mo target (FY27)</span></td>`;
   months.forEach((_,mi) => {
     const val = colTotals[mi];
+    const pre = !isFYMonth[mi];
+    if (pre) {
+      dollarHtml += `<td style="padding:8px 8px;text-align:right;font-weight:700;color:var(--muted);background:rgba(255,255,255,.02);border:2px solid var(--border2);font-variant-numeric:tabular-nums;opacity:.6">${fmtK(val)}</td>`;
+      return;
+    }
     const pctOfTarget = val / TARGET_MONTHLY;
     const col = pctOfTarget>=0.95?'#4ade80':pctOfTarget>=0.70?'#fbbf24':'#f87171';
     const bg = pctOfTarget>=0.95?'rgba(22,163,74,.15)':pctOfTarget>=0.70?'rgba(251,191,36,.12)':'rgba(220,38,38,.12)';
     dollarHtml += `<td style="padding:8px 8px;text-align:right;font-weight:700;color:${col};background:${bg};border:2px solid var(--border2);font-variant-numeric:tabular-nums">${fmtK(val)}</td>`;
   });
-  const fyGrandTotal = colTotals.reduce((s,v)=>s+v,0);
-  const gtColor = fyGrandTotal>=TARGET_MONTHLY*months.length*0.95?'#4ade80':'#fbbf24';
+  const fyGrandTotal = colTotals.reduce((s,v,mi)=>isFYMonth[mi]?s+v:s,0);
+  const gtColor = fyMonthCount>0 && fyGrandTotal>=TARGET_MONTHLY*fyMonthCount*0.95?'#4ade80':'#fbbf24';
   dollarHtml += `<td style="padding:8px 10px;text-align:right;font-weight:700;color:${gtColor};background:rgba(251,191,36,.12);border:2px solid var(--border2);font-variant-numeric:tabular-nums">${fmtK(fyGrandTotal)}</td></tr>`;
 
   // % of target row
-  dollarHtml += `<tr><td style="padding:6px 10px;font-size:10px;color:var(--muted);background:var(--navy2);border:1px solid var(--border);position:sticky;left:0;background:var(--navy2)">% of $591K target</td>`;
+  dollarHtml += `<tr><td style="padding:6px 10px;font-size:10px;color:var(--muted);background:var(--navy2);border:1px solid var(--border);position:sticky;left:0;background:var(--navy2)">% of $591K target (FY27 only)</td>`;
   months.forEach((_,mi) => {
+    const pre = !isFYMonth[mi];
+    if (pre) { dollarHtml += `<td style="padding:6px 8px;text-align:right;font-size:10px;color:var(--muted);background:rgba(255,255,255,.01);border:1px solid var(--border);opacity:.5">—</td>`; return; }
     const pct = Math.round(colTotals[mi]/TARGET_MONTHLY*100);
     const col = pct>=95?'#4ade80':pct>=70?'#fbbf24':'#f87171';
     dollarHtml += `<td style="padding:6px 8px;text-align:right;font-size:10px;font-weight:600;color:${col};background:rgba(255,255,255,.01);border:1px solid var(--border)">${pct}%</td>`;
   });
-  dollarHtml += `<td style="padding:6px 10px;text-align:right;font-size:10px;font-weight:600;color:${gtColor};background:rgba(255,255,255,.01);border:1px solid var(--border)">${Math.round(fyGrandTotal/(TARGET_MONTHLY*months.length)*100)}%</td></tr>`;
+  dollarHtml += `<td style="padding:6px 10px;text-align:right;font-size:10px;font-weight:600;color:${gtColor};background:rgba(255,255,255,.01);border:1px solid var(--border)">${fyMonthCount>0?Math.round(fyGrandTotal/(TARGET_MONTHLY*fyMonthCount)*100):0}%</td></tr>`;
 
   dollarHtml += `</tbody></table></div></div>`;
 
-  wrap.innerHTML = rampHtml + pctHtml + dollarHtml;
+  wrap.innerHTML = rampHtml + balanceHtml + pctHtml + dollarHtml;
 }
 
 // ── TABS ─────────────────────────────────────────────────────────────────────
-const TABS=['swimlane','quota','monthly','align','phases','reps','scenarios','howto'];
+const TABS=['swimlane','fy26','pipe','quota','monthly','align','phases','reps','bridge','sensitivity','scenarios','howto'];
 function howtoScroll(id){
   const el=document.getElementById(id);
   if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function showTab(t){
+  clearPipelineCache();
   TABS.forEach(id=>{document.getElementById('tab-'+id).style.display=id===t?'':'none'});
   document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',TABS[i]===t));
-  document.getElementById('statsBar').style.display=(t==='quota'||t==='swimlane'||t==='monthly')?'flex':'none';
+  document.getElementById('statsBar').style.display=(t==='quota'||t==='swimlane'||t==='monthly'||t==='pipe')?'flex':'none';
+  if(t==='fy26')renderFY26Forecast();
+  if(t==='pipe')renderPipelineRequired();
+  if(t==='bridge')renderBridge();
+  if(t==='sensitivity')renderSensitivity();
   if(t==='quota')renderQuota();
   if(t==='monthly')renderMonthly();
   if(t==='align')renderAlignment();
@@ -1673,9 +3463,14 @@ function showTab(t){
 }
 
 function renderAll(){
+  clearPipelineCache();
   renderStats();
   const active=TABS.find(id=>document.getElementById('tab-'+id).style.display!=='none')||'swimlane';
   if(active==='swimlane')renderSwimlane();
+  else if(active==='fy26')renderFY26Forecast();
+  else if(active==='pipe')renderPipelineRequired();
+  else if(active==='bridge')renderBridge();
+  else if(active==='sensitivity')renderSensitivity();
   else if(active==='quota')renderQuota();
   else if(active==='monthly')renderMonthly();
   else if(active==='align')renderAlignment();
