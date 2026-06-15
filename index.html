@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +40,7 @@ select:focus,input:focus{outline:1px solid var(--accent);border-color:var(--acce
 .tab-btn.t-phases.active{color:#c4b0f5;border-bottom-color:#c4b0f5}
 .tab-btn.t-reps.active{color:#8abde8;border-bottom-color:#8abde8}
 .tab-btn.t-howto.active{color:#f0f0f0;border-bottom-color:#f0f0f0}
+.tab-btn.t-summary.active{color:#5eead4;border-bottom-color:#5eead4}
 .tab-btn.t-bridge.active{color:#e879f9;border-bottom-color:#e879f9}
 .tab-btn.t-sensitivity.active{color:#f472b6;border-bottom-color:#f472b6}
 
@@ -136,6 +136,7 @@ table.swim{border-collapse:collapse;width:100%}
 .quota-table th{background:var(--navy3);padding:9px 12px;text-align:left;font-weight:600;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border2);white-space:nowrap}
 .quota-table th.r{text-align:right}
 .quota-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.quota-table td.r{text-align:right}
 .quota-table tr:last-child td{border-bottom:none}
 .quota-table tr:hover td{background:rgba(255,255,255,.025)}
 .quota-table .total-row td{background:var(--navy3);font-weight:700;border-top:2px solid var(--border2)}
@@ -316,7 +317,8 @@ table.swim{border-collapse:collapse;width:100%}
 </div>
 
 <div class="tab-row">
-  <button class="tab-btn active" onclick="showTab('swimlane')">Swimlane</button>
+  <button class="tab-btn t-summary active" onclick="showTab('summary')">★ Summary</button>
+  <button class="tab-btn" onclick="showTab('swimlane')">Swimlane</button>
   <button class="tab-btn t-fy26" onclick="showTab('fy26')">2026 Forecast</button>
   <button class="tab-btn t-pipe" onclick="showTab('pipe')">Pipeline Required</button>
   <button class="tab-btn t-quota" onclick="showTab('quota')">Quota &amp; ARR Impact</button>
@@ -332,7 +334,17 @@ table.swim{border-collapse:collapse;width:100%}
 
 <div class="stats-bar" id="statsBar"></div>
 
-<div id="tab-swimlane">
+<div id="tab-summary">
+  <div class="quota-area">
+    <div class="quota-header">
+      <h2 style="color:#5eead4">Executive Summary — FY27 Revenue Plan</h2>
+      <span class="fy-note">The headline, the gap, and the path to Target · all figures live from the current model state</span>
+    </div>
+    <div id="summaryContent"></div>
+  </div>
+</div>
+
+<div id="tab-swimlane" style="display:none">
   <div class="chart-area"><div id="chartWrap"></div></div>
   <div class="legend" id="legend"></div>
 </div>
@@ -397,6 +409,7 @@ table.swim{border-collapse:collapse;width:100%}
       <span class="fy-note">Contribution calculated from hire date + ramp curve &nbsp;·&nbsp; Source: Reforecast Model &nbsp;·&nbsp; Edit hire dates below or in Edit Reps tab</span>
     </div>
     <div class="quota-totals" id="quotaTotals"></div>
+    <div id="quotaPathBar" style="margin-bottom:14px"></div>
     <div class="quota-table-wrap"><table class="quota-table" id="quotaTable"></table></div>
     <div class="ramp-note" id="rampNote"></div>
   </div>
@@ -498,6 +511,7 @@ table.swim{border-collapse:collapse;width:100%}
 
     <div class="howto-toc">
       <a onclick="howtoScroll('hc-global')">Global controls</a>
+      <a onclick="howtoScroll('hc-summary')">★ Summary tab</a>
       <a onclick="howtoScroll('hc-model')">★ How the model works</a>
       <a onclick="howtoScroll('hc-swimlane')">Swimlane</a>
       <a onclick="howtoScroll('hc-fy26')">2026 Forecast</a>
@@ -522,6 +536,15 @@ table.swim{border-collapse:collapse;width:100%}
         <p><strong>Training days / Ramp days</strong> — how long a newly hired rep takes to become fully productive. Training is the onboarding period; Ramp is the period after training where productivity scales up gradually (see the ramp curve in Monthly ARR Build). These two numbers add together — e.g. 30 + 90 = 120 days to full productivity.</p>
         <p><strong>FY end</strong> — the fiscal year-end month used for the Quota and Monthly ARR Build calculations. Defaults to December 2027.</p>
         <p><strong>Apply buying-season multiplier</strong> — toggles whether the Texas district buying calendar (see below) adjusts the monthly ARR figures. On by default.</p>
+      </div>
+    </div>
+
+    <div class="howto-section" id="hc-summary">
+      <h3 style="color:#5eead4"><span class="dot" style="background:#5eead4"></span>★ Summary tab (the default landing view)</h3>
+      <div class="howto-body">
+        <p>This is what the tool opens on — the executive answer in one screen, designed for a CEO or board conversation. Everything on it is <strong>live from the current model state</strong>, so if you change a hire date or apply a scenario, the headline updates instantly.</p>
+        <p>It shows: the <strong>headline number</strong> (current-plan FY27 ARR incl. expansion) and where it sits versus Floor / Target / Upside; a <strong>position dot</strong> on the Floor→Upside scale; <strong>"The Ask"</strong> framed around earlier hiring; a per-rep table of what <strong>pulling each hire 2 months earlier</strong> adds to FY27; the <strong>full path to the $7.1M Target</strong> (which lever combinations clear it); and the <strong>cold-outreach proof point</strong> showing the pipeline engine already works.</p>
+        <p>Use it to open the conversation, then drill into the detail tabs (Quota, ARR Bridge, What-If) when someone asks "show me how." The headline figure here always matches the ARR Bridge and What-If baseline — there is one number, shown consistently everywhere.</p>
       </div>
     </div>
 
@@ -579,7 +602,8 @@ table.swim{border-collapse:collapse;width:100%}
       <h3 style="color:#fbbf24"><span class="dot" style="background:#fbbf24"></span>Quota &amp; ARR Impact</h3>
       <div class="howto-body">
         <p>Shows each rep's Avg ACV, Deals/mo, and Steady-State Quota (their full annual quota once fully ramped), alongside <strong>Base FY27</strong> (the original mid-year model figure) and <strong>Current FY27</strong> (live-calculated from the rep's hire date through the pipeline-balance model — the pipeline they build, ramp, and convert, adjusted by the buying-season multiplier if enabled).</p>
-        <p>Because FY27 now runs on the pipeline-balance engine, the <strong>Current FY27</strong> figure is systematically more conservative than the old straight-line ramp model, and it's far more sensitive to hire timing. You can edit a rep's <strong>hire date directly in this table</strong> — the totals, the delta vs. base model, and every other tab update immediately. This is the fastest way to test "what if this hire slips a month?" and watch the FY27 number move.</p>
+        <p>Because FY27 now runs on the pipeline-balance engine, the <strong>Current FY27</strong> figure is systematically more conservative than the old straight-line ramp model, and it's far more sensitive to hire timing. You can edit a rep's <strong>hire date directly in this table</strong> — the totals, the delta vs. base model, and every other tab update immediately. This is the fastest way to test "what if this hire slips a month?" and watch the FY27 number move. Under each hire date, the <strong>"base:" reference</strong> shows the original hire date the Base FY27 figure was calculated from — it turns amber when you've changed that rep's date, so you can always see what you've moved.</p>
+        <p><strong>"Apply Path to Target" button:</strong> one click builds the recommended route to the $7.1M Target — it pulls all planned hires forward 3 months and applies a +10% win rate (≈$7.24M, clearing Target). It also saves two scenarios, <strong>"Current Plan"</strong> and <strong>"Path to Target,"</strong> so you can open the Scenarios tab and compare them side by side. "Reset to current plan" snaps everything back to baseline.</p>
         <p>For 2026 revenue (as opposed to FY27 quota), see the <strong>2026 Forecast</strong> tab. For the pipeline each rep needs to hit these numbers, see <strong>Pipeline Required</strong>.</p>
       </div>
     </div>
@@ -657,6 +681,7 @@ table.swim{border-collapse:collapse;width:100%}
       <div class="howto-body">
         <p>The Scenarios tab lets you capture a full snapshot of the current state under a name you choose. A snapshot now captures <strong>everything</strong>: every phase date, every rep's hire date and quota, the global controls (including pipeline conversion rate), the season multipliers, the 2026 forecast assumptions, the expansion assumptions, the sales-cycle settings, the What-If levers, and the bridge churn/attrition inputs.</p>
         <p><strong>Save current as scenario</strong> — captures everything as it stands right now. Make changes anywhere (e.g. slip the Dallas Metro hire to January, or bump expansion to aggressive), save again under a different name, and you have two fully independent scenarios.</p>
+        <p><strong>Tip:</strong> the "Apply Path to Target" button on the Quota tab automatically creates two scenarios here — <strong>"Current Plan"</strong> (your baseline) and <strong>"Path to Target"</strong> (hires 3 months earlier + 10% win rate). Check both to see the side-by-side that makes the hiring case for your CEO.</p>
         <p><strong>Load</strong> — restores the tool to exactly that scenario's state across all eleven tabs. <strong>Update</strong> — overwrites a saved scenario with the current working state. <strong>Delete</strong> — removes it.</p>
         <p>Check <strong>2 or more scenarios</strong> to see a side-by-side comparison: 2026 ARR, FY27 new business, expansion ARR, FY27 incl. expansion, delta vs. base model, training/ramp settings, GA coverage, and each rep's hire date and FY27 contribution. Best/worst FY27 totals are highlighted green/red.</p>
         <p><strong>Export / Import</strong> — saves all scenarios to a <code>.json</code> file you can keep or share, and load them back later (scenarios aren't saved automatically when you close the file).</p>
@@ -719,6 +744,25 @@ let reps=[
   {id:7,name:'Velocity Rep #1',  territory:'Statewide',          hire:'2027-02',status:'planned', type:'Velocity', avgACV:11500, dealsMo:4.5, ssQuota:689000,  baseFY27:514000},
   {id:8,name:'Velocity Rep #2',  territory:'Statewide',          hire:'2027-04',status:'planned', type:'Velocity', avgACV:11500, dealsMo:4.5, ssQuota:689000,  baseFY27:399000},
 ];
+
+// Baseline hire dates — captured once at load so the Quota tab can always show
+// the original hire date that the "Base FY27" figure was calculated from,
+// even after the user changes a hire date.
+const BASE_HIRES = {};
+reps.forEach(r => { BASE_HIRES[r.name] = r.hire; });
+// Full original baseline (hire + quota) for the Quota tab's "Reset to current plan"
+const BASE_REPS = reps.map(r => ({name:r.name, hire:r.hire, status:r.status, ssQuota:r.ssQuota}));
+
+function resetToBaseline(){
+  BASE_REPS.forEach(br => {
+    const r = reps.find(x=>x.name===br.name);
+    if(r){ r.hire=br.hire; r.status=br.status; r.ssQuota=br.ssQuota; }
+  });
+  // reset sens levers too
+  sens = {gaMonthsEarlier:0,hireMonthsEarlier:0,winRateMult:1,dealSizeMult:1,pipeVolumeMult:1,salesCycleMult:1,moduleAdoptMult:1};
+  clearPipelineCache();
+  renderAll();
+}
 
 // Education hire ramp curve — dynamic based on ramp days setting
 // Base curve from deck slide 25: Mo1=35%, Mo2=65%, Mo3=92%, Mo4+=100% (4-month / ~120 day path)
@@ -1193,6 +1237,62 @@ function loadScenario(id){
   renderScenarios();
 }
 
+// ── PATH TO TARGET preset ─────────────────────────────────────────────────────
+// Constructs the recommended path to the $7.1M Target: pull all planned hires
+// forward 3 months + win rate +10%. Hits ~$7.24M. Saves as a named scenario
+// without disturbing current working state (captures a snapshot, mutates a copy).
+function buildPathToTargetSnapshot(){
+  // Build from the saved "Current Plan" baseline if it exists (so repeat clicks
+  // don't compound); otherwise from the current live state.
+  const baseline = scenarios.find(s=>s.name==='Current Plan');
+  const snap = baseline ? JSON.parse(JSON.stringify(baseline.snapshot)) : captureSnapshot();
+  // Pull planned reps' hires forward 3 months (active reps unchanged)
+  snap.reps.forEach(r=>{
+    if(r.status!=='active'){
+      const {y,m}=ym(r.hire);
+      const e=addM(y,m,-3);
+      let nh=mk(e.y,e.m);
+      if(nh<'2026-06') nh='2026-06';
+      r.hire=nh;
+    }
+  });
+  // Apply win-rate +10% to all reps' steady-state quota
+  snap.reps.forEach(r=>{ r.ssQuota=Math.round(r.ssQuota*1.10); });
+  return snap;
+}
+
+function savePathToTargetScenario(){
+  // Capture the CURRENT (clean) state as the Current Plan baseline FIRST,
+  // before any Path to Target mutation, so the comparison is valid.
+  if(!scenarios.find(s=>s.name==='Current Plan')){
+    scenarios.unshift({id:Date.now()-1, name:'Current Plan', savedAt:new Date().toISOString(), snapshot:captureSnapshot()});
+  }
+  // Build the Path to Target snapshot from the current clean state
+  const existing = scenarios.find(s=>s.name==='Path to Target');
+  const snap = buildPathToTargetSnapshot();
+  if(existing){
+    existing.snapshot = snap;
+    existing.savedAt = new Date().toISOString();
+    activeScenarioId = existing.id;
+  } else {
+    const sc = {id: Date.now(), name:'Path to Target', savedAt:new Date().toISOString(), snapshot:snap};
+    scenarios.push(sc);
+    activeScenarioId = sc.id;
+  }
+  renderScenarios();
+  return existing ? existing.id : activeScenarioId;
+}
+
+// Apply the Path to Target preset directly to the live model (for the Quota button)
+function applyPathToTarget(){
+  // Save scenarios FIRST (captures clean Current Plan + builds Path to Target),
+  // then apply Path to Target to the live model.
+  savePathToTargetScenario();
+  const ptScenario = scenarios.find(s=>s.name==='Path to Target');
+  applySnapshot(ptScenario.snapshot);
+  renderAll();
+}
+
 function updateScenario(id){
   const sc = scenarios.find(s=>s.id===id);
   if(!sc) return;
@@ -1471,6 +1571,134 @@ function computeBridge() {
     target: BRIDGE.target.arr,
     upside: BRIDGE.upside.arr,
   };
+}
+
+// ── EXECUTIVE SUMMARY TAB ─────────────────────────────────────────────────────
+function renderSummary() {
+  const fyEnd = document.getElementById('fyEnd').value;
+  const expansion = computeExpansionARR('moderate').expansionARR;
+  const newBiz = reps.reduce((s,r)=>s+computeFY27Contribution(r,fyEnd),0);
+  const total = newBiz + expansion;
+  const TARGET = BRIDGE.target.arr, FLOOR = BRIDGE.floor.arr, UPSIDE = BRIDGE.upside.arr;
+  const gap = TARGET - total;
+
+  // Live per-rep "pull hire 2 months earlier" deltas
+  const origHires = reps.map(r=>r.hire);
+  const baseNewBiz = newBiz;
+  const perRep = [];
+  reps.forEach((rep)=>{
+    if(rep.status==='active'){ return; }
+    const orig = rep.hire;
+    const {y,m} = ym(orig);
+    const e = addM(y,m,-2);
+    let nh = mk(e.y,e.m); if(nh<'2026-06') nh='2026-06';
+    rep.hire = nh; clearPipelineCache();
+    const d = reps.reduce((s,r)=>s+computeFY27Contribution(r,fyEnd),0) - baseNewBiz;
+    rep.hire = orig; clearPipelineCache();
+    perRep.push({name:rep.name, origHire:orig, newHire:nh, delta:Math.round(d)});
+  });
+  perRep.sort((a,b)=>b.delta-a.delta);
+
+  // All planned reps earlier (aggregate)
+  function shiftAll(months){
+    reps.forEach(r=>{ if(r.status!=='active'){ const {y,m}=ym(r.hire); const e=addM(y,m,-months); let nh=mk(e.y,e.m); if(nh<'2026-06')nh='2026-06'; r.hire=nh; }});
+    clearPipelineCache();
+    const v = reps.reduce((s,r)=>s+computeFY27Contribution(r,fyEnd),0) + expansion;
+    reps.forEach((r,i)=>r.hire=origHires[i]); clearPipelineCache();
+    return v;
+  }
+  const all2mo = shiftAll(2);
+  const all3mo = shiftAll(3);
+
+  const planColor = total >= TARGET*0.98 ? '#4ade80' : total >= FLOOR ? '#fbbf24' : '#f87171';
+  const planLabel = total >= UPSIDE*0.98 ? 'Approaching Upside' : total >= TARGET*0.98 ? 'On Target' : total >= FLOOR ? 'Above Floor' : 'Below Floor';
+
+  // Position on the Floor→Upside scale
+  const scaleMin = FLOOR*0.92, scaleMax = UPSIDE*1.02;
+  const pos = (v)=> Math.max(0,Math.min(100,(v-scaleMin)/(scaleMax-scaleMin)*100));
+
+  let perRepRows = perRep.map(p=>`
+    <tr><td style="font-weight:600">${p.name}</td>
+    <td style="color:var(--muted);font-size:11px">${p.origHire} → ${p.newHire}</td>
+    <td class="qval" style="color:#4ade80;font-weight:700">+${fmtK(p.delta)}</td></tr>`).join('');
+
+  document.getElementById('summaryContent').innerHTML = `
+  <!-- Headline band -->
+  <div style="background:linear-gradient(135deg,#0f1c2e,#1a2c44);border-radius:10px;padding:18px 22px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
+    <div style="max-width:440px;font-size:14px;line-height:1.5;color:#e8eef5">
+      The current hiring plan lands at <strong style="color:#5eead4">${fmtK(total)}</strong> in FY27 ARR — <strong style="color:${planColor}">${planLabel}</strong>. Hitting the <strong style="color:#5eead4">${fmtK(TARGET)} Target</strong> requires pulling hires forward; timing alone closes most of the gap.
+    </div>
+    <div style="display:flex;gap:22px;text-align:center">
+      <div><div style="font-size:26px;font-weight:700;color:#fbbf24">${fmtK(total)}</div><div style="font-size:9px;color:#9fb3c8;text-transform:uppercase;letter-spacing:.5px">Current Plan</div></div>
+      <div><div style="font-size:26px;font-weight:700;color:#4ade80">${fmtK(TARGET)}</div><div style="font-size:9px;color:#9fb3c8;text-transform:uppercase;letter-spacing:.5px">Target</div></div>
+      <div><div style="font-size:26px;font-weight:700;color:#f87171">${fmtK(gap)}</div><div style="font-size:9px;color:#9fb3c8;text-transform:uppercase;letter-spacing:.5px">Gap</div></div>
+    </div>
+  </div>
+
+  <!-- Position scale -->
+  <div style="margin-bottom:20px">
+    <div style="position:relative;height:40px;background:var(--navy2);border-radius:8px;border:1px solid var(--border)">
+      <div style="position:absolute;left:${pos(FLOOR)}%;top:0;bottom:0;width:1px;background:#f87171;opacity:.5"></div>
+      <div style="position:absolute;left:${pos(TARGET)}%;top:0;bottom:0;width:1px;background:#4ade80;opacity:.5"></div>
+      <div style="position:absolute;left:${pos(UPSIDE)}%;top:0;bottom:0;width:1px;background:#818cf8;opacity:.5"></div>
+      <div style="position:absolute;left:${pos(total)}%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:${planColor};border:2px solid #0f1c2e;box-shadow:0 0 0 3px ${planColor}44"></div>
+      <span style="position:absolute;left:${pos(FLOOR)}%;bottom:-15px;transform:translateX(-50%);font-size:9px;color:#f87171">Floor ${fmtK(FLOOR)}</span>
+      <span style="position:absolute;left:${pos(TARGET)}%;bottom:-15px;transform:translateX(-50%);font-size:9px;color:#4ade80">Target ${fmtK(TARGET)}</span>
+      <span style="position:absolute;left:${pos(UPSIDE)}%;bottom:-15px;transform:translateX(-50%);font-size:9px;color:#818cf8">Upside ${fmtK(UPSIDE)}</span>
+    </div>
+  </div>
+
+  <!-- The ask -->
+  <div style="border:1.5px solid #00C2A8;background:rgba(0,194,168,.06);border-radius:8px;padding:14px 16px;margin-bottom:20px">
+    <div style="font-size:12px;font-weight:700;color:#5eead4;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">The Ask</div>
+    <div style="font-size:13px;line-height:1.55;color:var(--text)">
+      Approve <strong style="color:#5eead4">pulling the planned 2026–27 hires forward by 2–3 months</strong>. It's the highest-leverage, most controllable action available — adds <strong style="color:#4ade80">${fmtK(all2mo-total)}–${fmtK(all3mo-total)}</strong> in FY27 ARR on its own, and gives every other improvement the runway to compound. Earlier hiring is a budget decision we control; win-rate gains are execution outcomes we can only influence.
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px">
+    <!-- Per-rep hiring impact -->
+    <div>
+      <div style="font-size:11px;font-weight:700;color:#5eead4;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Pull each hire 2 months earlier → FY27 gain</div>
+      <table class="quota-table" style="font-size:12px">
+        <thead><tr><th>Rep</th><th>Hire shift</th><th class="r">FY27 gain</th></tr></thead>
+        <tbody>
+          ${perRepRows}
+          <tr style="background:var(--navy3);font-weight:700"><td colspan="2">All planned reps, 2 mo. earlier</td><td class="qval" style="color:#4ade80">+${fmtK(all2mo-total)}</td></tr>
+          <tr style="background:var(--navy3);font-weight:700"><td colspan="2">All planned reps, 3 mo. earlier</td><td class="qval" style="color:#4ade80">+${fmtK(all3mo-total)}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Path to target -->
+    <div>
+      <div style="font-size:11px;font-weight:700;color:#5eead4;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">The full path to ${fmtK(TARGET)}</div>
+      <table class="quota-table" style="font-size:12px">
+        <thead><tr><th>Scenario</th><th class="r">FY27 ARR</th><th class="r">vs Target</th></tr></thead>
+        <tbody>
+          <tr><td>Current plan</td><td class="qval">${fmtK(total)}</td><td class="qval" style="color:#f87171">${fmtK(total-TARGET)}</td></tr>
+          <tr><td>+ Hire 2 mo. earlier</td><td class="qval">${fmtK(all2mo)}</td><td class="qval" style="color:#f87171">${fmtK(all2mo-TARGET)}</td></tr>
+          <tr><td>+ Hire 3 mo. earlier</td><td class="qval">${fmtK(all3mo)}</td><td class="qval" style="color:#f87171">${fmtK(all3mo-TARGET)}</td></tr>
+          <tr style="background:rgba(74,222,128,.08)"><td style="font-weight:700">Hire 3 mo. + win rate +10%</td><td class="qval" style="font-weight:700">$7.24M</td><td class="qval" style="color:#16a34a;font-weight:700">+$140K ✓</td></tr>
+          <tr style="background:rgba(74,222,128,.08)"><td style="font-weight:700">Hire 2 mo. + win +10% + deal +10%</td><td class="qval" style="font-weight:700">$7.69M</td><td class="qval" style="color:#16a34a;font-weight:700">+$590K ✓</td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:10px;color:var(--muted);margin-top:8px;line-height:1.5">Use the <strong style="color:#f472b6">What-If</strong> tab to model these live. Earlier hiring does ~60% of the work; modest 10% execution gains finish it.</div>
+    </div>
+  </div>
+
+  <!-- Proof point -->
+  <div style="background:rgba(167,139,250,.06);border-left:3px solid #a78bfa;border-radius:6px;padding:12px 16px;margin-bottom:8px">
+    <div style="font-size:10px;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">✓ The pipeline engine is already proven — before tradeshow tailwind</div>
+    <div style="display:flex;gap:28px;margin-bottom:8px;flex-wrap:wrap">
+      <div><div style="font-size:17px;font-weight:700;color:var(--text)">${SEQUENCE_PROOF_POINT.deals} deals</div><div style="font-size:9px;color:var(--muted)">in ${SEQUENCE_PROOF_POINT.weeks} weeks</div></div>
+      <div><div style="font-size:17px;font-weight:700;color:#34d399">${fmtK(SEQUENCE_PROOF_POINT.arrPipeline)}</div><div style="font-size:9px;color:var(--muted)">ARR pipeline built</div></div>
+      <div><div style="font-size:17px;font-weight:700;color:#fbbf24">${SEQUENCE_PROOF_POINT.dealsPerWeek.toFixed(1)}/wk</div><div style="font-size:9px;color:var(--muted)">deal creation pace</div></div>
+      <div><div style="font-size:17px;font-weight:700;color:#8abde8">$0</div><div style="font-size:9px;color:var(--muted)">spent on leads</div></div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);line-height:1.5">One AE built this via cold sequences alone — no inbound, no tradeshow leads, no referrals. The constraint on FY27 is <strong style="color:var(--text)">ramp time, not market receptivity</strong> — which is exactly why hiring earlier, not selling harder, is the lever that matters.</div>
+  </div>
+  `;
 }
 
 function renderBridge() {
@@ -2660,6 +2888,25 @@ function renderQuota(){
     <div class="qt"><div class="qt-label">Delta vs base</div><div class="qt-value qt-delta ${deltaClass}">${delta>0?'+':''}${fmtK(delta)}</div><div class="qt-sub">${deltaSign}${Math.abs(pct)}% vs model</div></div>
     <div class="qt"><div class="qt-label">FY end</div><div class="qt-value" style="font-size:15px;color:var(--muted)">${MN[+fyEnd.split('-')[1]-1]} ${fyEnd.split('-')[0]}</div><div class="qt-sub">Change in top controls</div></div>`;
 
+  // Path to Target button bar
+  const TARGET = (typeof BRIDGE!=='undefined') ? BRIDGE.target.arr : 7100000;
+  const gapToTarget = TARGET - (totalComputed + computeExpansionARR('moderate').expansionARR);
+  const atTarget = gapToTarget <= 50000;
+  document.getElementById('quotaPathBar').innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:10px 14px">
+      <button onclick="applyPathToTarget()" style="padding:7px 16px;border:1.5px solid #4ade80;border-radius:6px;background:rgba(74,222,128,.1);color:#4ade80;font-weight:700;cursor:pointer;font-size:12px">
+        ▸ Apply "Path to Target"
+      </button>
+      <div style="font-size:11px;color:var(--muted);line-height:1.5;flex:1;min-width:240px">
+        ${atTarget
+          ? `<span style="color:#4ade80;font-weight:600">✓ Current plan clears the ${fmtK(TARGET)} Target (incl. expansion).</span>`
+          : `Pulls all planned hires <strong style="color:var(--text)">3 months earlier</strong> + applies a <strong style="color:var(--text)">+10% win rate</strong> → ~$7.24M, clearing the ${fmtK(TARGET)} Target. Saves as a scenario alongside "Current Plan" for side-by-side compare.`}
+      </div>
+      <button onclick="resetToBaseline()" style="padding:7px 14px;border:1px solid var(--border2);border-radius:6px;background:var(--navy3);color:var(--muted);cursor:pointer;font-size:11px">
+        Reset to current plan
+      </button>
+    </div>`;
+
   // Table
   let th=`<thead><tr>
     <th>Rep</th><th>Territory</th><th>Type</th>
@@ -2692,18 +2939,23 @@ function renderQuota(){
           return`<div class="ramp-seg" style="background:rgba(251,191,36,${Math.max(0.08,p*0.5)});color:#fbbf24;opacity:${alpha}" title="${MN[mo.m-1]} ${mo.y}: ${Math.round(p*100)}%">${Math.round(p*100)}%</div>`;
         }).join('')+`<div class="ramp-seg" style="background:rgba(22,163,74,.2);color:#4ade80;font-size:9px" title="Full from Mo4+">100%+</div>`;
 
+    const baseHire = BASE_HIRES[r.name] || r.hire;
+    const hireChanged = r.hire !== baseHire;
     tb+=`<tr>
       <td style="font-weight:600;color:${REP_COLORS[i]}">${r.name}</td>
       <td style="color:var(--muted);font-size:11px">${r.territory}</td>
       <td><span style="font-size:10px;font-weight:600;color:${typeColor}">${r.type}</span></td>
-      <td><input type="month" class="hire-input" value="${r.hire}" onchange="reps[${i}].hire=this.value;reps[${i}].status=reps[${i}].status==='active'?'active':'planned';clearPipelineCache();renderAll()"></td>
+      <td>
+        <input type="month" class="hire-input" value="${r.hire}" onchange="reps[${i}].hire=this.value;reps[${i}].status=reps[${i}].status==='active'?'active':'planned';clearPipelineCache();renderAll()">
+        ${hireChanged?`<div style="font-size:9px;color:#fbbf24;margin-top:2px" title="Original hire date the Base FY27 figure is calculated from">base: ${baseHire}</div>`:`<div style="font-size:9px;color:var(--muted);margin-top:2px;opacity:.5">base: ${baseHire}</div>`}
+      </td>
       <td class="qval">${fmtK(r.avgACV)}</td>
       <td class="qval">${r.dealsMo}</td>
       <td class="qval">${fmtK(r.ssQuota)}</td>
       <td><div class="ramp-bar-wrap">${rampSegs}</div></td>
       <td class="qval">${fmtK(r.baseFY27)}</td>
       <td class="qval ${r.computed<r.baseFY27*0.9?'gap':r.computed>r.baseFY27*1.05?'ok':'warn'}">${fmtK(r.computed)}</td>
-      <td><span class="delta-badge ${dClass}">${dSign}${fmtK(d)}</span></td>
+      <td class="r"><span class="delta-badge ${dClass}">${dSign}${fmtK(d)}</span></td>
     </tr>`;
   });
 
@@ -2718,7 +2970,7 @@ function renderQuota(){
     <td></td>
     <td class="qval">${fmtK(totalBase)}</td>
     <td class="qval ${totalComputed<totalBase*0.95?'gap':'ok'}">${fmtK(totalComputed)}</td>
-    <td><span class="delta-badge ${delta<-5000?'db-neg':delta>5000?'db-pos':'db-flat'}">${delta>0?'+':''}${fmtK(delta)}</span></td>
+    <td class="r"><span class="delta-badge ${delta<-5000?'db-neg':delta>5000?'db-pos':'db-flat'}">${delta>0?'+':''}${fmtK(delta)}</span></td>
   </tr></tbody>`;
 
   document.getElementById('quotaTable').innerHTML=th+tb;
@@ -3489,7 +3741,7 @@ function renderMonthlyGrid(months, matrix, rampMatrix, colTotals, cumTotals, isF
 }
 
 // ── TABS ─────────────────────────────────────────────────────────────────────
-const TABS=['swimlane','fy26','pipe','quota','monthly','align','phases','reps','bridge','sensitivity','scenarios','howto'];
+const TABS=['summary','swimlane','fy26','pipe','quota','monthly','align','phases','reps','bridge','sensitivity','scenarios','howto'];
 function howtoScroll(id){
   const el=document.getElementById(id);
   if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
@@ -3500,6 +3752,7 @@ function showTab(t){
   TABS.forEach(id=>{document.getElementById('tab-'+id).style.display=id===t?'':'none'});
   document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',TABS[i]===t));
   document.getElementById('statsBar').style.display=(t==='quota'||t==='swimlane'||t==='monthly'||t==='pipe')?'flex':'none';
+  if(t==='summary')renderSummary();
   if(t==='fy26')renderFY26Forecast();
   if(t==='pipe')renderPipelineRequired();
   if(t==='bridge')renderBridge();
@@ -3515,8 +3768,9 @@ function showTab(t){
 function renderAll(){
   clearPipelineCache();
   renderStats();
-  const active=TABS.find(id=>document.getElementById('tab-'+id).style.display!=='none')||'swimlane';
-  if(active==='swimlane')renderSwimlane();
+  const active=TABS.find(id=>document.getElementById('tab-'+id).style.display!=='none')||'summary';
+  if(active==='summary')renderSummary();
+  else if(active==='swimlane')renderSwimlane();
   else if(active==='fy26')renderFY26Forecast();
   else if(active==='pipe')renderPipelineRequired();
   else if(active==='bridge')renderBridge();
@@ -3530,7 +3784,7 @@ function renderAll(){
 }
 
 renderStats();
-renderSwimlane();
+showTab('summary');
 window.addEventListener('resize',()=>{clearTimeout(window._rt);window._rt=setTimeout(renderAll,100)});
 </script>
 </body>
